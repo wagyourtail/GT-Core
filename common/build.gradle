@@ -2,7 +2,7 @@ archivesBaseName = "${rootProject.archive_base_name}-common"
 version = "${project.mod_version}-${rootProject.minecraft_version}"
 
 dependencies {
-    modCompileOnly("com.github.gregtech-intergalactical:antimatter-common:${antimatter_version}"){
+    modCompileOnly("io.github.gregtechintergalactical:antimatter-common:${antimatter_version}"){
         exclude(group: "maven.modrinth")
     }
 }

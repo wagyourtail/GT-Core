@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "gtutility",
   "version": "${version}",
   "name": "Example Mod",
   "description": "This is an example description! Tell everyone what your mod is about!",
@@ -8,7 +8,7 @@
     "Me!"
   ],
   "contact": {
-    "sources": "https://github.com/GregTech-Intergalactical/ExampleMod"
+    "sources": "https://github.com/GregTech-Intergalactical/GT-Utility"
   },
 
   "license": "LGPLv3",
@@ -17,10 +17,10 @@
   "environment": "*",
   "entrypoints": {
     "antimatter": [
-      "io.github.gregtechintergalactical.examplemod.ExampleMod"
+      "io.github.gregtechintergalactical.gtutility.GTUtility"
     ],
     "main": [
-      "github.example.gtutility.fabric.ExampleModFabric"
+      "io.github.gregtechintergalactical.gtutility.fabric.GTUtilityFabric"
     ]
   },
 
