@@ -17,10 +17,10 @@
   "environment": "*",
   "entrypoints": {
     "antimatter": [
-      "com.example.examplemod.ExampleMod"
+      "io.github.gregtechintergalactical.examplemod.ExampleMod"
     ],
     "main": [
-      "com.example.examplemod.fabric.ExampleModFabric"
+      "github.example.gtutility.fabric.ExampleModFabric"
     ]
   },
 
