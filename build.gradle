@@ -14,6 +14,15 @@ architectury {
 //Print out JVM information so that we know what version is running. Extreamly useful for people to know when helping you.
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
+
+def isCI = System.getenv("GITHUB_ACTION")
+def isRELEASE = System.getenv("GITHUB_RELEASE")
+def gitHash() {
+    String hash = System.getenv("GITHUB_SHA")
+    if (hash != null) return hash.substring(0,8)
+    return ""
+}
+
 allprojects {
     apply plugin: "maven-publish"
     apply plugin: "java"
@@ -93,6 +102,13 @@ allprojects {
     tasks.withType(JavaCompile).configureEach {
         it.options.encoding = 'UTF-8'
     }
+    if (isCI) {
+        if (!isRELEASE){
+            version = version + "-" + gitHash()
+            println("Not in CI Release mode")
+        }
+        println("In CI mode")
+    }
 }
 
 subprojects {
@@ -153,20 +169,31 @@ subprojects {
 
     publishing {
         publications {
-            mavenJava(MavenPublication) {
-                artifactId = "examplemod-" + project.name
+            mavenJava(org.gradle.api.publish.maven.MavenPublication) {
+                artifactId = "gtrubber-" + project.name
                 artifact(sourcesJar) {
                     builtBy remapSourcesJar
                 }
 
                 afterEvaluate {
                     artifact remapJar
+                    if (project.name != "common"){
+                        artifact shadowJar
+                    }
                 }
             }
         }
         repositories {
-            maven {
-                url "file:///${project.projectDir}/mcmodsrepo"
+            if (isCI && isRELEASE) {
+                maven {
+                    url = "https://repo.repsy.io/mvn/trinsdar/gregtech-intergalactical/"
+                    credentials {
+                        username = System.getenv("MAVEN_USERNAME")
+                        password = System.getenv("MAVEN_PASSWORD")
+                    }
+                }
+            } else {
+                maven { url "file:///${project.projectDir}/mcmodsrepo"}
             }
         }
     }
