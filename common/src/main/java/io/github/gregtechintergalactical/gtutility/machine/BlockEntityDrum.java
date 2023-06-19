@@ -143,15 +143,6 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
             return output;
         }
 
-        int getCapacity(Material mat){
-            if (mat == Netherite) return 128000;
-            //if (mat == Tungsten || mat == TungstenSteel) return 256000;
-            //if (mat == Steel) return 32000;
-            //if (mat == Invar) return 48000;
-            //if (mat == Bronze) return 16000;
-            return 64000;
-        }
-
         @Nullable
         @Override
         public FluidTanks getOutputTanks() {

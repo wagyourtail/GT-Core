@@ -14,8 +14,8 @@ import static muramasa.antimatter.Data.WRENCH_MATERIAL;
 
 public class DrumMachine extends MaterialMachine{
     public final int maxCapacity;
-    public DrumMachine(String domain, String id, Material material, int maxCapacity) {
-        super(domain, id, material);
+    public DrumMachine(String domain, Material material, int maxCapacity) {
+        super(domain, material.getId() + "_drum", material);
         this.maxCapacity = maxCapacity;
         setTiers(Tier.NONE);
         this.setTile(((materialMachine, blockPos, blockState) -> new BlockEntityDrum(this, blockPos, blockState)));

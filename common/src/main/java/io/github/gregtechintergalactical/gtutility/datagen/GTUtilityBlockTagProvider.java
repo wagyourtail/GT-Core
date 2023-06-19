@@ -3,13 +3,8 @@ package io.github.gregtechintergalactical.gtutility.datagen;
 import io.github.gregtechintergalactical.gtutility.GTUtility;
 import io.github.gregtechintergalactical.gtutility.machine.BlockMachineMaterial;
 import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.data.AntimatterStoneTypes;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
-import muramasa.antimatter.util.TagUtils;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 
 
 public class GTUtilityBlockTagProvider extends AntimatterBlockTagProvider {

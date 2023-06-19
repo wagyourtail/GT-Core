@@ -7,20 +7,12 @@ import muramasa.antimatter.datagen.AntimatterDynamics;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.datagen.providers.AntimatterTagProvider;
+import muramasa.antimatter.event.CraftingEvent;
 import muramasa.antimatter.event.MaterialEvent;
 import muramasa.antimatter.event.ProvidersEvent;
 import muramasa.antimatter.registration.RegistrationEvent;
 import muramasa.antimatter.AntimatterMod;
-import muramasa.antimatter.cover.ICover;
 import muramasa.antimatter.registration.Side;
-import muramasa.antimatter.util.AntimatterPlatformUtils;
-import muramasa.antimatter.util.TagUtils;
-import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.data.tags.TagsProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.level.biome.Biome;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -53,6 +45,10 @@ public class GTUtility extends AntimatterMod {
 
     @Override
     public void onMaterialEvent(MaterialEvent event) {
+    }
+
+    public static void onCrafting(CraftingEvent event){
+        event.addLoader(GTUtilityRecipes::initRecipes);
     }
 
     public static void onProviders(ProvidersEvent ev) {

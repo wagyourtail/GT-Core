@@ -2,6 +2,7 @@ package io.github.gregtechintergalactical.gtutility.forge;
 
 import io.github.gregtechintergalactical.gtutility.GTUtility;
 import io.github.gregtechintergalactical.gtutility.proxy.ClientHandler;
+import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
 import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class GTUtilityForge extends GTUtility {
     public GTUtilityForge(){
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onProvidersEvent);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCraftingEvent);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         });
@@ -27,5 +29,9 @@ public class GTUtilityForge extends GTUtility {
 
     private void onProvidersEvent(AntimatterProvidersEvent event){
         onProviders(event.event);
+    }
+
+    private void onCraftingEvent(AntimatterCraftingEvent event){
+        onCrafting(event.getEvent());
     }
 }
