@@ -1,0 +1,23 @@
+archivesBaseName = "${rootProject.archive_base_name}-forge"
+version = "${project.mod_version}-${rootProject.minecraft_version}"
+
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
+dependencies {
+    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    modImplementation("com.github.gregtech-intergalactical:antimatter-forge:${antimatter_version}")
+    common(project(path: ":common", configuration: "namedElements"))
+    shadowCommon(project(path: ":common", configuration: "transformProductionForge"))
+    modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
+}
+
+processResources {
+    inputs.property "version", project.mod_version
+
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.mod_version
+    }
+}
