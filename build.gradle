@@ -170,7 +170,7 @@ subprojects {
     publishing {
         publications {
             mavenJava(org.gradle.api.publish.maven.MavenPublication) {
-                artifactId = "gtrubber-" + project.name
+                artifactId = "gtutility-" + project.name
                 artifact(sourcesJar) {
                     builtBy remapSourcesJar
                 }
