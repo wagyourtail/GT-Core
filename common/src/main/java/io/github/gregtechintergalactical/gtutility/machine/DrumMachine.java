@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtutility.machine;
 
 import io.github.gregtechintergalactical.gtutility.GTUtility;
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
@@ -16,6 +17,7 @@ public class DrumMachine extends MaterialMachine{
     public final int maxCapacity;
     public DrumMachine(String domain, Material material, int maxCapacity) {
         super(domain, material.getId() + "_drum", material);
+        AntimatterAPI.register(DrumMachine.class, this);
         this.maxCapacity = maxCapacity;
         setTiers(Tier.NONE);
         this.setTile(((materialMachine, blockPos, blockState) -> new BlockEntityDrum(this, blockPos, blockState)));

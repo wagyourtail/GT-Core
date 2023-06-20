@@ -17,13 +17,9 @@ public class GTUtilityData {
     }
 
     public static DrumMachine createDrum(Material material, int maxCapacity){
-        Machine<?> machine = AntimatterAPI.get(Machine.class, material.getId() + "_drum", GTUtility.ID);
+        DrumMachine machine = AntimatterAPI.get(DrumMachine.class, material.getId() + "_drum", GTUtility.ID);
         if (machine != null){
-            if (machine instanceof DrumMachine drumMachine){
-                return drumMachine;
-            } else {
-                throw new IllegalStateException("Drum registered not using DrumMachine");
-            }
+            return machine;
         }
         return new DrumMachine(GTUtility.ID, material, maxCapacity);
     }
