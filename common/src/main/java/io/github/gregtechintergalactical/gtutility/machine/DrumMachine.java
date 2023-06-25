@@ -1,8 +1,8 @@
 package io.github.gregtechintergalactical.gtutility.machine;
 
 import io.github.gregtechintergalactical.gtutility.GTUtility;
+import io.github.gregtechintergalactical.gtutility.blockentity.BlockEntityDrum;
 import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;

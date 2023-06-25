@@ -1,5 +1,6 @@
-package io.github.gregtechintergalactical.gtutility.machine;
+package io.github.gregtechintergalactical.gtutility.blockentity;
 
+import io.github.gregtechintergalactical.gtutility.machine.MaterialMachine;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.tile.TileEntityMachine;
 import net.minecraft.core.BlockPos;

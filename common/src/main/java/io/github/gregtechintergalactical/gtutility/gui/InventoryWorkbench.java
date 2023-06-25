@@ -1,12 +1,15 @@
 package io.github.gregtechintergalactical.gtutility.gui;
 
+import io.github.gregtechintergalactical.gtutility.GTUtility;
 import io.github.gregtechintergalactical.gtutility.data.SlotTypes;
+import io.github.gregtechintergalactical.gtutility.network.MessageCraftingSync;
 import muramasa.antimatter.Antimatter;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.capability.machine.MachineItemHandler;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import trinsdar.networkapi.api.INetwork;
 
 import javax.annotation.Nonnull;
 
@@ -46,7 +49,7 @@ public class InventoryWorkbench extends CraftingContainer {
         this.projectTable.getTile().setChanged();
         this.eventHandler.slotsChanged(this);
         if(AntimatterAPI.getSIDE().isClient())
-            Antimatter.NETWORK.sendToServer(Ref.SYNC_ID, new MessageCraftingSync());
+            INetwork.getInstance().sendToServer(GTUtility.SYNC_ID, new MessageCraftingSync());
     }
 
     @Nonnull

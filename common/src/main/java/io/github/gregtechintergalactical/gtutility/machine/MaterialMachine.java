@@ -1,11 +1,9 @@
 package io.github.gregtechintergalactical.gtutility.machine;
 
+import io.github.gregtechintergalactical.gtutility.blockentity.BlockEntityMaterial;
 import muramasa.antimatter.machine.types.Machine;
 import muramasa.antimatter.material.Material;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.fluids.FluidStack;
 
 import static muramasa.antimatter.Data.WRENCH_MATERIAL;
 import static muramasa.antimatter.machine.MachineFlag.COVERABLE;

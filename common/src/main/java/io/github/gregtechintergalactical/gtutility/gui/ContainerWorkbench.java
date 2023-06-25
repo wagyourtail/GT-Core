@@ -1,7 +1,7 @@
 package io.github.gregtechintergalactical.gtutility.gui;
 
 import io.github.gregtechintergalactical.gtutility.gui.slots.SlotWorkTableResult;
-import io.github.gregtechintergalactical.gtutility.machine.BlockEntityMaterial;
+import io.github.gregtechintergalactical.gtutility.blockentity.BlockEntityMaterial;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import muramasa.antimatter.capability.machine.MachineItemHandler;

@@ -1,10 +1,10 @@
-package io.github.gregtechintergalactical.gtutility.machine;
+package io.github.gregtechintergalactical.gtutility.blockentity;
 
+import io.github.gregtechintergalactical.gtutility.machine.DrumMachine;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.capability.fluid.FluidTanks;
 import muramasa.antimatter.capability.machine.MachineFluidHandler;
 import muramasa.antimatter.machine.event.ContentEvent;
-import muramasa.antimatter.material.Material;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.Utils;
@@ -35,7 +35,6 @@ import java.util.Optional;
 
 import static muramasa.antimatter.data.AntimatterDefaultTools.ELECTRIC_WRENCH;
 import static muramasa.antimatter.data.AntimatterDefaultTools.WRENCH;
-import static muramasa.antimatter.data.AntimatterMaterials.Netherite;
 import static net.minecraft.core.Direction.DOWN;
 import static net.minecraft.core.Direction.UP;
 

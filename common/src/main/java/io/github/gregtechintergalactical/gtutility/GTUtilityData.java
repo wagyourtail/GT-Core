@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtutility;
 
 import io.github.gregtechintergalactical.gtutility.machine.DrumMachine;
+import io.github.gregtechintergalactical.gtutility.machine.WorkbenchMachine;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterMaterialTypes;
 import muramasa.antimatter.data.AntimatterMaterials;
@@ -22,5 +23,13 @@ public class GTUtilityData {
             return machine;
         }
         return new DrumMachine(GTUtility.ID, material, maxCapacity);
+    }
+
+    public static WorkbenchMachine createWorkbench(Material material, boolean charge){
+        WorkbenchMachine machine = AntimatterAPI.get(WorkbenchMachine.class, material.getId() + (charge ? "_charging" : "") + "_workbench", GTUtility.ID);
+        if (machine != null){
+            return machine;
+        }
+        return new WorkbenchMachine(GTUtility.ID, material, charge);
     }
 }
