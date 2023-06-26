@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtutility.machine;
 
 import io.github.gregtechintergalactical.gtutility.blockentity.BlockEntityMaterial;
+import muramasa.antimatter.Data;
 import muramasa.antimatter.machine.types.Machine;
 import muramasa.antimatter.material.Material;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -20,6 +21,7 @@ public class MaterialMachine extends Machine<MaterialMachine> {
         });
         setTile(BlockEntityMaterial::new);
         addFlags(COVERABLE);
+        this.setGUI(Data.BASIC_MENU_HANDLER);
         noCovers();
         allowFrontIO();
         frontCovers();

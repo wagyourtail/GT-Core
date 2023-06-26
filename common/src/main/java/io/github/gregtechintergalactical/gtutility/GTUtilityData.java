@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtutility;
 
 import io.github.gregtechintergalactical.gtutility.machine.DrumMachine;
+import io.github.gregtechintergalactical.gtutility.machine.LockerMachine;
 import io.github.gregtechintergalactical.gtutility.machine.WorkbenchMachine;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterMaterialTypes;
@@ -12,6 +13,9 @@ import muramasa.antimatter.material.Material;
 import muramasa.antimatter.material.TextureSet;
 
 public class GTUtilityData {
+
+    static LockerMachine IRON_LOCKER = new LockerMachine(GTUtility.ID, AntimatterMaterials.Iron, false);
+    static LockerMachine IRON_CHARGING_LOCKER = new LockerMachine(GTUtility.ID, AntimatterMaterials.Iron, true);
 
     public static void init() {
 
@@ -31,5 +35,13 @@ public class GTUtilityData {
             return machine;
         }
         return new WorkbenchMachine(GTUtility.ID, material, charge);
+    }
+
+    public static LockerMachine createLocker(Material material, boolean charge){
+        LockerMachine machine = AntimatterAPI.get(LockerMachine.class, material.getId() + (charge ? "_charging" : "") + "_locker", GTUtility.ID);
+        if (machine != null){
+            return machine;
+        }
+        return new LockerMachine(GTUtility.ID, material, charge);
     }
 }

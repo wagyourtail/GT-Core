@@ -16,13 +16,11 @@ import static muramasa.antimatter.gui.ButtonBody.NO_OVERLAY;
 import static muramasa.antimatter.gui.SlotType.STORAGE;
 import static muramasa.antimatter.machine.MachineFlag.*;
 
-public class WorkbenchMachine extends MaterialMachine{
+public class WorkbenchMachine extends ChargingMachine{
     public WorkbenchMachine(String domain, Material material, boolean charge) {
-        super(domain, material.getId() + (charge ? "_charging" : "") + "_workbench", material);
+        super(domain, material, "workbench", charge);
         setGUI(MenuHandlers.WORKBENCH_HANDLER);
         this.addFlags(ITEM, GUI);
-        if (charge) this.addFlags(ENERGY);
-        this.setTiers(charge ? Tier.HV : Tier.NONE);
         this.setTile(BlockEntityWorkbench::new);
         for (int y = 0; y < 4; y++){
             for (int x = 0; x < 4; x++){
@@ -43,22 +41,6 @@ public class WorkbenchMachine extends MaterialMachine{
             t.addButton(154, 28, 16, 16, NO_OVERLAY);
         });
         this.getGui().setOverrideLocation(new ResourceLocation(GTUtility.ID, "textures/gui/machine/" + (charge ? "charging_" : "") + "workbench.png"));
-        this.baseTexture((m, t) -> new Texture[] {
-                new Texture(GTUtility.ID, "block/machine/base/workbench/bottom"),
-                new Texture(GTUtility.ID, "block/machine/base/workbench/top"),
-                new Texture(GTUtility.ID, "block/machine/base/workbench/back"),
-                new Texture(GTUtility.ID, "block/machine/base/workbench/front"),
-                new Texture(GTUtility.ID, "block/machine/base/workbench/side"),
-                new Texture(GTUtility.ID, "block/machine/base/workbench/side"),
-        });
-        this.overlayTexture((type, state, tier) -> new Texture[] {
-                new Texture(GTUtility.ID, "block/machine/overlay/" + (charge ? "charging_" : "") + "workbench/bottom"),
-                new Texture(GTUtility.ID, "block/machine/overlay/" + (charge ? "charging_" : "") + "workbench/top"),
-                new Texture(GTUtility.ID, "block/machine/overlay/" + (charge ? "charging_" : "") + "workbench/back"),
-                new Texture(GTUtility.ID, "block/machine/overlay/" + (charge ? "charging_" : "") + "workbench/front"),
-                new Texture(GTUtility.ID, "block/machine/overlay/" + (charge ? "charging_" : "") + "workbench/side"),
-                new Texture(GTUtility.ID, "block/machine/overlay/" + (charge ? "charging_" : "") + "workbench/side"),
-        });
         AntimatterAPI.register(WorkbenchMachine.class, this);
     }
 }
