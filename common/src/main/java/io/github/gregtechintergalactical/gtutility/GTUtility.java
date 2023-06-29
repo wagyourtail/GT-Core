@@ -1,5 +1,6 @@
 package io.github.gregtechintergalactical.gtutility;
 
+import com.teamresourceful.resourcefullib.common.networking.base.NetworkDirection;
 import io.github.gregtechintergalactical.gtutility.data.MenuHandlers;
 import io.github.gregtechintergalactical.gtutility.data.SlotTypes;
 import io.github.gregtechintergalactical.gtutility.data.client.ScreenFactories;
@@ -7,7 +8,7 @@ import io.github.gregtechintergalactical.gtutility.datagen.GTUtilityBlockLootPro
 import io.github.gregtechintergalactical.gtutility.datagen.GTUtilityBlockTagProvider;
 import io.github.gregtechintergalactical.gtutility.datagen.GtUtilityLang;
 import io.github.gregtechintergalactical.gtutility.network.MessageCraftingSync;
-import muramasa.antimatter.Ref;
+import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.datagen.AntimatterDynamics;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
@@ -15,13 +16,12 @@ import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.event.CraftingEvent;
 import muramasa.antimatter.event.MaterialEvent;
 import muramasa.antimatter.event.ProvidersEvent;
+import muramasa.antimatter.network.AntimatterNetwork;
 import muramasa.antimatter.registration.RegistrationEvent;
-import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.registration.Side;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import trinsdar.networkapi.api.PacketRegistration;
 
 public class GTUtility extends AntimatterMod {
 
@@ -35,7 +35,6 @@ public class GTUtility extends AntimatterMod {
         AntimatterDynamics.clientProvider(ID, () -> new AntimatterBlockStateProvider(ID, NAME + " BlockStates"));
         AntimatterDynamics.clientProvider(ID, () -> new AntimatterItemModelProvider(ID, NAME + " Item Models"));
         AntimatterDynamics.clientProvider(ID, GtUtilityLang.en_US::new);
-        PacketRegistration.registerPacket(MessageCraftingSync.class, SYNC_ID, b -> new MessageCraftingSync(), PacketRegistration.NetworkDirection.PLAY_TO_SERVER);
     }
 
     @Override
@@ -45,6 +44,7 @@ public class GTUtility extends AntimatterMod {
                 SlotTypes.init();
                 MenuHandlers.init();
                 GTUtilityData.init();
+                AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, SYNC_ID, MessageCraftingSync.HANDLER, MessageCraftingSync.class);
             }
             case CLIENT_DATA_INIT -> ScreenFactories.init();
         }
