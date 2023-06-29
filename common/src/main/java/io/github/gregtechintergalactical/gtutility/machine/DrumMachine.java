@@ -23,6 +23,7 @@ public class DrumMachine extends MaterialMachine{
         this.setTile(((materialMachine, blockPos, blockState) -> new BlockEntityDrum(this, blockPos, blockState)));
         setBlock((type, tier) -> new BlockMachineMaterial(type, tier, BlockBehaviour.Properties.of(WRENCH_MATERIAL).strength(1.0f, 10.0f)));
         setTooltipInfo((stack, world, tooltip, flag) -> {
+            tooltip.add(new TranslatableComponent("machine.drum.capacity", maxCapacity));
             CompoundTag nbt = stack.getTag();
             if (nbt != null && (nbt.contains("Fluid") || nbt.contains("Outputs"))){
                 FluidStack fluid = nbt.contains("Fluid") ? FluidStack.loadFluidStackFromNBT(nbt.getCompound("Fluid")) : FluidStack.EMPTY;

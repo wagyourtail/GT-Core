@@ -3,7 +3,7 @@ package io.github.gregtechintergalactical.gtutility.datagen;
 import io.github.gregtechintergalactical.gtutility.GTUtility;
 import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
 
-public class GtUtilityLang {
+public class GTUtilityLang {
     public static class en_US extends AntimatterLanguageProvider {
 
         public en_US() {
@@ -19,6 +19,7 @@ public class GtUtilityLang {
             super.addTranslations();
             add("machine.drum.fluid", "Contains %s mb of %s");
             add("machine.drum.output", "Currently set to auto output");
+            add("machine.drum.capacity", "Capacity: %sL(MB)");
         }
     }
 }

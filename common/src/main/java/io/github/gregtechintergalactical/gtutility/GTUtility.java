@@ -6,7 +6,7 @@ import io.github.gregtechintergalactical.gtutility.data.SlotTypes;
 import io.github.gregtechintergalactical.gtutility.data.client.ScreenFactories;
 import io.github.gregtechintergalactical.gtutility.datagen.GTUtilityBlockLootProvider;
 import io.github.gregtechintergalactical.gtutility.datagen.GTUtilityBlockTagProvider;
-import io.github.gregtechintergalactical.gtutility.datagen.GtUtilityLang;
+import io.github.gregtechintergalactical.gtutility.datagen.GTUtilityLang;
 import io.github.gregtechintergalactical.gtutility.network.MessageCraftingSync;
 import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.datagen.AntimatterDynamics;
@@ -34,7 +34,7 @@ public class GTUtility extends AntimatterMod {
         super.onRegistrarInit();
         AntimatterDynamics.clientProvider(ID, () -> new AntimatterBlockStateProvider(ID, NAME + " BlockStates"));
         AntimatterDynamics.clientProvider(ID, () -> new AntimatterItemModelProvider(ID, NAME + " Item Models"));
-        AntimatterDynamics.clientProvider(ID, GtUtilityLang.en_US::new);
+        AntimatterDynamics.clientProvider(ID, GTUtilityLang.en_US::new);
     }
 
     @Override
