@@ -17,6 +17,8 @@ public class GTUtilityData {
     static LockerMachine IRON_LOCKER = new LockerMachine(GTUtility.ID, AntimatterMaterials.Iron, false);
     static LockerMachine IRON_CHARGING_LOCKER = new LockerMachine(GTUtility.ID, AntimatterMaterials.Iron, true);
 
+    static WorkbenchMachine IRON_WORKBENCH = createWorkbench(AntimatterMaterials.Iron, false);
+
     public static void init() {
 
     }

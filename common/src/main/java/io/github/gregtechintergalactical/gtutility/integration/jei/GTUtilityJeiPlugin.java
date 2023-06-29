@@ -1,6 +1,8 @@
-package trinsdar.gt4r.integration.jei;
+package io.github.gregtechintergalactical.gtutility.integration.jei;
 
+import io.github.gregtechintergalactical.gtutility.GTUtility;
 import io.github.gregtechintergalactical.gtutility.gui.ContainerWorkbench;
+import io.github.gregtechintergalactical.gtutility.machine.WorkbenchMachine;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
@@ -10,49 +12,45 @@ import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import muramasa.antimatter.Antimatter;
-import muramasa.antimatter.machine.types.Machine;
+import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.Ref;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingRecipe;
-import trinsdar.gt4r.Ref;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static muramasa.antimatter.machine.Tier.HV;
-import static muramasa.antimatter.machine.Tier.LV;
-import static trinsdar.gt4r.data.GT4RMaterialTags.CHARGING_WORKBENCH;
-import static trinsdar.gt4r.data.GT4RMaterialTags.WORKBENCH;
-
 @JeiPlugin
-public class GT4RJeiPlugin implements IModPlugin {
-    public GT4RJeiPlugin(){
-        Antimatter.LOGGER.debug("GT4RJEIPlugin created");
+public class GTUtilityJeiPlugin implements IModPlugin {
+    public GTUtilityJeiPlugin(){
+        Antimatter.LOGGER.debug("GTUtilityJEIPlugin created");
     }
 
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(Ref.ID, "jei_plugin");
+        return new ResourceLocation(GTUtility.ID, "jei_plugin");
     }
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-        registration.addRecipeTransferHandler(new GT4RRecipeTransferInfo());
+        if (AntimatterAPI.isModLoaded(Ref.MOD_REI)) return;
+        registration.addRecipeTransferHandler(new GTUtilityRecipeTransferInfo());
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        WORKBENCH.all().forEach(m -> {
-            registration.addRecipeCatalyst(new ItemStack(Machine.get(m.getId() + "_workbench", Ref.ID).map(mch -> mch.getItem(LV)).orElse(Items.AIR)), RecipeTypes.CRAFTING);
-            if (m.has(CHARGING_WORKBENCH)){
-                registration.addRecipeCatalyst(new ItemStack(Machine.get(m.getId() + "_charging_workbench", Ref.ID).map(mch -> mch.getItem(HV)).orElse(Items.AIR)), RecipeTypes.CRAFTING);
-            }
+        if (AntimatterAPI.isModLoaded(Ref.MOD_REI)) return;
+        AntimatterAPI.all(WorkbenchMachine.class).forEach(m -> {
+            m.getTiers().forEach(t -> {
+                registration.addRecipeCatalyst(new ItemStack(m.getItem(t)), RecipeTypes.CRAFTING);
+            });
         });
     }
 
-    public static class GT4RRecipeTransferInfo implements IRecipeTransferInfo<ContainerWorkbench, CraftingRecipe>{
+    public static class GTUtilityRecipeTransferInfo implements IRecipeTransferInfo<ContainerWorkbench, CraftingRecipe>{
         @Override
         public Class<ContainerWorkbench> getContainerClass() {
             return ContainerWorkbench.class;

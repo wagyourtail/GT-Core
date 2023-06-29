@@ -19,6 +19,9 @@
     "antimatter": [
       "io.github.gregtechintergalactical.gtutility.GTUtility"
     ],
+    "rei_client": [
+      "io.github.gregtechintergalactical.gtutility.integration.rei.GTUtilityReiPlugin"
+    ],
     "main": [
       "io.github.gregtechintergalactical.gtutility.fabric.GTUtilityFabric"
     ]

@@ -6,10 +6,10 @@ import io.github.gregtechintergalactical.gtutility.network.MessageCraftingSync;
 import muramasa.antimatter.Antimatter;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.capability.machine.MachineItemHandler;
+import muramasa.antimatter.network.AntimatterNetwork;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
-import trinsdar.networkapi.api.INetwork;
 
 import javax.annotation.Nonnull;
 
@@ -49,7 +49,7 @@ public class InventoryWorkbench extends CraftingContainer {
         this.projectTable.getTile().setChanged();
         this.eventHandler.slotsChanged(this);
         if(AntimatterAPI.getSIDE().isClient())
-            INetwork.getInstance().sendToServer(GTUtility.SYNC_ID, new MessageCraftingSync());
+            AntimatterNetwork.NETWORK.sendToServer(new MessageCraftingSync());
     }
 
     @Nonnull
