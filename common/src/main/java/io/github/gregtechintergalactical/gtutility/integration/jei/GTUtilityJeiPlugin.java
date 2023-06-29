@@ -47,11 +47,15 @@ public class GTUtilityJeiPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         if (AntimatterAPI.isModLoaded(Ref.MOD_REI)) return;
+        /*AntimatterAPI.all(WorkbenchMachine.class).forEach(m -> {
+            m.getTiers().forEach(t -> {
+                registration.addRecipeCatalyst(new ItemStack(m.getItem(t)), RecipeTypes.CRAFTING);
+            });
+        });*/
         Optional<WorkbenchMachine> machine = AntimatterAPI.all(WorkbenchMachine.class).stream().findFirst();
         if (machine.isPresent()){
             registration.addRecipeCatalyst(new ItemStack(machine.get().getItem(machine.get().getFirstTier())), RecipeTypes.CRAFTING);
         }
-
     }
 
     public static class GTUtilityRecipeTransferInfo implements IRecipeTransferInfo<ContainerWorkbench, CraftingRecipe>{
