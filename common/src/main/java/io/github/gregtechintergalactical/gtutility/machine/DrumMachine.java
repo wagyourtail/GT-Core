@@ -22,7 +22,7 @@ public class DrumMachine extends MaterialMachine{
         setTiers(Tier.NONE);
         this.setTile(((materialMachine, blockPos, blockState) -> new BlockEntityDrum(this, blockPos, blockState)));
         setBlock((type, tier) -> new BlockMachineMaterial(type, tier, BlockBehaviour.Properties.of(WRENCH_MATERIAL).strength(1.0f, 10.0f)));
-        setTooltipInfo((stack, world, tooltip, flag) -> {
+        setTooltipInfo((machine, stack, world, tooltip, flag) -> {
             tooltip.add(new TranslatableComponent("machine.drum.capacity", maxCapacity));
             CompoundTag nbt = stack.getTag();
             if (nbt != null && (nbt.contains("Fluid") || nbt.contains("Outputs"))){
