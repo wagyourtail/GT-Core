@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.items.IItemHandler;
+import tesseract.api.item.ExtendedItemContainer;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -70,7 +70,7 @@ public class BlockEntityLocker extends BlockEntityMaterial<BlockEntityLocker> {
 
     @Override
     public <V> boolean blocksCapability(@Nonnull Class<V> cap, Direction side) {
-        return super.blocksCapability(cap, side) || cap == IItemHandler.class;
+        return super.blocksCapability(cap, side) || cap == ExtendedItemContainer.class;
     }
 
     private EquipmentSlot getSlot(int slot){

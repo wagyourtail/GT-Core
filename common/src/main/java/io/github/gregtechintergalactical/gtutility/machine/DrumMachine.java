@@ -1,5 +1,7 @@
 package io.github.gregtechintergalactical.gtutility.machine;
 
+import earth.terrarium.botarium.common.fluid.base.FluidHolder;
+import earth.terrarium.botarium.common.fluid.utils.FluidHooks;
 import io.github.gregtechintergalactical.gtutility.GTUtility;
 import io.github.gregtechintergalactical.gtutility.blockentity.BlockEntityDrum;
 import muramasa.antimatter.AntimatterAPI;
@@ -9,7 +11,7 @@ import muramasa.antimatter.texture.Texture;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.fluids.FluidStack;
+import tesseract.FluidPlatformUtils;
 
 import static muramasa.antimatter.Data.WRENCH_MATERIAL;
 
@@ -26,9 +28,9 @@ public class DrumMachine extends MaterialMachine{
             tooltip.add(new TranslatableComponent("machine.drum.capacity", maxCapacity));
             CompoundTag nbt = stack.getTag();
             if (nbt != null && (nbt.contains("Fluid") || nbt.contains("Outputs"))){
-                FluidStack fluid = nbt.contains("Fluid") ? FluidStack.loadFluidStackFromNBT(nbt.getCompound("Fluid")) : FluidStack.EMPTY;
-                if (fluid != null && !fluid.isEmpty()){
-                    tooltip.add(new TranslatableComponent("machine.drum.fluid", fluid.getAmount(), fluid.getDisplayName()));
+                FluidHolder fluid = nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.emptyFluid();
+                if (!fluid.isEmpty()){
+                    tooltip.add(new TranslatableComponent("machine.drum.fluid", fluid.getFluidAmount(), FluidPlatformUtils.getFluidDisplayName(fluid)));
                 }
                 if (nbt.contains("Outputs")){
                     tooltip.add(new TranslatableComponent("machine.drum.output"));

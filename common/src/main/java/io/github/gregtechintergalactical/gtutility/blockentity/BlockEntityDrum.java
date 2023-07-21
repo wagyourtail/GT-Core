@@ -1,7 +1,12 @@
 package io.github.gregtechintergalactical.gtutility.blockentity;
 
+import earth.terrarium.botarium.common.fluid.base.FluidContainer;
+import earth.terrarium.botarium.common.fluid.base.FluidHolder;
+import earth.terrarium.botarium.common.fluid.base.PlatformFluidHandler;
+import earth.terrarium.botarium.common.fluid.utils.FluidHooks;
 import io.github.gregtechintergalactical.gtutility.machine.DrumMachine;
 import muramasa.antimatter.Ref;
+import muramasa.antimatter.capability.fluid.FluidTank;
 import muramasa.antimatter.capability.fluid.FluidTanks;
 import muramasa.antimatter.capability.machine.MachineFluidHandler;
 import muramasa.antimatter.machine.event.ContentEvent;
@@ -23,11 +28,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
 import tesseract.FluidPlatformUtils;
 import tesseract.TesseractCapUtils;
+import tesseract.TesseractGraphWrappers;
+import tesseract.api.fluid.FluidContainerHandler;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -39,7 +43,7 @@ import static net.minecraft.core.Direction.DOWN;
 import static net.minecraft.core.Direction.UP;
 
 public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
-    FluidStack drop = FluidStack.EMPTY;
+    FluidHolder drop = FluidHooks.emptyFluid();
     boolean output = false;
     public BlockEntityDrum(DrumMachine type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -80,7 +84,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
             ItemStack stack = drops.get(0);
             if (!getDrop().isEmpty()){
                 CompoundTag nbt = stack.getOrCreateTag();
-                nbt.put("Fluid", getDrop().writeToNBT(new CompoundTag()));
+                nbt.put("Fluid", getDrop().serialize());
             }
             if (isOutput()){
                 CompoundTag nbt = stack.getOrCreateTag();
@@ -94,9 +98,9 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         CompoundTag nbt = stack.getTag();
         if (nbt != null && (nbt.contains("Fluid") || nbt.contains("Outputs"))){
             this.fluidHandler.ifPresent(f -> {
-                FluidStack fluid = nbt.contains("Fluid") ? FluidStack.loadFluidStackFromNBT(nbt.getCompound("Fluid")) : FluidStack.EMPTY;
-                if (fluid != null && !fluid.isEmpty()){
-                    f.fill(fluid, IFluidHandler.FluidAction.EXECUTE);
+                FluidHolder fluid = nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.emptyFluid();
+                if (fluid.isEmpty()){
+                    f.insertFluid(fluid, false);
                 }
                 if (nbt.contains("Outputs")){
                     ((DrumFluidHandler)f).setOutput(nbt.getBoolean("Outputs"));
@@ -105,7 +109,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         }
     }
 
-    public FluidStack getDrop() {
+    public FluidHolder getDrop() {
         return drop;
     }
 
@@ -117,14 +121,14 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
     public List<String> getInfo() {
         List<String> list = super.getInfo();
         fluidHandler.ifPresent(f -> {
-            FluidStack stack = f.getInputTanks().getFluidInTank(0);
-            String addition = AntimatterPlatformUtils.isFabric() && !stack.isEmpty() ? "/" + stack.getRealAmount() + "droplets" : "";
-            list.add("Fluid: " + (stack.isEmpty() ? "Empty" : stack.getAmount() + "mb" + addition + " of " + FluidPlatformUtils.getFluidDisplayName(stack).getString()));
+            FluidHolder stack = f.getInputTanks().getFluidInTank(0);
+            String addition = AntimatterPlatformUtils.isFabric() && !stack.isEmpty() ? "/" + stack.getFluidAmount() + "droplets" : "";
+            list.add("Fluid: " + (stack.isEmpty() ? "Empty" : (stack.getFluidAmount() / TesseractGraphWrappers.dropletMultiplier) + "mb" + addition + " of " + FluidPlatformUtils.getFluidDisplayName(stack).getString()));
         });
         return list;
     }
 
-    public static class DrumFluidHandler extends MachineFluidHandler<BlockEntityDrum> {
+    public static class DrumFluidHandler extends MachineFluidHandler<BlockEntityDrum> implements FluidContainerHandler {
         boolean output = false;
         public DrumFluidHandler(BlockEntityDrum tile) {
             super(tile);
@@ -162,11 +166,12 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         public void onUpdate() {
             super.onUpdate();
             if (tile.getLevel().getGameTime() % 20 == 0 && output){
-                Direction dir = FluidPlatformUtils.isFluidGaseous(getTank(0).getFluid().getFluid()) ? UP : DOWN;
-                if (getTank(0).getFluidAmount() > 0){
+                Direction dir = FluidPlatformUtils.isFluidGaseous(getTank(0).getStoredFluid().getFluid()) ? UP : DOWN;
+                if (getTank(0).getStoredFluid().getFluidAmount() > 0){
+
                     BlockEntity adjacent = tile.getLevel().getBlockEntity(tile.getBlockPos().relative(dir));
                     if (adjacent != null){
-                        Optional<IFluidHandler> cap = TesseractCapUtils.getFluidHandler(adjacent, dir.getOpposite());
+                        Optional<PlatformFluidHandler> cap = TesseractCapUtils.getFluidHandler(tile.getLevel(), tile.getBlockPos().relative(dir), dir.getOpposite());
                         cap.ifPresent(other -> Utils.transferFluids(this, other, 1000));
                     }
                 }
@@ -174,23 +179,28 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         }
 
         @Override
-        public CompoundTag serializeNBT() {
-            CompoundTag nbt = super.serializeNBT();
+        public CompoundTag serialize(CompoundTag nbt) {
+            super.serialize(nbt);
             nbt.putBoolean("Output", output);
             return nbt;
         }
 
         @Override
-        public void deserializeNBT(CompoundTag nbt) {
-            super.deserializeNBT(nbt);
+        public void deserialize(CompoundTag nbt) {
+            super.deserialize(nbt);
             this.output = nbt.getBoolean("Output");
         }
 
         @Override
-        public boolean canInput(FluidStack fluid, Direction direction) {
+        public boolean canInput(FluidHolder fluid, Direction direction) {
             boolean gaseous = FluidPlatformUtils.isFluidGaseous(fluid.getFluid());
             if (output && ((direction == UP && gaseous) || (direction == DOWN && !gaseous))) return false;
             return super.canInput(fluid, direction);
+        }
+
+        @Override
+        public FluidContainer getFluidContainer() {
+            return this;
         }
     }
 }

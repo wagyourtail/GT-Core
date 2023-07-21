@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.IItemHandler;
+import tesseract.api.item.ExtendedItemContainer;
 
 import javax.annotation.Nonnull;
 
@@ -55,6 +55,6 @@ public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkben
 
     @Override
     public <V> boolean blocksCapability(@Nonnull Class<V> cap, Direction side) {
-        return super.blocksCapability(cap, side) || cap == IItemHandler.class;
+        return super.blocksCapability(cap, side) || cap == ExtendedItemContainer.class;
     }
 }
