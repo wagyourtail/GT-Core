@@ -99,7 +99,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         if (nbt != null && (nbt.contains("Fluid") || nbt.contains("Outputs"))){
             this.fluidHandler.ifPresent(f -> {
                 FluidHolder fluid = nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.emptyFluid();
-                if (fluid.isEmpty()){
+                if (!fluid.isEmpty()){
                     f.insertFluid(fluid, false);
                 }
                 if (nbt.contains("Outputs")){
