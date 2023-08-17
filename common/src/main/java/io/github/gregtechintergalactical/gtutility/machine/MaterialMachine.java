@@ -15,10 +15,7 @@ public class MaterialMachine extends Machine<MaterialMachine> {
         super(domain, id);
         this.material = material;
         setItemBlockClass(() -> BlockMachineMaterial.class);
-        setBlock((type, tier) -> {
-            if (this instanceof DrumMachine) return new BlockMachineMaterial(type, tier, BlockBehaviour.Properties.of(WRENCH_MATERIAL).strength(1.0f, 10.0f));
-            return new BlockMachineMaterial(type, tier);
-        });
+        setBlock(BlockMachineMaterial::new);
         setTile(BlockEntityMaterial::new);
         addFlags(COVERABLE);
         this.setGUI(Data.BASIC_MENU_HANDLER);

@@ -16,7 +16,7 @@ public class MaterialBasicMultiMachine extends BasicMultiMachine<MaterialBasicMu
     public MaterialBasicMultiMachine(String domain, String id, Material material) {
         super(domain, id);
         this.material = material;
-        setItemBlockClass(() -> BlockMachineMaterial.class);
+        setItemBlockClass(() -> BlockMultiMachineMaterial.class);
         setBlock(BlockMultiMachineMaterial::new);
         setTile(BlockEntityMaterialBasicMultiMachine::new);
         addFlags(COVERABLE);
