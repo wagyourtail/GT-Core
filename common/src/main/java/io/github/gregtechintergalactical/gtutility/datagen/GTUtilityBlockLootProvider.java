@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtutility.datagen;
 
 import io.github.gregtechintergalactical.gtutility.machine.BlockMachineMaterial;
+import io.github.gregtechintergalactical.gtutility.machine.BlockMultiMachineMaterial;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterMaterialTypes;
 import muramasa.antimatter.data.AntimatterMaterials;
@@ -31,6 +32,7 @@ public class GTUtilityBlockLootProvider extends AntimatterBlockLootProvider {
     @Override
     protected void loot() {
         super.loot();
-        AntimatterAPI.all(BlockMachineMaterial.class, providerDomain, this::add);
+        AntimatterAPI.all(BlockMachineMaterial.class, this::add);
+        AntimatterAPI.all(BlockMultiMachineMaterial.class, this::add);
     }
 }
