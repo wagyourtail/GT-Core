@@ -9,6 +9,7 @@ import muramasa.antimatter.Ref;
 import muramasa.antimatter.capability.fluid.FluidTank;
 import muramasa.antimatter.capability.fluid.FluidTanks;
 import muramasa.antimatter.capability.machine.MachineFluidHandler;
+import muramasa.antimatter.data.AntimatterTags;
 import muramasa.antimatter.machine.event.ContentEvent;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
@@ -196,6 +197,14 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
             boolean gaseous = FluidPlatformUtils.isFluidGaseous(fluid.getFluid());
             if (output && ((direction == UP && gaseous) || (direction == DOWN && !gaseous))) return false;
             return super.canInput(fluid, direction);
+        }
+
+        @Override
+        public long insertFluid(FluidHolder fluid, boolean simulate) {
+            if (tile.getMachineType() instanceof DrumMachine drumMachine && !drumMachine.isAcidProof() && fluid.getFluid().is(AntimatterTags.ACID)){
+                return 0;
+            }
+            return super.insertFluid(fluid, simulate);
         }
 
         @Override

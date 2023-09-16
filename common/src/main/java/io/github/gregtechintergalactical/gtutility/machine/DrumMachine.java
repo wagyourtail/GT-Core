@@ -17,6 +17,7 @@ import static muramasa.antimatter.Data.WRENCH_MATERIAL;
 
 public class DrumMachine extends MaterialMachine{
     public final int maxCapacity;
+    private boolean acidProof = false;
     public DrumMachine(String domain, Material material, int maxCapacity) {
         super(domain, material.getId() + "_drum", material);
         AntimatterAPI.register(DrumMachine.class, this);
@@ -26,6 +27,9 @@ public class DrumMachine extends MaterialMachine{
         setBlock((type, tier) -> new BlockMachineMaterial(type, tier, BlockBehaviour.Properties.of(WRENCH_MATERIAL).strength(1.0f, 10.0f)));
         setTooltipInfo((machine, stack, world, tooltip, flag) -> {
             tooltip.add(new TranslatableComponent("machine.drum.capacity", maxCapacity));
+            if (acidProof){
+                tooltip.add(new TranslatableComponent("antimatter.tooltip.acid_proof"));
+            }
             CompoundTag nbt = stack.getTag();
             if (nbt != null && (nbt.contains("Fluid") || nbt.contains("Outputs"))){
                 FluidHolder fluid = nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.emptyFluid();
@@ -53,5 +57,14 @@ public class DrumMachine extends MaterialMachine{
                 new Texture(GTUtility.ID, "block/machine/overlay/drum/side"),
                 new Texture(GTUtility.ID, "block/machine/overlay/drum/side"),
         });
+    }
+
+    public DrumMachine acidProof(){
+        this.acidProof = true;
+        return this;
+    }
+
+    public boolean isAcidProof() {
+        return acidProof;
     }
 }

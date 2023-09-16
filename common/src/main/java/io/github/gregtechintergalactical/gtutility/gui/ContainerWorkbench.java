@@ -4,12 +4,12 @@ import io.github.gregtechintergalactical.gtutility.gui.slots.SlotWorkTableResult
 import io.github.gregtechintergalactical.gtutility.blockentity.BlockEntityMaterial;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import muramasa.antimatter.blockentity.BlockEntityMachine;
 import muramasa.antimatter.capability.machine.MachineItemHandler;
 import muramasa.antimatter.gui.MenuHandlerMachine;
 import muramasa.antimatter.gui.SlotData;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.gui.container.ContainerMachine;
-import muramasa.antimatter.tile.TileEntityMachine;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -37,7 +37,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
     }
 
     @Override
-    protected void addSlots(TileEntityMachine<?> tile) {
+    protected void addSlots(BlockEntityMachine<?> tile) {
         craftResult =  new ResultContainer();
         craftingGrid = new InventoryWorkbench(this, (MachineItemHandler<?>) tile.itemHandler.map(m -> m).orElse(null), 3, 3);
         addSlot(new SlotWorkTableResult((MachineItemHandler<?>) tile.itemHandler.map(m -> m).orElse(null), playerInv.player, craftingGrid, craftResult, 0, 136, 46));
