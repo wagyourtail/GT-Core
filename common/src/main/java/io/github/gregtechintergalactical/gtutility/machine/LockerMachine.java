@@ -21,7 +21,6 @@ public class LockerMachine extends ChargingMachine{
             add(ENERGY, 80, 8).add(ENERGY, 80, 8 + (18)).add(ENERGY, 80, 8 + (2 * 18)).add(ENERGY, 80, 8 + (3 * 18));
         }
         this.setTile(BlockEntityLocker::new);
-        this.getGui().setOverrideLocation(new ResourceLocation(GTUtility.ID, "textures/gui/machine/" + (charge ? "charging_" : "") + "locker.png"));
         AntimatterAPI.register(LockerMachine.class, this);
     }
 }

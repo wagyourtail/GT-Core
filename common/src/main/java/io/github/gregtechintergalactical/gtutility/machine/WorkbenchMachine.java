@@ -5,6 +5,7 @@ import io.github.gregtechintergalactical.gtutility.blockentity.BlockEntityWorkbe
 import io.github.gregtechintergalactical.gtutility.data.MenuHandlers;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
+import muramasa.antimatter.gui.ButtonOverlay;
 import muramasa.antimatter.machine.MachineFlag;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
@@ -12,7 +13,7 @@ import muramasa.antimatter.texture.Texture;
 import net.minecraft.resources.ResourceLocation;
 
 import static io.github.gregtechintergalactical.gtutility.data.SlotTypes.*;
-import static muramasa.antimatter.gui.ButtonBody.NO_OVERLAY;
+import static muramasa.antimatter.gui.ButtonOverlay.NO_OVERLAY;
 import static muramasa.antimatter.gui.SlotType.STORAGE;
 import static muramasa.antimatter.machine.MachineFlag.*;
 
@@ -37,10 +38,9 @@ public class WorkbenchMachine extends ChargingMachine{
         }
         this.add(PARK, 154, 46);
         this.addGuiCallback(t -> {
-            t.addButton(136, 28, 16, 16, NO_OVERLAY);
-            t.addButton(154, 28, 16, 16, NO_OVERLAY);
+            t.addButton(136, 28, new ButtonOverlay(GTUtility.ID, "to_inv", 18, 18));
+            t.addButton(154, 28, new ButtonOverlay(GTUtility.ID, "to_player", 18, 18));
         });
-        this.getGui().setOverrideLocation(new ResourceLocation(GTUtility.ID, "textures/gui/machine/" + (charge ? "charging_" : "") + "workbench.png"));
         AntimatterAPI.register(WorkbenchMachine.class, this);
     }
 }
