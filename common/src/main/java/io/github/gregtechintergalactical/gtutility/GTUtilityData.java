@@ -15,7 +15,6 @@ import muramasa.antimatter.material.TextureSet;
 public class GTUtilityData {
 
     public static void init() {
-        createWorkbench(AntimatterMaterials.Iron, false);
     }
 
     public static DrumMachine createDrum(Material material, int maxCapacity){
