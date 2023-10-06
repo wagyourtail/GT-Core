@@ -6,11 +6,16 @@ import io.github.gregtechintergalactical.gtutility.data.MenuHandlers;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.gui.ButtonOverlay;
+import muramasa.antimatter.gui.SlotData;
+import muramasa.antimatter.gui.SlotType;
+import muramasa.antimatter.gui.slot.AbstractSlot;
+import muramasa.antimatter.gui.widget.SlotWidget;
 import muramasa.antimatter.machine.MachineFlag;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.Slot;
 
 import static io.github.gregtechintergalactical.gtutility.data.SlotTypes.*;
 import static muramasa.antimatter.gui.ButtonOverlay.NO_OVERLAY;
@@ -40,6 +45,7 @@ public class WorkbenchMachine extends ChargingMachine{
         this.addGuiCallback(t -> {
             t.addButton(136, 28, new ButtonOverlay(GTUtility.ID, "to_inv", 18, 18));
             t.addButton(154, 28, new ButtonOverlay(GTUtility.ID, "to_player", 18, 18));
+            t.addWidget(SlotWidget.build(new SlotData<>(STORAGE, 136, 46, new ResourceLocation(GTUtility.ID, "textures/gui/slots/crafting_output.png"))));
         });
         AntimatterAPI.register(WorkbenchMachine.class, this);
     }

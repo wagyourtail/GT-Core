@@ -19,7 +19,7 @@ public class SlotTypes {
         }
         return true;
     }, ContentEvent.ITEM_INPUT_CHANGED, true, true, new ResourceLocation(GTUtility.ID, "electric_tool"));
-    public static SlotType<SlotCrafting> CRAFTING = new SlotType<>("crafting", (type, gui, item, i, d) -> new SlotCrafting(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> true, ContentEvent.ITEM_INPUT_CHANGED, false, true, new ResourceLocation(GTUtility.ID, "crafting_output"));
+    public static SlotType<SlotCrafting> CRAFTING = new SlotType<>("crafting", (type, gui, item, i, d) -> new SlotCrafting(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> true, ContentEvent.ITEM_INPUT_CHANGED, false, true);
     public static SlotType<AbstractSlot<?>> PARK = new SlotType<>("park", (type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> true, ContentEvent.ITEM_INPUT_CHANGED, true, true, new ResourceLocation(GTUtility.ID, "park"));
 
     public static void init(){

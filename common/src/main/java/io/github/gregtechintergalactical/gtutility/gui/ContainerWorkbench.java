@@ -4,6 +4,8 @@ import io.github.gregtechintergalactical.gtutility.gui.slots.SlotWorkTableResult
 import io.github.gregtechintergalactical.gtutility.blockentity.BlockEntityMaterial;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import muramasa.antimatter.Antimatter;
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.blockentity.BlockEntityMachine;
 import muramasa.antimatter.capability.machine.MachineItemHandler;
 import muramasa.antimatter.gui.MenuHandlerMachine;
@@ -42,9 +44,12 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
         craftingGrid = new InventoryWorkbench(this, (MachineItemHandler<?>) tile.itemHandler.map(m -> m).orElse(null), 3, 3);
         addSlot(new SlotWorkTableResult((MachineItemHandler<?>) tile.itemHandler.map(m -> m).orElse(null), playerInv.player, craftingGrid, craftResult, 0, 136, 46));
         Object2IntMap<String> slotIndexMap = new Object2IntOpenHashMap<>();
+        int i = 1;
         for (SlotData slot : tile.getMachineType().getSlots(tile.getMachineTier())) {
             slotIndexMap.computeIntIfAbsent(slot.getType().getId(), k -> 0);
             Slot supplier;
+            Antimatter.LOGGER.info("slot: " + slot.getType().getId() + " at " + i);
+            i++;
             if (slot.getType().getId().equals("crafting")){
                 supplier = new Slot(craftingGrid, slotIndexMap.getInt(slot.getType().getId()), slot.getX(), slot.getY());
             } else {
@@ -70,7 +75,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
             for (int i = 17; i < 26; ++i) {
                 Slot matrixSlot = slots.get(i);
                 ItemStack matrixStack = matrixSlot.getItem();
-                beforeAction.set(i - 17, matrixStack);
+                beforeAction.set(i - 17, matrixStack.copy());
             }
         }
 
@@ -83,7 +88,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
                 Slot matrixSlot = slots.get(i);
                 ItemStack matrixStack = matrixSlot.getItem();
 
-                if (matrixStack.getCount() == 0 && beforeStack.getCount() != 0) {
+                if (matrixStack.isEmpty() && beforeStack.getCount() != 0) {
                     for (int ptSlot = 1; ptSlot < 17; ++ptSlot) {
                         Slot inventorySlot = slots.get(ptSlot);
                         ItemStack ptStack = inventorySlot.getItem();
@@ -165,7 +170,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
      */
     @Override
     public ItemStack quickMoveStack(Player player, int slotId) {
-        ItemStack itemstack;
+        ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = slots.get(slotId);
         if (slot.hasItem() && slotId == 0) {
             ItemStack itemstack1 = slot.getItem();
@@ -190,7 +195,28 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
             this.slotsChanged(this.craftingGrid);
             return itemstack;
         } else {
-           return super.quickMoveStack(player, slotId);
+            if (slot.hasItem()) {
+                ItemStack slotStack = slot.getItem();
+                itemstack = slotStack.copy();
+
+                if (slotId < invSize) {
+                    if (!this.moveItemStackTo(slotStack, invSize, this.slots.size(), true)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (!this.moveItemStackTo(slotStack, 0, 17, false)) {
+                    return ItemStack.EMPTY;
+                } else if (!this.moveItemStackTo(slotStack, 26, invSize, false)) {
+                    return ItemStack.EMPTY;
+                }
+
+                if (slotStack.getCount() == 0) {
+                    slot.set(ItemStack.EMPTY);
+                } else {
+                    slot.setChanged();
+                }
+            }
+
+            return itemstack;
         }
     }
 }
