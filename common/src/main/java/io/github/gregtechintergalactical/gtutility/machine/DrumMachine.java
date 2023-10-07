@@ -4,6 +4,7 @@ import earth.terrarium.botarium.common.fluid.base.FluidHolder;
 import earth.terrarium.botarium.common.fluid.utils.FluidHooks;
 import io.github.gregtechintergalactical.gtutility.GTUtility;
 import io.github.gregtechintergalactical.gtutility.blockentity.BlockEntityDrum;
+import io.github.gregtechintergalactical.gtutility.item.ItemBlockDrum;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
@@ -25,6 +26,7 @@ public class DrumMachine extends MaterialMachine{
         setTiers(Tier.NONE);
         this.setTile(((materialMachine, blockPos, blockState) -> new BlockEntityDrum(this, blockPos, blockState)));
         setBlock((type, tier) -> new BlockMachineMaterial(type, tier, BlockBehaviour.Properties.of(WRENCH_MATERIAL).strength(1.0f, 10.0f)));
+        setItemBlock(ItemBlockDrum::new);
         setTooltipInfo((machine, stack, world, tooltip, flag) -> {
             tooltip.add(new TranslatableComponent("machine.drum.capacity", maxCapacity));
             if (acidProof){
@@ -32,7 +34,7 @@ public class DrumMachine extends MaterialMachine{
             }
             CompoundTag nbt = stack.getTag();
             if (nbt != null && (nbt.contains("Fluid") || nbt.contains("Outputs"))){
-                FluidHolder fluid = nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.emptyFluid();
+                FluidHolder fluid = nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.safeGetItemFluidManager(stack).map(fi -> fi.getFluidInTank(0)).orElse(FluidHooks.emptyFluid());
                 if (!fluid.isEmpty()){
                     tooltip.add(new TranslatableComponent("machine.drum.fluid", fluid.getFluidAmount(), FluidPlatformUtils.getFluidDisplayName(fluid)));
                 }

@@ -4,13 +4,14 @@ import earth.terrarium.botarium.common.fluid.base.FluidContainer;
 import earth.terrarium.botarium.common.fluid.base.FluidHolder;
 import earth.terrarium.botarium.common.fluid.base.PlatformFluidHandler;
 import earth.terrarium.botarium.common.fluid.utils.FluidHooks;
+import earth.terrarium.botarium.common.item.ItemStackHolder;
 import io.github.gregtechintergalactical.gtutility.machine.DrumMachine;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.capability.fluid.FluidTank;
 import muramasa.antimatter.capability.fluid.FluidTanks;
 import muramasa.antimatter.capability.machine.MachineFluidHandler;
 import muramasa.antimatter.data.AntimatterTags;
-import muramasa.antimatter.machine.event.ContentEvent;
+import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.Utils;
@@ -25,6 +26,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -84,8 +86,9 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         if (!drops.isEmpty()){
             ItemStack stack = drops.get(0);
             if (!getDrop().isEmpty()){
-                CompoundTag nbt = stack.getOrCreateTag();
-                nbt.put("Fluid", getDrop().serialize());
+                ItemStackHolder holder = new ItemStackHolder(stack);
+                FluidHooks.safeGetItemFluidManager(stack).ifPresent(f -> f.insertFluid(holder, drop, false));
+                stack = holder.getStack();
             }
             if (isOutput()){
                 CompoundTag nbt = stack.getOrCreateTag();
@@ -99,7 +102,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         CompoundTag nbt = stack.getTag();
         if (nbt != null && (nbt.contains("Fluid") || nbt.contains("Outputs"))){
             this.fluidHandler.ifPresent(f -> {
-                FluidHolder fluid = nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.emptyFluid();
+                FluidHolder fluid = nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.safeGetItemFluidManager(stack).map(fi -> fi.getFluidInTank(0)).orElse(FluidHooks.emptyFluid());
                 if (!fluid.isEmpty()){
                     f.insertFluid(fluid, false);
                 }
@@ -133,7 +136,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         boolean output = false;
         public DrumFluidHandler(BlockEntityDrum tile) {
             super(tile);
-            tanks.put(FluidDirection.INPUT, FluidTanks.create(tile, ContentEvent.FLUID_INPUT_CHANGED, b -> {
+            tanks.put(FluidDirection.INPUT, FluidTanks.create(tile, SlotType.FL_IN, b -> {
                 b.tank(((DrumMachine)tile.getMachineType()).maxCapacity);
                 return b;
             }));
@@ -202,7 +205,10 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         @Override
         public long insertFluid(FluidHolder fluid, boolean simulate) {
             if (tile.getMachineType() instanceof DrumMachine drumMachine && !drumMachine.isAcidProof() && fluid.getFluid().is(AntimatterTags.ACID)){
-                return 0;
+                if (!simulate) {
+                    tile.getLevel().setBlock(tile.getBlockPos(), Blocks.AIR.defaultBlockState(), 3);
+                }
+                return Math.min(16L, fluid.getFluidAmount());
             }
             return super.insertFluid(fluid, simulate);
         }
