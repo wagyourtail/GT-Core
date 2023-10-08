@@ -17,7 +17,7 @@ public class GTUtilityLang {
         @Override
         protected void addTranslations() {
             super.addTranslations();
-            add("machine.drum.fluid", "Contains %s mb of %s");
+            add("machine.drum.fluid", "Contains %s L of %s");
             add("machine.drum.output", "Currently set to auto output");
             add("machine.drum.capacity", "Capacity: %sL(MB)");
         }

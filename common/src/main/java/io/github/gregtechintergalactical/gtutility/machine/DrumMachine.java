@@ -9,10 +9,12 @@ import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;
+import muramasa.antimatter.util.Utils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import tesseract.FluidPlatformUtils;
+import tesseract.TesseractGraphWrappers;
 
 import static muramasa.antimatter.Data.WRENCH_MATERIAL;
 
@@ -28,19 +30,17 @@ public class DrumMachine extends MaterialMachine{
         setBlock((type, tier) -> new BlockMachineMaterial(type, tier, BlockBehaviour.Properties.of(WRENCH_MATERIAL).strength(1.0f, 10.0f)));
         setItemBlock(ItemBlockDrum::new);
         setTooltipInfo((machine, stack, world, tooltip, flag) -> {
-            tooltip.add(new TranslatableComponent("machine.drum.capacity", maxCapacity));
+            tooltip.add(Utils.translatable("machine.drum.capacity", maxCapacity).withStyle(ChatFormatting.AQUA));
             if (acidProof){
-                tooltip.add(new TranslatableComponent("antimatter.tooltip.acid_proof"));
+                tooltip.add(Utils.translatable("antimatter.tooltip.acid_proof"));
             }
             CompoundTag nbt = stack.getTag();
-            if (nbt != null && (nbt.contains("Fluid") || nbt.contains("Outputs"))){
-                FluidHolder fluid = nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.safeGetItemFluidManager(stack).map(fi -> fi.getFluidInTank(0)).orElse(FluidHooks.emptyFluid());
-                if (!fluid.isEmpty()){
-                    tooltip.add(new TranslatableComponent("machine.drum.fluid", fluid.getFluidAmount(), FluidPlatformUtils.getFluidDisplayName(fluid)));
-                }
-                if (nbt.contains("Outputs")){
-                    tooltip.add(new TranslatableComponent("machine.drum.output"));
-                }
+            FluidHolder fluid = nbt != null && nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.safeGetItemFluidManager(stack).map(fi -> fi.getFluidInTank(0)).orElse(FluidHooks.emptyFluid());
+            if (!fluid.isEmpty()){
+                tooltip.add(Utils.translatable("machine.drum.fluid", fluid.getFluidAmount() / TesseractGraphWrappers.dropletMultiplier, FluidPlatformUtils.getFluidDisplayName(fluid)).withStyle(ChatFormatting.AQUA));
+            }
+            if (nbt != null && nbt.contains("Outputs")){
+                tooltip.add(Utils.translatable("machine.drum.output"));
             }
         });
         baseTexture((m, t) -> new Texture[] {

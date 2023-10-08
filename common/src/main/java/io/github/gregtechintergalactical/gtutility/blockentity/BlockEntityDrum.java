@@ -18,7 +18,6 @@ import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -63,7 +62,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
                 success[0] = true;
                 player.playNotifySound(Ref.WRENCH, SoundSource.BLOCKS, 1.0f, 1.0f);
                 // TODO: Replace by new TranslationTextComponent()
-                player.sendMessage(new TextComponent((dF.isOutput() ? "Will" : "Won't") + " fill adjacent Tanks"), player.getUUID());
+                player.sendMessage(Utils.literal((dF.isOutput() ? "Will" : "Won't") + " fill adjacent Tanks"), player.getUUID());
             }
         });
         if (success[0]){
