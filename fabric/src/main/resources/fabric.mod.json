@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "gtutility",
+  "id": "gtcore",
   "version": "${version}",
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "GT Core",
+  "description": "Core Items and blocks used by both gti and gt4r",
   "authors": [
-    "Me!"
+    "Trinsdar"
   ],
   "contact": {
-    "sources": "https://github.com/GregTech-Intergalactical/GT-Utility"
+    "sources": "https://github.com/GregTech-Intergalactical/GT-Core"
   },
 
   "license": "LGPLv3",
@@ -17,16 +17,16 @@
   "environment": "*",
   "entrypoints": {
     "antimatter": [
-      "io.github.gregtechintergalactical.gtutility.GTUtility"
+      "io.github.gregtechintergalactical.gtcore.GTCore"
     ],
     "antimatter_client": [
-      "io.github.gregtechintergalactical.gtutility.fabric.GTUtilityClientInitializer"
+      "io.github.gregtechintergalactical.gtcore.fabric.GTCoreClientInitializer"
     ],
     "rei_client": [
-      "io.github.gregtechintergalactical.gtutility.integration.rei.GTUtilityReiPlugin"
+      "io.github.gregtechintergalactical.gtcore.integration.rei.GTCoreReiPlugin"
     ],
     "main": [
-      "io.github.gregtechintergalactical.gtutility.fabric.GTUtilityFabric"
+      "io.github.gregtechintergalactical.gtcore.fabric.GTCoreFabric"
     ]
   },
 

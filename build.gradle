@@ -108,7 +108,7 @@ subprojects {
     publishing {
         publications {
             mavenJava(org.gradle.api.publish.maven.MavenPublication) {
-                artifactId = "gtutility-" + project.name
+                artifactId = "gtcore-" + project.name
                 artifact(sourcesJar) {
                     builtBy remapSourcesJar
                 }
