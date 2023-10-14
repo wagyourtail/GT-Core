@@ -5,10 +5,12 @@ import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
 import io.github.gregtechintergalactical.gtcore.data.MenuHandlers;
 import io.github.gregtechintergalactical.gtcore.data.SlotTypes;
 import io.github.gregtechintergalactical.gtcore.data.client.ScreenFactories;
-import io.github.gregtechintergalactical.gtcore.network.MessageCraftingSync;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreBlockLootProvider;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreBlockTagProvider;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreLang;
+import io.github.gregtechintergalactical.gtcore.network.MessageCraftingSync;
+import io.github.gregtechintergalactical.gtcore.tree.RubberTree;
+import io.github.gregtechintergalactical.gtcore.tree.RubberTreeWorldGen;
 import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.datagen.AntimatterDynamics;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
@@ -45,6 +47,8 @@ public class GTCore extends AntimatterMod {
                 SlotTypes.init();
                 MenuHandlers.init();
                 GTCoreData.init();
+                RubberTree.init();
+                RubberTreeWorldGen.init();
                 AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, SYNC_ID, MessageCraftingSync.HANDLER, MessageCraftingSync.class);
             }
             case DATA_READY -> GTCoreRemapping.init();
