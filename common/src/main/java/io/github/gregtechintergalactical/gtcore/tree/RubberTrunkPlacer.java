@@ -3,7 +3,7 @@ package io.github.gregtechintergalactical.gtcore.tree;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.core.BlockPos;
@@ -67,11 +67,11 @@ public class RubberTrunkPlacer extends StraightTrunkPlacer {
         if (TreeFeature.validTreePos(level, pos)) {
             BlockState state = null;
             if (i > 2){
-                state = GTCoreData.RUBBER_LOG.defaultBlockState();
+                state = GTCoreBlocks.RUBBER_LOG.defaultBlockState();
             } else if (i == 0){
                 state = config.trunkProvider.getState(random, pos);
             } else {
-                state = random.nextInt(28) < 8 ? config.trunkProvider.getState(random, pos) : GTCoreData.RUBBER_LOG.defaultBlockState();
+                state = random.nextInt(28) < 8 ? config.trunkProvider.getState(random, pos) : GTCoreBlocks.RUBBER_LOG.defaultBlockState();
             }
             blockSetter.accept(pos, (BlockState)propertySetter.apply(state));
         }

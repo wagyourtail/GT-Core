@@ -3,7 +3,7 @@ package io.github.gregtechintergalactical.gtcore.tree;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import io.github.gregtechintergalactical.gtcore.GTCore;
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import muramasa.antimatter.mixin.BiomeAccessor;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
@@ -63,15 +63,15 @@ public class RubberTreeWorldGen extends WorldGenBase<RubberTreeWorldGen> {
 
     
     final static TreeConfiguration RUBBER_TREE_CONFIG_SWAMP =
-            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2), BlockStateProvider.simple(GTCoreData.RUBBER_LEAVES.defaultBlockState()),
+            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2), BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
                     new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator())).build();
 
     final static TreeConfiguration RUBBER_TREE_CONFIG_JUNGLE =
-            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(7, 2, 2), BlockStateProvider.simple(GTCoreData.RUBBER_LEAVES.defaultBlockState()),
+            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(7, 2, 2), BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
                     new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator())).build();
 
     final static TreeConfiguration RUBBER_TREE_CONFIG_NORMAL =
-            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2),BlockStateProvider.simple(GTCoreData.RUBBER_LEAVES.defaultBlockState()),
+            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2),BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
                     new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().build();
 
     public RubberTreeWorldGen(){
@@ -85,9 +85,9 @@ public class RubberTreeWorldGen extends WorldGenBase<RubberTreeWorldGen> {
         TREE_FEATURE_CONFIG = FeatureUtils.register("gtcore:rubber_tree_normal", RubberTree.TREE_FEATURE, RubberTreeWorldGen.RUBBER_TREE_CONFIG_NORMAL);
         TREE_FEATURE_SWAMP_CONFIG = FeatureUtils.register("gtcore:rubber_tree_jungle", RubberTree.TREE_FEATURE, RubberTreeWorldGen.RUBBER_TREE_CONFIG_JUNGLE);
         TREE_FEATURE_JUNGLE_CONFIG = FeatureUtils.register("gtcore:rubber_tree_swamp", RubberTree.TREE_FEATURE, RubberTreeWorldGen.RUBBER_TREE_CONFIG_SWAMP);
-        TREE = PlacementUtils.register("gtcore:rubber", RubberTreeWorldGen.TREE_FEATURE_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreData.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
-        TREE_JUNGLE = PlacementUtils.register("gtcore:rubber_jungle", RubberTreeWorldGen.TREE_FEATURE_JUNGLE_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreData.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
-        TREE_SWAMP = PlacementUtils.register("gtcore:rubber_swamp", RubberTreeWorldGen.TREE_FEATURE_SWAMP_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(2), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreData.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
+        TREE = PlacementUtils.register("gtcore:rubber", RubberTreeWorldGen.TREE_FEATURE_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreBlocks.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
+        TREE_JUNGLE = PlacementUtils.register("gtcore:rubber_jungle", RubberTreeWorldGen.TREE_FEATURE_JUNGLE_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreBlocks.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
+        TREE_SWAMP = PlacementUtils.register("gtcore:rubber_swamp", RubberTreeWorldGen.TREE_FEATURE_SWAMP_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(2), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreBlocks.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
         if (AntimatterPlatformUtils.isFabric()){
             Registry.register(Registry.FOLIAGE_PLACER_TYPES, new ResourceLocation(GTCore.ID, "rubber_foilage_placer"), RubberFoliagePlacer.RUBBER);
         }

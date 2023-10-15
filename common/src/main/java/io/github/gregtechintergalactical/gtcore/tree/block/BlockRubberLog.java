@@ -1,7 +1,8 @@
 package io.github.gregtechintergalactical.gtcore.tree.block;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
 import io.github.gregtechintergalactical.gtcore.tree.ResinState;
 import muramasa.antimatter.datagen.builder.VariantBlockStateBuilder;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
@@ -65,19 +66,19 @@ public class BlockRubberLog extends BlockRubberWood {
             worldIn.setBlock(pos, state.setValue(ResinState.INSTANCE, ResinState.EMPTY), 3);
             Direction dir = state.getValue(RESIN_FACING);
             BlockPos spawnPos = pos.offset(dir.getStepX(), dir.getStepY(), dir.getStepZ());
-            Containers.dropItemStack(worldIn, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), GTCoreData.StickyResin.get(1));
+            Containers.dropItemStack(worldIn, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), GTCoreItems.StickyResin.get(1));
             if (worldIn.random.nextDouble() > 0.5) {
-                Containers.dropItemStack(worldIn, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), GTCoreData.StickyResin.get(1));
+                Containers.dropItemStack(worldIn, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), GTCoreItems.StickyResin.get(1));
             }
             player.getItemInHand(handIn).hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
             return InteractionResult.SUCCESS;
         }
-        if (this == GTCoreData.RUBBER_LOG){
+        if (this == GTCoreBlocks.RUBBER_LOG){
             ItemStack stack = player.getItemInHand(handIn);
             if (stack.getItem() instanceof DiggerItem diggerItem && diggerItem.getDestroySpeed(stack, state) > 1.0f){
                 worldIn.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
                 if (!worldIn.isClientSide){
-                    BlockState target = GTCoreData.STRIPPED_RUBBER_LOG.defaultBlockState().setValue(AXIS, state.getValue(AXIS)).setValue(ResinState.INSTANCE, state.getValue(ResinState.INSTANCE)).setValue(RESIN_FACING, state.getValue(RESIN_FACING));
+                    BlockState target = GTCoreBlocks.STRIPPED_RUBBER_LOG.defaultBlockState().setValue(AXIS, state.getValue(AXIS)).setValue(ResinState.INSTANCE, state.getValue(ResinState.INSTANCE)).setValue(RESIN_FACING, state.getValue(RESIN_FACING));
                     worldIn.setBlockAndUpdate(pos, target);
                     stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
                 }

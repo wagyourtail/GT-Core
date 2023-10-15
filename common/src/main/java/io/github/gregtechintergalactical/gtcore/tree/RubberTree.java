@@ -1,6 +1,6 @@
 package io.github.gregtechintergalactical.gtcore.tree;
 
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import io.github.gregtechintergalactical.gtcore.tree.block.BlockRubberLog;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.worldgen.feature.IAntimatterFeature;
@@ -30,10 +30,10 @@ public class RubberTree extends AbstractTreeGrower {
     static {
         SimpleWeightedRandomList.Builder<BlockState> st = SimpleWeightedRandomList.<BlockState>builder();
         BlockStateProperties.HORIZONTAL_FACING.getPossibleValues().forEach(d -> {
-            st.add(GTCoreData.RUBBER_LOG.defaultBlockState()
+            st.add(GTCoreBlocks.RUBBER_LOG.defaultBlockState()
                     .setValue(ResinState.INSTANCE, ResinState.FILLED)
                     .setValue(BlockRubberLog.RESIN_FACING, d), 1);
-            st.add(GTCoreData.RUBBER_LOG.defaultBlockState()
+            st.add(GTCoreBlocks.RUBBER_LOG.defaultBlockState()
                     .setValue(ResinState.INSTANCE, ResinState.EMPTY)
                     .setValue(BlockRubberLog.RESIN_FACING, d), 1);
         });

@@ -1,6 +1,5 @@
 package io.github.gregtechintergalactical.gtcore.data;
 
-import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.block.BlockSapBag;
@@ -9,30 +8,18 @@ import io.github.gregtechintergalactical.gtcore.machine.DrumMachine;
 import io.github.gregtechintergalactical.gtcore.machine.LockerMachine;
 import io.github.gregtechintergalactical.gtcore.machine.WorkbenchMachine;
 import io.github.gregtechintergalactical.gtcore.tree.block.*;
-import io.github.gregtechintergalactical.gtcore.tree.item.ItemRubberBoat;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.block.BlockBasic;
-import muramasa.antimatter.item.ItemBasic;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
-import muramasa.antimatter.util.TagUtils;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
-import static muramasa.antimatter.material.TextureSet.SHINY;
-
-public class GTCoreData {
-
-    public static final TagKey<Item> RUBBER_LOGS = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "rubber_logs"));
-
-    public static Material RUBBER = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "rubber", 0x000000, SHINY));
+public class GTCoreBlocks {
 
     public static WoodType RUBBER_WOOD_TYPE = new WoodType("rubber"){};
 
@@ -68,9 +55,6 @@ public class GTCoreData {
 
 
     public static final BlockEntityType<?> SAP_BAG_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntitySapBag::new, SAP_BAG).build(null);
-    public static ItemBasic<?> StickyResin = new ItemBasic<>(GTCore.ID, "sticky_resin");
-
-    public static ItemRubberBoat RubberBoat = new ItemRubberBoat();
 
     public static void init() {
         if (!AntimatterAPI.isModLoaded("tfc")){

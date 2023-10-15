@@ -1,7 +1,7 @@
 package io.github.gregtechintergalactical.gtcore.integration.tfc;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.item.ItemBasic;
 import net.minecraft.world.level.block.Block;
 
@@ -13,7 +13,7 @@ public class TFCRubberData {
     public static final ItemBasic<?> RUBBER_LUMBER = new ItemBasic<>(GTCore.ID, "rubber_lumber");
 
     public static void init(){
-        GTCoreData.RUBBER_LEAVES = new BlockTFCRubberLoaves();
-        GTCoreData.RUBBER_SAPLING = new BlockTFCRubberSapling();
+        GTCoreBlocks.RUBBER_LEAVES = new BlockTFCRubberLoaves();
+        GTCoreBlocks.RUBBER_SAPLING = new BlockTFCRubberSapling();
     }
 }

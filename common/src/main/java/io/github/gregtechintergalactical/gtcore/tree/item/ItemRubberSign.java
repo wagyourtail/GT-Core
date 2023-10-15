@@ -1,7 +1,7 @@
 package io.github.gregtechintergalactical.gtcore.tree.item;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.registration.IAntimatterObject;
 import muramasa.antimatter.registration.IModelProvider;
 import muramasa.antimatter.registration.ITextureProvider;
@@ -11,7 +11,7 @@ import net.minecraft.world.item.SignItem;
 
 public class ItemRubberSign extends SignItem implements IAntimatterObject, ITextureProvider, IModelProvider {
     public ItemRubberSign() {
-        super(new Properties().stacksTo(16).tab(CreativeModeTab.TAB_DECORATIONS), GTCoreData.RUBBER_SIGN, GTCoreData.RUBBER_WALL_SIGN);
+        super(new Properties().stacksTo(16).tab(CreativeModeTab.TAB_DECORATIONS), GTCoreBlocks.RUBBER_SIGN, GTCoreBlocks.RUBBER_WALL_SIGN);
     }
 
     @Override

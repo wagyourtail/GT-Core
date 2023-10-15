@@ -4,9 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.teamresourceful.resourcefullib.common.networking.base.NetworkDirection;
 import io.github.gregtechintergalactical.gtcore.client.BakedModels;
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
-import io.github.gregtechintergalactical.gtcore.data.MenuHandlers;
-import io.github.gregtechintergalactical.gtcore.data.SlotTypes;
+import io.github.gregtechintergalactical.gtcore.data.*;
 import io.github.gregtechintergalactical.gtcore.data.client.ScreenFactories;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreBlockLootProvider;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreBlockTagProvider;
@@ -64,13 +62,15 @@ public class GTCore extends AntimatterMod {
             case DATA_INIT -> {
                 SlotTypes.init();
                 MenuHandlers.init();
-                GTCoreData.init();
+                GTCoreBlocks.init();
+                GTCoreItems.init();
+                GTCoreMaterials.init();
                 RubberTree.init();
                 RubberTreeWorldGen.init();
                 AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, SYNC_ID, MessageCraftingSync.HANDLER, MessageCraftingSync.class);
             }
             case DATA_READY -> {
-                WoodType.register(GTCoreData.RUBBER_WOOD_TYPE);
+                WoodType.register(GTCoreBlocks.RUBBER_WOOD_TYPE);
                 GTCoreRemapping.init();
             }
             case CLIENT_DATA_INIT -> {
@@ -87,7 +87,7 @@ public class GTCore extends AntimatterMod {
 
     @Override
     public void onMaterialEvent(MaterialEvent event) {
-        event.setMaterial(GTCoreData.RUBBER).asSolid(295, PLATE, RING);
+        event.setMaterial(GTCoreMaterials.RUBBER).asSolid(295, PLATE, RING);
     }
 
     public static void onCrafting(CraftingEvent event){

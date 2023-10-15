@@ -1,7 +1,7 @@
 package io.github.gregtechintergalactical.gtcore.tree.block;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
 import muramasa.antimatter.registration.IAntimatterObject;
@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.StairBlock;
 
 public class BlockRubberStairs extends StairBlock implements IAntimatterObject, IModelProvider {
     public BlockRubberStairs() {
-        super(GTCoreData.RUBBER_PLANKS.defaultBlockState(), Properties.copy(GTCoreData.RUBBER_PLANKS));
+        super(GTCoreBlocks.RUBBER_PLANKS.defaultBlockState(), Properties.copy(GTCoreBlocks.RUBBER_PLANKS));
         AntimatterAPI.register(BlockRubberStairs.class, this);
     }
 

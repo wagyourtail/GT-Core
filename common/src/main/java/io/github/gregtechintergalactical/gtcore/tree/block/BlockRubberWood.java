@@ -1,6 +1,6 @@
 package io.github.gregtechintergalactical.gtcore.tree.block;
 
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.registration.IAntimatterObject;
 import muramasa.antimatter.registration.IModelProvider;
@@ -50,12 +50,12 @@ public class BlockRubberWood extends RotatedPillarBlock implements IModelProvide
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (this == GTCoreData.RUBBER_WOOD){
+        if (this == GTCoreBlocks.RUBBER_WOOD){
             ItemStack stack = player.getItemInHand(hand);
             if (stack.getItem() instanceof DiggerItem diggerItem && diggerItem.getDestroySpeed(stack, state) > 1.0f){
                 level.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
                 if (!level.isClientSide){
-                    BlockState target = GTCoreData.STRIPPED_RUBBER_WOOD.defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+                    BlockState target = GTCoreBlocks.STRIPPED_RUBBER_WOOD.defaultBlockState().setValue(AXIS, state.getValue(AXIS));
                     level.setBlockAndUpdate(pos, target);
                     stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
                 }

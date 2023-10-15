@@ -3,7 +3,7 @@ package io.github.gregtechintergalactical.gtcore.block;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntitySapBag;
 import io.github.gregtechintergalactical.gtcore.client.BakedModels;
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.datagen.builder.AntimatterBlockModelBuilder;
 import muramasa.antimatter.datagen.builder.DynamicConfigBuilder;
 import muramasa.antimatter.datagen.builder.VariantBlockStateBuilder;
@@ -148,7 +148,7 @@ public class BlockSapBag extends BlockDynamic implements SimpleWaterloggedBlock,
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return GTCoreData.SAP_BAG_BLOCK_ENTITY.create(pPos, pState);
+        return GTCoreBlocks.SAP_BAG_BLOCK_ENTITY.create(pPos, pState);
     }
 
     @Override

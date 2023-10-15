@@ -1,7 +1,7 @@
 package io.github.gregtechintergalactical.gtcore.tree.block;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
 import muramasa.antimatter.registration.IAntimatterObject;
@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.FenceGateBlock;
 
 public class BlockRubberFenceGate extends FenceGateBlock implements IAntimatterObject, IModelProvider {
     public BlockRubberFenceGate() {
-        super(Properties.copy(GTCoreData.RUBBER_SLAB));
+        super(Properties.copy(GTCoreBlocks.RUBBER_SLAB));
         AntimatterAPI.register(BlockRubberFenceGate.class, this);
     }
 

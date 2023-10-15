@@ -2,7 +2,7 @@ package io.github.gregtechintergalactical.gtcore.tree.block;
 
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import io.github.gregtechintergalactical.gtcore.GTCore;
-import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.registration.IAntimatterObject;
 import muramasa.antimatter.registration.IItemBlockProvider;
@@ -34,6 +34,6 @@ public class BlockRubberWallSign extends TerraformWallSignBlock implements IAnti
 
     @Override
     public WoodType type() {
-        return GTCoreData.RUBBER_WOOD_TYPE;
+        return GTCoreBlocks.RUBBER_WOOD_TYPE;
     }
 }
