@@ -1,21 +1,19 @@
 package io.github.gregtechintergalactical.gtcore.tree.block;
 
+import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
-import io.github.gregtechintergalactical.gtcore.tree.BlockEntityRubberSign;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.registration.IAntimatterObject;
 import muramasa.antimatter.registration.IItemBlockProvider;
-import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.WallSignBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 
-public class BlockRubberWallSign extends WallSignBlock implements IAntimatterObject, IItemBlockProvider {
+public class BlockRubberWallSign extends TerraformWallSignBlock implements IAntimatterObject, IItemBlockProvider {
     public BlockRubberWallSign() {
-        super(Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), GTCoreData.RUBBER_WOOD_TYPE);
+        super(new ResourceLocation(GTCore.ID, "entity/signs/rubber"), Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD));
         AntimatterAPI.register(BlockRubberWallSign.class, this);
     }
 
@@ -35,7 +33,7 @@ public class BlockRubberWallSign extends WallSignBlock implements IAntimatterObj
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new BlockEntityRubberSign(pos, state);
+    public WoodType type() {
+        return GTCoreData.RUBBER_WOOD_TYPE;
     }
 }

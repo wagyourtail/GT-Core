@@ -6,6 +6,10 @@ architectury {
     forge()
 }
 
+loom {
+    accessWidenerPath = project(":common").file("src/main/resources/gtcore.accesswidener")
+}
+
 dependencies {
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     modImplementation("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}"){
@@ -15,6 +19,7 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionForge"))
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
+    modImplementation(include("com.github.Reforged-Mods.Terraform-Reforged:terraform-wood-api-v1:${project.terraform_version_forge}"))
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
 }
 

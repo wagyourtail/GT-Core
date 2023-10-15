@@ -1,6 +1,10 @@
 archivesBaseName = "${rootProject.archive_base_name}-common"
 version = "${project.mod_version}-${rootProject.minecraft_version}"
 
+loom {
+    accessWidenerPath = file("src/main/resources/gtcore.accesswidener")
+}
+
 dependencies {
     modCompileOnly("io.github.gregtechintergalactical:antimatter-common:${antimatter_version}"){
         exclude(group: "maven.modrinth")
@@ -8,6 +12,9 @@ dependencies {
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin:${rootProject.rei_version}"
     modCompileOnly("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
+    modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version_fabric}"){
+        transitive = false
+    }
 }
 
 architectury {

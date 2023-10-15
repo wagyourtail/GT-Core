@@ -6,6 +6,10 @@ architectury {
     fabric()
 }
 
+loom {
+    accessWidenerPath = project(":common").file("src/main/resources/gtcore.accesswidener")
+}
+
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
@@ -14,6 +18,7 @@ dependencies {
     modImplementation("io.github.gregtechintergalactical:antimatter-fabric:${antimatter_version}"){
         exclude(group: "maven.modrinth")
     }
+    modImplementation(include("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version_fabric}"))
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}"
 }
 

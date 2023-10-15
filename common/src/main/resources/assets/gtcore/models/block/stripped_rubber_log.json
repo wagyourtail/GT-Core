@@ -1,0 +1,12 @@
+{
+	"parent": "antimatter:block/preset/simple",
+	"textures": {
+		"down": "gtcore:block/tree/stripped_rubber_log_end",
+		"up": "gtcore:block/tree/stripped_rubber_log_end",
+		"north": "gtcore:block/tree/stripped_rubber_log",
+		"south": "gtcore:block/tree/stripped_rubber_log",
+		"west": "gtcore:block/tree/stripped_rubber_log",
+		"east": "gtcore:block/tree/stripped_rubber_log",
+		"particle": "gtcore:block/tree/stripped_rubber_log"
+	}
+}

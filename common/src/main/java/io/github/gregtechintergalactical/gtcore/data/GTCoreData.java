@@ -1,14 +1,13 @@
 package io.github.gregtechintergalactical.gtcore.data;
 
+import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.block.BlockSapBag;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntitySapBag;
-import io.github.gregtechintergalactical.gtcore.entity.RubberBoatEntity;
 import io.github.gregtechintergalactical.gtcore.machine.DrumMachine;
 import io.github.gregtechintergalactical.gtcore.machine.LockerMachine;
 import io.github.gregtechintergalactical.gtcore.machine.WorkbenchMachine;
-import io.github.gregtechintergalactical.gtcore.tree.BlockEntityRubberSign;
 import io.github.gregtechintergalactical.gtcore.tree.block.*;
 import io.github.gregtechintergalactical.gtcore.tree.item.ItemRubberBoat;
 import muramasa.antimatter.AntimatterAPI;
@@ -18,11 +17,8 @@ import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.TagUtils;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -70,14 +66,12 @@ public class GTCoreData {
 
     public static final BlockSapBag SAP_BAG = new BlockSapBag();
 
-    public static final BlockEntityType<?> SIGN_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntityRubberSign::new, RUBBER_SIGN, RUBBER_WALL_SIGN).build(null);
 
     public static final BlockEntityType<?> SAP_BAG_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntitySapBag::new, SAP_BAG).build(null);
-    public static final EntityType<RubberBoatEntity> RUBBER_BOAT_ENTITY = EntityType.Builder.<RubberBoatEntity>of(RubberBoatEntity::new, MobCategory.MISC).sized(1.375f, 0.5625f).build(GTCore.ID + ":rubber_boat");
-
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTCore.ID, "sticky_resin");
 
     public static ItemRubberBoat RubberBoat = new ItemRubberBoat();
+
     public static void init() {
         if (!AntimatterAPI.isModLoaded("tfc")){
             RUBBER_LEAVES = new BlockRubberLeaves();
@@ -85,11 +79,7 @@ public class GTCoreData {
         } else if (AntimatterPlatformUtils.isForge()){
             initTFC();
         }
-        AntimatterAPI.register(BlockEntityType.class, "rubber_sign", GTCore.ID, SIGN_BLOCK_ENTITY);
         AntimatterAPI.register(BlockEntityType.class, "sap_bag", GTCore.ID, SAP_BAG_BLOCK_ENTITY);
-        if (AntimatterPlatformUtils.isFabric()){
-            Registry.register(Registry.ENTITY_TYPE, GTCore.ID + ":rubber_boat", RUBBER_BOAT_ENTITY);
-        }
     }
 
     @ExpectPlatform

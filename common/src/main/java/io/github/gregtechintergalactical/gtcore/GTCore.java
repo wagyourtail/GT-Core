@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtcore;
 
 import com.teamresourceful.resourcefullib.common.networking.base.NetworkDirection;
+import io.github.gregtechintergalactical.gtcore.client.BakedModels;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreData;
 import io.github.gregtechintergalactical.gtcore.data.MenuHandlers;
 import io.github.gregtechintergalactical.gtcore.data.SlotTypes;
@@ -23,6 +24,7 @@ import muramasa.antimatter.network.AntimatterNetwork;
 import muramasa.antimatter.registration.RegistrationEvent;
 import muramasa.antimatter.registration.Side;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -51,8 +53,14 @@ public class GTCore extends AntimatterMod {
                 RubberTreeWorldGen.init();
                 AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, SYNC_ID, MessageCraftingSync.HANDLER, MessageCraftingSync.class);
             }
-            case DATA_READY -> GTCoreRemapping.init();
-            case CLIENT_DATA_INIT -> ScreenFactories.init();
+            case DATA_READY -> {
+                WoodType.register(GTCoreData.RUBBER_WOOD_TYPE);
+                GTCoreRemapping.init();
+            }
+            case CLIENT_DATA_INIT -> {
+                BakedModels.init();
+                ScreenFactories.init();
+            }
         }
     }
 
