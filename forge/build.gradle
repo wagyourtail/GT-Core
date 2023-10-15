@@ -19,6 +19,7 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionForge"))
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
+    modCompileOnly("curse.maven:terrafirmacraft-302973:4723717")
     modImplementation(include("com.github.Reforged-Mods.Terraform-Reforged:terraform-wood-api-v1:${project.terraform_version_forge}"))
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
 }

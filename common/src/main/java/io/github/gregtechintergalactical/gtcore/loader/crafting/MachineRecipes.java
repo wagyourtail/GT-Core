@@ -1,5 +1,6 @@
-package io.github.gregtechintergalactical.gtcore;
+package io.github.gregtechintergalactical.gtcore.loader.crafting;
 
+import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.machine.DrumMachine;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterDefaultTools;
@@ -13,7 +14,7 @@ import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
 
-public class GTCoreRecipes {
+public class MachineRecipes {
     public static void initRecipes(Consumer<FinishedRecipe> output, AntimatterRecipeProvider provider){
         AntimatterAPI.all(DrumMachine.class).forEach(d -> {
             Material m = d.getMaterial();

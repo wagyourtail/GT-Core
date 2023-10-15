@@ -20,6 +20,11 @@ public class ClientHandler {
         AntimatterAPI.runLaterClient(() -> {
             AntimatterAPI.all(BlockMachineMaterial.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
             AntimatterAPI.all(BlockMultiMachineMaterial.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+            ModelUtils.setRenderLayer(GTCoreData.RUBBER_SAPLING, RenderType.cutout());
+            ModelUtils.setRenderLayer(GTCoreData.RUBBER_LEAVES, RenderType.cutout());
+            ModelUtils.setRenderLayer(GTCoreData.RUBBER_TRAPDOOR, RenderType.cutout());
+            ModelUtils.setRenderLayer(GTCoreData.RUBBER_DOOR, RenderType.cutout());
+            ModelUtils.setRenderLayer(GTCoreData.SAP_BAG, RenderType.cutout());
         });
     }
 }
