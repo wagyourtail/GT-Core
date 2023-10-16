@@ -12,11 +12,13 @@ import io.github.gregtechintergalactical.gtcore.datagen.GTCoreItemTagProvider;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreLang;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.MachineRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.RubberRecipes;
+import io.github.gregtechintergalactical.gtcore.loader.machines.AssemblyLoader;
 import io.github.gregtechintergalactical.gtcore.network.MessageCraftingSync;
 import io.github.gregtechintergalactical.gtcore.tree.RubberTree;
 import io.github.gregtechintergalactical.gtcore.tree.RubberTreeWorldGen;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.AntimatterMod;
+import muramasa.antimatter.Ref;
 import muramasa.antimatter.datagen.AntimatterDynamics;
 import muramasa.antimatter.datagen.builder.AntimatterTagBuilder;
 import muramasa.antimatter.datagen.providers.*;
@@ -24,6 +26,8 @@ import muramasa.antimatter.event.CraftingEvent;
 import muramasa.antimatter.event.MaterialEvent;
 import muramasa.antimatter.event.ProvidersEvent;
 import muramasa.antimatter.network.AntimatterNetwork;
+import muramasa.antimatter.recipe.loader.IRecipeRegistrate;
+import muramasa.antimatter.registration.IAntimatterRegistrar;
 import muramasa.antimatter.registration.RegistrationEvent;
 import muramasa.antimatter.registration.Side;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
@@ -38,6 +42,8 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.function.BiConsumer;
 
 import static muramasa.antimatter.data.AntimatterMaterialTypes.PLATE;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.RING;
@@ -65,6 +71,8 @@ public class GTCore extends AntimatterMod {
                 GTCoreBlocks.init();
                 GTCoreItems.init();
                 GTCoreMaterials.init();
+                RecipeMaps.init();
+                if (side.isClient()) RecipeMaps.clientMaps();
                 RubberTree.init();
                 RubberTreeWorldGen.init();
                 AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, SYNC_ID, MessageCraftingSync.HANDLER, MessageCraftingSync.class);
@@ -93,6 +101,11 @@ public class GTCore extends AntimatterMod {
     public static void onCrafting(CraftingEvent event){
         event.addLoader(MachineRecipes::initRecipes);
         event.addLoader(RubberRecipes::addRecipes);
+    }
+
+    public static void registerRecipeLoaders(IAntimatterRegistrar registrar, IRecipeRegistrate reg) {
+        BiConsumer<String, IRecipeRegistrate.IRecipeLoader> loader = (a, b) -> reg.add(GTCore.ID, a, b);
+        loader.accept("assembling", AssemblyLoader::init);
     }
 
     public static void onProviders(ProvidersEvent ev) {

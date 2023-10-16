@@ -6,12 +6,14 @@ import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.tree.RubberFoliagePlacer;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
+import muramasa.antimatter.event.forge.AntimatterLoaderEvent;
 import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -24,6 +26,7 @@ public class GTCoreForge extends GTCore {
     public GTCoreForge(){
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onProvidersEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCraftingEvent);
+        MinecraftForge.EVENT_BUS.<AntimatterLoaderEvent>addListener(GTCoreForge::registerRecipeLoaders);
         FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(FoliagePlacerType.class, this::onRegistration);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
@@ -42,6 +45,10 @@ public class GTCoreForge extends GTCore {
 
     private void onCraftingEvent(AntimatterCraftingEvent event){
         onCrafting(event.getEvent());
+    }
+
+    public static void registerRecipeLoaders(AntimatterLoaderEvent event) {
+        GTCore.registerRecipeLoaders(event.sender, event.registrat);
     }
 
     private void onRegistration(final RegistryEvent.Register<FoliagePlacerType<?>> e){

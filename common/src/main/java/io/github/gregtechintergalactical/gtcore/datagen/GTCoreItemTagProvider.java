@@ -10,6 +10,10 @@ import muramasa.antimatter.util.TagUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+
+import static io.github.gregtechintergalactical.gtcore.data.GTCoreItems.*;
+import static io.github.gregtechintergalactical.gtcore.data.GTCoreTags.*;
 
 public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
     public GTCoreItemTagProvider(String providerDomain, String providerName, boolean replace, AntimatterBlockTagProvider p) {
@@ -44,5 +48,17 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
             this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "log_pile_logs"))).addTag(GTCoreTags.RUBBER_LOGS);
 
         }
+        this.tag(CIRCUITS_BASIC).add(CircuitBasic);
+        this.tag(CIRCUITS_GOOD).add(CircuitGood);
+        this.tag(CIRCUITS_ADVANCED).add(CircuitAdv);
+        this.tag(CIRCUITS_DATA).add(CircuitDataStorage);
+        this.tag(CIRCUITS_ELITE).add(CircuitDataControl);
+        this.tag(CIRCUITS_MASTER).add(CircuitEnergyFlow);
+        this.tag(CIRCUITS_DATA_ORB).add(DataOrb);
+        this.tag(BATTERIES_RE).add(BatteryRE);
+        this.tag(BATTERIES_SMALL).add(BatterySmallSodium, BatterySmallCadmium, BatterySmallLithium);
+        this.tag(BATTERIES_MEDIUM).add(BatteryMediumSodium, BatteryMediumCadmium, BatteryMediumLithium);
+        this.tag(BATTERIES_LARGE).add(BatteryLargeSodium, BatteryLargeCadmium, BatteryLargeLithium, EnergyCrystal);
+        this.tag(FIRESTARTER).add(Items.FLINT_AND_STEEL);
     }
 }
