@@ -47,7 +47,6 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
         for (SlotData slot : tile.getMachineType().getSlots(tile.getMachineTier())) {
             slotIndexMap.computeIntIfAbsent(slot.getType().getId(), k -> 0);
             Slot supplier;
-            Antimatter.LOGGER.info("slot: " + slot.getType().getId() + " at " + i);
             i++;
             if (slot.getType().getId().equals("crafting")){
                 supplier = new Slot(craftingGrid, slotIndexMap.getInt(slot.getType().getId()), slot.getX(), slot.getY());
