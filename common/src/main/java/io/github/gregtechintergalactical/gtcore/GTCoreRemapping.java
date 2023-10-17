@@ -9,6 +9,7 @@ import muramasa.antimatter.AntimatterRemapping;
 import muramasa.antimatter.machine.BlockMachine;
 import muramasa.antimatter.registration.IAntimatterObject;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 public class GTCoreRemapping {
@@ -26,9 +27,12 @@ public class GTCoreRemapping {
         AntimatterAPI.all(Block.class, GTCore.ID).stream().filter(b -> b instanceof IAntimatterObject && !(b instanceof BlockMachine)).map(b -> (IAntimatterObject)b).forEach(b -> {
             AntimatterRemapping.remap(new ResourceLocation("gtrubber", b.getId()), b.getLoc());
         });
+        AntimatterAPI.all(Item.class, GTCore.ID).stream().filter(b -> b instanceof IAntimatterObject).map(b -> (IAntimatterObject)b).forEach(b -> {
+            AntimatterRemapping.remap(new ResourceLocation("gtrubber", b.getId()), b.getLoc());
+            AntimatterRemapping.remap(new ResourceLocation("gti", b.getId()), b.getLoc());
+            AntimatterRemapping.remap(new ResourceLocation("gregtech", b.getId()), b.getLoc());
+            AntimatterRemapping.remap(new ResourceLocation("gt4r", b.getId()), b.getLoc());
+        });
         AntimatterRemapping.remapBlockEntity(new ResourceLocation("gtrubber", "sap_bag"), new ResourceLocation(GTCore.ID, "sap_bag"));
-        AntimatterRemapping.remap(new ResourceLocation("gtrubber", "sticky_resin"), GTCoreItems.StickyResin.getLoc());
-        AntimatterRemapping.remap(new ResourceLocation("gtrubber", "rubber_boat"), GTCoreItems.RubberBoat.getLoc());
-        AntimatterRemapping.remap(new ResourceLocation("gtrubber", "rubber_lumber"), new ResourceLocation(GTCore.ID, "rubber_lumber"));
     }
 }
