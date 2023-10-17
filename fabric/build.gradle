@@ -17,6 +17,7 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric"))
     modImplementation("io.github.gregtechintergalactical:antimatter-fabric:${antimatter_version}"){
         exclude(group: "maven.modrinth")
+        exclude(group: "TechReborn")
     }
     modImplementation(include("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version_fabric}"))
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}"
