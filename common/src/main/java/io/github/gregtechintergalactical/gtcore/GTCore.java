@@ -70,6 +70,7 @@ public class GTCore extends AntimatterMod {
                 GTCoreBlocks.init();
                 GTCoreItems.init();
                 GTCoreMaterials.init();
+                GTCoreCables.init();
                 GTCoreTools.init();
                 RecipeMaps.init();
                 if (side.isClient()) RecipeMaps.clientMaps();
