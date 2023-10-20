@@ -18,7 +18,6 @@ import io.github.gregtechintergalactical.gtcore.tree.RubberTree;
 import io.github.gregtechintergalactical.gtcore.tree.RubberTreeWorldGen;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.AntimatterMod;
-import muramasa.antimatter.Ref;
 import muramasa.antimatter.datagen.AntimatterDynamics;
 import muramasa.antimatter.datagen.builder.AntimatterTagBuilder;
 import muramasa.antimatter.datagen.providers.*;
@@ -71,6 +70,7 @@ public class GTCore extends AntimatterMod {
                 GTCoreBlocks.init();
                 GTCoreItems.init();
                 GTCoreMaterials.init();
+                GTCoreTools.init();
                 RecipeMaps.init();
                 if (side.isClient()) RecipeMaps.clientMaps();
                 RubberTree.init();
@@ -95,7 +95,7 @@ public class GTCore extends AntimatterMod {
 
     @Override
     public void onMaterialEvent(MaterialEvent event) {
-        event.setMaterial(GTCoreMaterials.RUBBER).asSolid(295, PLATE, RING);
+        event.setMaterial(GTCoreMaterials.Rubber).asSolid(295, PLATE, RING);
     }
 
     public static void onCrafting(CraftingEvent event){
