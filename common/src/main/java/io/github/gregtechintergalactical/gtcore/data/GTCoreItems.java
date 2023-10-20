@@ -10,6 +10,13 @@ public class GTCoreItems {
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTCore.ID, "sticky_resin");
     public static ItemRubberBoat RubberBoat = new ItemRubberBoat();
 
+    public static ItemBasic<?> Biochaff = new ItemBasic<>(GTCore.ID, "biochaff");
+    public static ItemBasic<?> CarbonFibre = new ItemBasic<>(GTCore.ID, "raw_carbon_fibre");
+    public static ItemBasic<?> CarbonMesh = new ItemBasic<>(GTCore.ID, "carbon_mesh");
+    public static ItemBasic<?> CoalBall = new ItemBasic<>(GTCore.ID, "coal_ball");
+    public static ItemBasic<?> CompressedCoalBall = new ItemBasic<>(GTCore.ID, "compressed_coal_ball");
+    public static ItemBasic<?> CoalChunk = new ItemBasic<>(GTCore.ID, "coal_chunk");
+
     public static ItemBasic<?> CircuitBoardBasic = new ItemBasic<>(GTCore.ID, "basic_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardAdvanced = new ItemBasic<>(GTCore.ID, "advanced_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardEmpty = new ItemBasic<>(GTCore.ID, "empty_circuit_board", "circuits/");
