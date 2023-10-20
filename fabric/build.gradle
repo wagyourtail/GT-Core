@@ -1,13 +1,16 @@
 archivesBaseName = "${rootProject.archive_base_name}-fabric"
 version = "${project.mod_version}-${rootProject.minecraft_version}"
 
+def generatedResources = file("src/generated/resources")
+def accessWidenerFile = project(":common").file("src/main/resources/gtcore.accesswidener")
+
 architectury {
     platformSetupLoomIde()
     fabric()
 }
 
 loom {
-    accessWidenerPath = project(":common").file("src/main/resources/gtcore.accesswidener")
+    accessWidenerPath = accessWidenerFile
 }
 
 dependencies {
@@ -23,7 +26,21 @@ dependencies {
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}"
 }
 
+task copyAccessWidener(type: Copy) {
+    from accessWidenerFile
+    into generatedResources
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir copyAccessWidener
+        }
+    }
+}
+
 processResources {
+    dependsOn copyAccessWidener
     inputs.property "version", project.mod_version
 
     filesMatching("fabric.mod.json") {
@@ -32,6 +49,9 @@ processResources {
 }
 
 sourcesJar {
+    from(project(':common').sourceSets.main.allSource) {
+        exclude("gtcore.accesswidener") // duplicate on fabric, unneeded on forge
+    }
     def commonSources = project(":common").sourcesJar
     dependsOn commonSources
     from commonSources.archiveFile.map { zipTree(it) }
