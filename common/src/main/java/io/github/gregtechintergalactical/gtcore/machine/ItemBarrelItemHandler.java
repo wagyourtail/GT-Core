@@ -14,10 +14,9 @@ import net.minecraft.world.item.ItemStack;
 import javax.annotation.Nonnull;
 import java.util.function.BiPredicate;
 
-public class ItemBarreltItemHandler extends MachineItemHandler<BlockEntityItemBarrel> {
-    int maxSize = Integer.MAX_VALUE;
-    int digitalCount;
-    public ItemBarreltItemHandler(BlockEntityItemBarrel tile) {
+public class ItemBarrelItemHandler extends MachineItemHandler<BlockEntityItemBarrel> {
+
+    public ItemBarrelItemHandler(BlockEntityItemBarrel tile) {
         super(tile);
         inventories.put(SlotType.STORAGE, new QuantumSlotTrackedHandler(tile, SlotType.STORAGE, 1, SlotType.STORAGE.output, SlotType.STORAGE.input, SlotType.STORAGE.tester, ((ItemBarrelMachine)tile.getMachineType()).getCapacity()));
     }
