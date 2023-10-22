@@ -8,6 +8,7 @@ import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityMassStorage;
 import io.github.gregtechintergalactical.gtcore.data.SlotTypes;
+import io.github.gregtechintergalactical.gtcore.machine.MassStorageMachine;
 import muramasa.antimatter.gui.SlotType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -60,15 +61,19 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
         matrixStack.popPose();
     }
 
-    private void renderSlot(PoseStack matrixStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn, BlockEntityMassStorage tile){
+    private void renderSlot(PoseStack matrix, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn, BlockEntityMassStorage tile){
 
         var display = tile.itemHandler.map(i -> i.getHandler(SlotType.DISPLAY)).orElse(null);
         var storage = tile.itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
         if (display != null && storage != null){
-            matrixStack.translate(0.5, 0.375, 0.05f);
-            matrixStack.scale(0.5f, 0.5f, 0.00005f);
+            matrix.translate(0.5, 0.375, 0.05f);
+            matrix.scale(0.5f, 0.5f, 0.00005f);
             ItemStack stack = display.getItem(0);
-            renderStack(matrixStack, bufferIn, combinedLightIn, combinedOverlayIn, stack, tile, 0.015f);
+            renderStack(matrix, bufferIn, combinedLightIn, combinedOverlayIn, stack, tile, 0.03f);
+            int max = ((MassStorageMachine)tile.getMachineType()).getCapacity();
+            int count = storage.getItem(0).getCount();
+            String text = "" + (count == max ? 100 + "%" : count);
+            renderText(matrix, bufferIn, combinedOverlayIn, new TextComponent(text).withStyle(count == max ? ChatFormatting.DARK_RED : ChatFormatting.BLACK), Direction.NORTH, 0.03f);
         }
     }
 
@@ -76,7 +81,7 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
     /* Thanks Mekanism */
     public static void renderText(PoseStack matrix, MultiBufferSource renderer, int overlayLight, Component text, Direction side, float maxScale) {
 
-        matrix.translate(0, -0.745, 0);
+        matrix.translate(0, 0.875, -0.05);
 
 
         float displayWidth = 1;
@@ -98,7 +103,7 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
         matrix.scale(scale, -scale, scale);
         int realHeight = (int) Math.floor(displayHeight / scale);
         int realWidth = (int) Math.floor(displayWidth / scale);
-        int offsetX = (realWidth - requiredWidth) / 2;
+        int offsetX = (realWidth - requiredWidth);
         int offsetY = (realHeight - requiredHeight) / 2;
         font.drawInBatch(text, offsetX - realWidth / 2, 3 + offsetY - realHeight / 2, overlayLight,
                 false, matrix.last().pose(), renderer, false, 0, 0xF000F0);
@@ -139,7 +144,7 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
         } else {
 
         }*/
-        //renderText(matrixStack, bufferIn, combinedOverlayIn, new TextComponent(ChatFormatting.WHITE + "" + amount), Direction.NORTH, scale);
+
 
     }
 
