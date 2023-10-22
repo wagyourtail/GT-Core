@@ -1,6 +1,8 @@
 package io.github.gregtechintergalactical.gtcore.client;
 
+import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Matrix3f;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
@@ -63,9 +65,10 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
         var display = tile.itemHandler.map(i -> i.getHandler(SlotType.DISPLAY)).orElse(null);
         var storage = tile.itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
         if (display != null && storage != null){
-            matrixStack.translate(0.5, 0.375, 0.0005f);
+            matrixStack.translate(0.5, 0.375, 0.05f);
+            matrixStack.scale(0.5f, 0.5f, 0.00005f);
             ItemStack stack = display.getItem(0);
-            renderStack(matrixStack, bufferIn, combinedLightIn, combinedOverlayIn, stack, stack.getCount(), 0.015f);
+            renderStack(matrixStack, bufferIn, combinedLightIn, combinedOverlayIn, stack, tile, 0.015f);
         }
     }
 
@@ -102,32 +105,56 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
 
     }
 
-    public static void renderStack(PoseStack matrixStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn, ItemStack stack, int amount, float scale){
+    public void renderStack(PoseStack matrixStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn, ItemStack stack, BlockEntityMassStorage tile, float scale){
+        float scaleX = .25f;
+        float scaleY = .25f;
+
+        //alignRendering(matrixStack, tile.getFacing());
         BakedModel model = Minecraft.getInstance().getItemRenderer().getModel(stack, Minecraft.getInstance().level, null, 0);
-        if (model.isGui3d()) {
+        /*if (model.isGui3d()) {
+            Lighting.setupFor3DItems();
             float thickness = 0.125f;
             // Avoid scaling normal matrix by using mulPoseMatrix() instead of scale()
-            matrixStack.mulPoseMatrix(createTransformMatrix(
-                    Vector3f.ZERO, Vector3f.ZERO, new Vector3f(.75f, .75f, thickness)));
+            *//*matrixStack.mulPoseMatrix(createTransformMatrix(
+                    Vector3f.ZERO, Vector3f.ZERO, new Vector3f(.75f, .75f, 1.0f)));*//*
         } else {
-            matrixStack.mulPoseMatrix(createTransformMatrix(
-                    Vector3f.ZERO, Vector3f.ZERO, .5f));
+            Lighting.setupForFlatItems();
+            *//*matrixStack.mulPoseMatrix(createTransformMatrix(
+                    Vector3f.ZERO, Vector3f.ZERO, .5f));*//*
+        }*/
+
+        //matrixStack.last().normal().load(Matrix3f.createScaleMatrix(1, 1, 1));
+        //matrixStack.mulPose(Vector3f.YP.rotationDegrees(180));
+        Minecraft.getInstance().getItemRenderer().render(stack, ItemTransforms.TransformType.GUI, false, matrixStack, bufferIn, combinedLightIn, combinedOverlayIn, model);
+
+        if (model.isGui3d()) {
+            /*matrixStack.mulPoseMatrix(createTransformMatrix(
+                    Vector3f.ZERO, Vector3f.ZERO, .665f));*/
         }
-
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(180));
-        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.FIXED, combinedLightIn, combinedOverlayIn, matrixStack, bufferIn, 0);
-
-        matrixStack.mulPoseMatrix(createTransformMatrix(
+        /*matrixStack.mulPoseMatrix(createTransformMatrix(
                 Vector3f.ZERO, new Vector3f(0, 180, 0), 1));
         if (!model.isGui3d()) {
             matrixStack.mulPoseMatrix(createTransformMatrix(
                     Vector3f.ZERO, Vector3f.ZERO, new Vector3f(0.5f / 0.5f, 0.5f / 0.5f, 1)));
         } else {
-            matrixStack.mulPoseMatrix(createTransformMatrix(
-                    Vector3f.ZERO, Vector3f.ZERO, .665f));
-        }
+
+        }*/
         //renderText(matrixStack, bufferIn, combinedOverlayIn, new TextComponent(ChatFormatting.WHITE + "" + amount), Direction.NORTH, scale);
 
+    }
+
+    private void alignRendering (PoseStack matrix, Direction side) {
+        // Rotate to face the correct direction for the drawer's orientation.
+
+        matrix.translate(.5f, .5f, .5f);
+        matrix.mulPose(new Quaternion(Vector3f.YP, getRotationYForSide2D(side), true));
+        matrix.translate(-.5f, -.5f, -.5f);
+    }
+
+    private static final float[] sideRotationY2D = { 0, 0, 2, 0, 3, 1 };
+
+    private float getRotationYForSide2D (Direction side) {
+        return sideRotationY2D[side.ordinal()] * 90;
     }
 
     public static Matrix4f createTransformMatrix(Vector3f translation, Vector3f eulerDegrees, Vector3f scale) {
