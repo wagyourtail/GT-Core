@@ -73,7 +73,8 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
             int max = ((MassStorageMachine)tile.getMachineType()).getCapacity();
             int count = storage.getItem(0).getCount();
             String text = "" + (count == max ? 100 + "%" : count);
-            renderText(matrix, bufferIn, combinedOverlayIn, new TextComponent(text).withStyle(count == max ? ChatFormatting.DARK_RED : ChatFormatting.BLACK), Direction.NORTH, 0.03f);
+            if (!stack.isEmpty())
+                renderText(matrix, bufferIn, combinedOverlayIn, new TextComponent(text).withStyle(count == max ? ChatFormatting.DARK_RED : ChatFormatting.BLACK), Direction.NORTH, 0.03f);
         }
     }
 
@@ -81,7 +82,7 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
     /* Thanks Mekanism */
     public static void renderText(PoseStack matrix, MultiBufferSource renderer, int overlayLight, Component text, Direction side, float maxScale) {
 
-        matrix.translate(0, 0.875, -0.05);
+        matrix.translate(0, 0.875, -1);
 
 
         float displayWidth = 1;
