@@ -14,8 +14,8 @@ import tesseract.api.item.ExtendedItemContainer;
 
 import javax.annotation.Nonnull;
 
-public class SlotQuantum extends AbstractSlot<SlotQuantum> implements IClickableSlot {
-    public SlotQuantum(SlotType<SlotQuantum> type, IGuiHandler tile, ExtendedItemContainer stackHandler, int index, int x, int y) {
+public class SlotUnlimited extends AbstractSlot<SlotUnlimited> implements IClickableSlot {
+    public SlotUnlimited(SlotType<SlotUnlimited> type, IGuiHandler tile, ExtendedItemContainer stackHandler, int index, int x, int y) {
         super(type, tile, stackHandler, index, x, y);
     }
 

@@ -4,14 +4,12 @@ import dev.architectury.injectables.annotations.ExpectPlatform;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.block.BlockSapBag;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntitySapBag;
-import io.github.gregtechintergalactical.gtcore.machine.DrumMachine;
-import io.github.gregtechintergalactical.gtcore.machine.ItemBarrelMachine;
-import io.github.gregtechintergalactical.gtcore.machine.LockerMachine;
-import io.github.gregtechintergalactical.gtcore.machine.WorkbenchMachine;
+import io.github.gregtechintergalactical.gtcore.machine.*;
 import io.github.gregtechintergalactical.gtcore.tree.block.*;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.block.BlockBasic;
 import muramasa.antimatter.data.AntimatterMaterials;
+import muramasa.antimatter.machine.MachineFlag;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.ore.CobbleStoneType;
 import muramasa.antimatter.ore.StoneType;
@@ -62,7 +60,7 @@ public class GTCoreBlocks {
 
     public static final BlockEntityType<?> SAP_BAG_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntitySapBag::new, SAP_BAG).build(null);
 
-    public static ItemBarrelMachine ITEM_BARREL = new ItemBarrelMachine(GTCore.ID, "item_barrel", AntimatterMaterials.Wood, 5000);
+    public static MaterialMachine ITEM_BARREL = new MassStorageMachine(GTCore.ID, "item_barrel", AntimatterMaterials.Wood, 5000).addFlags(MachineFlag.GUI);
 
     public static StoneType GRANITE_RED = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "red_granite", RedGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
     public static StoneType GRANITE_BLACK = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "black_granite", BlackGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);

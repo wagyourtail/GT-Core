@@ -2,6 +2,7 @@ package io.github.gregtechintergalactical.gtcore.data;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import muramasa.antimatter.gui.GuiData;
+import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.gui.slot.ISlotProvider;
 
 import static muramasa.antimatter.gui.SlotType.*;
@@ -20,4 +21,8 @@ public class Guis {
             .add(FL_OUT, 107, 25).add(FL_OUT, 125, 25).add(FL_OUT, 143, 25)
             .add(FL_OUT, 107, 43).add(FL_OUT, 125, 43).add(FL_OUT, 143, 43)
             .add(FL_OUT, 107, 61).add(FL_OUT, 125, 61).add(FL_OUT, 143, 61));
+
+    public static void init(){
+        GTCoreBlocks.ITEM_BARREL.add(DISPLAY, 53, 34).add(SlotTypes.UNLIMITED, 71, 34);
+    }
 }

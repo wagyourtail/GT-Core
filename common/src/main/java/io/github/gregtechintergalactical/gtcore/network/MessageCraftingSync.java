@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 
 public class MessageCraftingSync implements Packet<MessageCraftingSync> {
-    public static final Handler HANDLER = new Handler();
+    public static final PacketHandler<MessageCraftingSync> HANDLER = new Handler();
 
     @Override
     public ResourceLocation getID() {

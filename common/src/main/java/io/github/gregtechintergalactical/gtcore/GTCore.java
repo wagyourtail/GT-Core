@@ -14,6 +14,7 @@ import io.github.gregtechintergalactical.gtcore.loader.crafting.MachineRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.RubberRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.machines.AssemblyLoader;
 import io.github.gregtechintergalactical.gtcore.network.MessageCraftingSync;
+import io.github.gregtechintergalactical.gtcore.network.MessageInventorySync;
 import io.github.gregtechintergalactical.gtcore.tree.RubberTree;
 import io.github.gregtechintergalactical.gtcore.tree.RubberTreeWorldGen;
 import muramasa.antimatter.AntimatterAPI;
@@ -52,6 +53,7 @@ public class GTCore extends AntimatterMod {
     public static final Logger LOGGER = LogManager.getLogger(); // Directly reference a log4j logger.
     public static final String ID = "gtcore", NAME = "GT Core";
     public static final ResourceLocation SYNC_ID = new ResourceLocation(GTCore.ID, "crafting_sync");
+    public static final ResourceLocation INV_SYNC_ID = new ResourceLocation(GTCore.ID, "inventory_sync");
 
     @Override
     public void onRegistrarInit() {
@@ -72,11 +74,13 @@ public class GTCore extends AntimatterMod {
                 GTCoreMaterials.init();
                 GTCoreCables.init();
                 GTCoreTools.init();
+                Guis.init();
                 RecipeMaps.init();
                 if (side.isClient()) RecipeMaps.clientMaps();
                 RubberTree.init();
                 RubberTreeWorldGen.init();
                 AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, SYNC_ID, MessageCraftingSync.HANDLER, MessageCraftingSync.class);
+                AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.SERVER_TO_CLIENT, INV_SYNC_ID, MessageInventorySync.HANDLER, MessageInventorySync.class);
             }
             case DATA_READY -> {
                 WoodType.register(GTCoreBlocks.RUBBER_WOOD_TYPE);

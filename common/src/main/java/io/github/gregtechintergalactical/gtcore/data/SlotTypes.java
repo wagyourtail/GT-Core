@@ -2,6 +2,7 @@ package io.github.gregtechintergalactical.gtcore.data;
 
 import io.github.gregtechintergalactical.gtcore.gui.slots.SlotCrafting;
 import io.github.gregtechintergalactical.gtcore.GTCore;
+import io.github.gregtechintergalactical.gtcore.gui.slots.SlotUnlimited;
 import muramasa.antimatter.capability.item.EmptyContainer;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.gui.slot.AbstractSlot;
@@ -21,6 +22,7 @@ public class SlotTypes {
     public static SlotType<SlotCrafting> CRAFTING = new SlotType<>("crafting", (type, gui, item, i, d) -> new SlotCrafting(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> true, false, true);
     public static SlotType<AbstractSlot<?>> PARK = new SlotType<>("park", (type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> true, true, true, new ResourceLocation(GTCore.ID, "park"));
 
+    public static SlotType<SlotUnlimited> UNLIMITED = new SlotType<>("unlimited", (type, gui, item, i, d) -> new SlotUnlimited(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> true);
     public static void init(){
 
     }
