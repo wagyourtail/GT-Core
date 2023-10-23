@@ -60,7 +60,7 @@ public class GTCoreBlocks {
 
     public static final BlockEntityType<?> SAP_BAG_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntitySapBag::new, SAP_BAG).build(null);
 
-    public static MaterialMachine ITEM_BARREL = new MassStorageMachine(GTCore.ID, "item_barrel", AntimatterMaterials.Wood, 5000).addFlags(MachineFlag.GUI);
+    public static MaterialMachine WOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, AntimatterMaterials.Wood, "item_barrel", 5000).addFlags(MachineFlag.GUI);
 
     public static StoneType GRANITE_RED = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "red_granite", RedGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
     public static StoneType GRANITE_BLACK = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "black_granite", BlackGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
@@ -95,6 +95,14 @@ public class GTCoreBlocks {
             return machine;
         }
         return new DrumMachine(GTCore.ID, material, maxCapacity);
+    }
+
+    public static MassStorageMachine createMassStorage(Material material, int capacity){
+        MassStorageMachine machine = AntimatterAPI.get(MassStorageMachine.class, material.getId() + "_mass_storage", GTCore.ID);
+        if (machine != null){
+            return machine;
+        }
+        return new MassStorageMachine(GTCore.ID, material, "mass_storage", capacity);
     }
 
     public static WorkbenchMachine createWorkbench(Material material, boolean charge){

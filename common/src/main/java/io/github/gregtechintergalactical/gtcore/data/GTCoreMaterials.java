@@ -102,9 +102,9 @@ public class GTCoreMaterials {
     public static Material Francium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "francium", 0xaaaaaa, RAD, Fr));
     public static Material Radium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "radium", 0xf1bd3c, RAD, Ra));
     public static Material Actinium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "actinium", 0xb8c5f1, RAD, Ac));
-    public static Material Thorium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "thorium", 0x001e00, RAD, Th)).setDisplayName("Thorium 232");
+    public static Material Thorium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "thorium", 0x001e00, RAD, Th)).setDisplayNameString("Thorium 232");
     public static Material Protactinium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "protactinium", 0x8a735a, RAD, Pa));
-    public static Material Uranium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "uranium", 0x32f032, RAD, U)).setDisplayName("Uranium 238");
+    public static Material Uranium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "uranium", 0x32f032, RAD, U)).setDisplayNameString("Uranium 238");
     public static Material Neptunium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "neptunium", 0x203f64, RAD, Np));
     public static Material Plutonium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "plutonium", 0xf03232, RAD, Pu));
     public static Material Americium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "americium", 0xc8c8c8, RAD, Am));
@@ -149,9 +149,9 @@ public class GTCoreMaterials {
     public static Material Duranium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "duranium", 0xffffff, METALLIC));
     public static Material Electrum = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "electrum", 0xffff64, SHINY));
     public static Material EnrichedNaquadah = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "enriched_naquadah", 0x323232, SHINY));
-    public static Material HSSE = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "hsse", 0x336600, METALLIC)).setDisplayName("HSS-E");
-    public static Material HSSG = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "hssg", 0x999900, METALLIC)).setDisplayName("HSS-G");
-    public static Material HSSS = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "hsss", 0x660033, METALLIC)).setDisplayName("HSS-S");
+    public static Material HSSE = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "hsse", 0x336600, METALLIC)).setDisplayNameString("HSS-E");
+    public static Material HSSG = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "hssg", 0x999900, METALLIC)).setDisplayNameString("HSS-G");
+    public static Material HSSS = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "hsss", 0x660033, METALLIC)).setDisplayNameString("HSS-S");
     public static Material Invar = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "invar", 0xb4b478, METALLIC));
     public static Material IronMagnetic = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "magnetic_iron", 0xc8c8c8, MAGNETIC)).setMassMultiplierAndDivider(51, 50);
     public static Material Kanthal = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "kanthal", 0xc2d2df, METALLIC));

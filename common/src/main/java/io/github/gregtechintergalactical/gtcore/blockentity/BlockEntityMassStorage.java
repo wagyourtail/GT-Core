@@ -26,7 +26,8 @@ import tesseract.TesseractCapUtils;
 
 public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassStorage> {
     boolean output = false;
-    boolean outputOverflow = true;
+    boolean outputOverflow = false;
+    boolean syncSlots;
     public BlockEntityMassStorage(MassStorageMachine type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         this.itemHandler.set(() -> new MassStoragelItemHandler(this));
@@ -133,15 +134,23 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         if (output){
             processItemOutput(ItemStack.EMPTY);
         }
+        if (syncSlots){
+            syncSlots();
+            syncSlots = false;
+        }
     }
 
-    private void syncSlots(){
+    public void setSyncSlots(boolean syncSlots) {
+        this.syncSlots = syncSlots;
+    }
+
+    public void syncSlots(){
         if (getLevel() != null && isServerSide()){
             itemHandler.ifPresent(i -> {
                 i.getAll().keySet().forEach(s -> {
                     var handler = i.getHandler(s);
                     for (int i1 = 0; i1 < handler.getSlots(); i1++) {
-                        AntimatterNetwork.NETWORK.sendToPlayersInRange(new MessageInventorySync(this.getBlockPos(), s, i1, i.getHandler(s).getItem(i1)), this.getLevel(), this.getBlockPos(), 20.0);
+                        AntimatterNetwork.NETWORK.sendToAllLoaded(new MessageInventorySync(this.getBlockPos(), s, i1, i.getHandler(s).getItem(i1)), this.getLevel(), this.getBlockPos());
                     }
                 });
             });
@@ -169,7 +178,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     public void onMachineEvent(IMachineEvent event, Object... data) {
         if (event instanceof SlotType<?> slotType && data.length > 0 && data[0] instanceof Integer integer){
             if (isServerSide() && getLevel() != null){
-                AntimatterNetwork.NETWORK.sendToPlayersInRange(new MessageInventorySync(this.getBlockPos(), slotType, integer, itemHandler.map(i -> i.getHandler(slotType).getItem(integer)).orElse(ItemStack.EMPTY)), this.getLevel(), this.getBlockPos(), 20.0);
+                AntimatterNetwork.NETWORK.sendToAllLoaded(new MessageInventorySync(this.getBlockPos(), slotType, integer, itemHandler.map(i -> i.getHandler(slotType).getItem(integer)).orElse(ItemStack.EMPTY)), this.getLevel(), this.getBlockPos());
             }
         }
         super.onMachineEvent(event, data);

@@ -8,8 +8,8 @@ import muramasa.antimatter.texture.Texture;
 
 public class MassStorageMachine extends MaterialMachine{
     final int capacity;
-    public MassStorageMachine(String domain, String id, Material material, int capacity) {
-        super(domain, id, material);
+    public MassStorageMachine(String domain, Material material, String suffix, int capacity) {
+        super(domain, material.getId() + "_" + suffix, material);
         this.setTiers(Tier.NONE);
         this.setTile((m, p, s) -> new BlockEntityMassStorage(this, p, s));
         this.capacity = capacity;
