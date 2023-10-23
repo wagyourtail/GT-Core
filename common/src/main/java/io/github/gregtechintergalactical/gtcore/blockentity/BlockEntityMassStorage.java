@@ -12,6 +12,8 @@ import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -37,6 +39,13 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable AntimatterToolType type) {
         Vec3 vec = hit.getLocation();
         var handler = itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
+        if (type == AntimatterDefaultTools.WIRE_CUTTER){
+            outputOverflow = !outputOverflow;
+            //TODO: translation component
+            player.sendMessage(Utils.literal(outputOverflow ? "Outputs overlflow" : "Doesn't output overflow"), player.getUUID());
+            Utils.damageStack(player.getItemInHand(hand), hand, player);
+            return InteractionResult.SUCCESS;
+        }
         if (hit.getDirection().getAxis().isHorizontal() && hit.getDirection() == this.getFacing() && handler != null){
             double x = hit.getDirection().getAxis() == Direction.Axis.Z ?  vec.x() - hit.getBlockPos().getX() : vec.z() - hit.getBlockPos().getZ(), y = vec.y() - hit.getBlockPos().getY();
             int amountToExtract = 0;
@@ -191,5 +200,17 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
 
     public boolean isOutputOverflow() {
         return outputOverflow;
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        tag.putBoolean("outputOverflow", outputOverflow);
+    }
+
+    @Override
+    public void load(CompoundTag tag) {
+        super.load(tag);
+        outputOverflow = tag.getBoolean("outputOverflow");
     }
 }
