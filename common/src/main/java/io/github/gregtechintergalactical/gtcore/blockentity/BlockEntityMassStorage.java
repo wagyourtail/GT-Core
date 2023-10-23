@@ -175,6 +175,11 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     }
 
     @Override
+    public boolean canPlayerOpenGui(Player playerEntity) {
+        return playerEntity.isCreative();
+    }
+
+    @Override
     public void onMachineEvent(IMachineEvent event, Object... data) {
         if (event instanceof SlotType<?> slotType && data.length > 0 && data[0] instanceof Integer integer){
             if (isServerSide() && getLevel() != null){
