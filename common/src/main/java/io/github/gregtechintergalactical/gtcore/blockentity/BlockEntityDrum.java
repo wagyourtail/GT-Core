@@ -39,7 +39,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-import static muramasa.antimatter.data.AntimatterDefaultTools.ELECTRIC_WRENCH;
 import static muramasa.antimatter.data.AntimatterDefaultTools.WRENCH;
 import static net.minecraft.core.Direction.DOWN;
 import static net.minecraft.core.Direction.UP;
@@ -57,7 +56,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         boolean[] success = new boolean[1];
         this.fluidHandler.ifPresent(f -> {
             DrumFluidHandler dF = (DrumFluidHandler) f;
-            if ((type == WRENCH || type == ELECTRIC_WRENCH) && !player.isShiftKeyDown()){
+            if ((type == WRENCH) && !player.isShiftKeyDown()){
                 dF.setOutput(!dF.isOutput());
                 success[0] = true;
                 player.playNotifySound(Ref.WRENCH, SoundSource.BLOCKS, 1.0f, 1.0f);
