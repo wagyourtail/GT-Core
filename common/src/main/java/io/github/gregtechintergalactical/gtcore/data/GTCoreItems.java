@@ -10,6 +10,10 @@ public class GTCoreItems {
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTCore.ID, "sticky_resin");
     public static ItemRubberBoat RubberBoat = new ItemRubberBoat();
 
+    public static ItemBasic<?> GlassTube = new ItemBasic<>(GTCore.ID, "glass_tube", "circuits/");
+
+    public static ItemBasic<?> VacuumTube = new ItemBasic<>(GTCore.ID, "vacuum_tube", "circuits/");
+
     public static ItemBasic<?> CircuitBoardBasic = new ItemBasic<>(GTCore.ID, "basic_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardAdvanced = new ItemBasic<>(GTCore.ID, "advanced_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardEmpty = new ItemBasic<>(GTCore.ID, "empty_circuit_board", "circuits/");
@@ -27,8 +31,6 @@ public class GTCoreItems {
     public static ItemBasic<?> CircuitEnergyFlow = new ItemBasic<>(GTCore.ID, "energy_flow_circuit", "circuits/").tip("A High Voltage Processor"); //maybe name futuristic
     public static ItemBasic<?> CircuitInfinite = new ItemBasic<>(GTCore.ID, "infinite_circuit", "circuits/").tip("A Circuit with Infinite Power Throughput");
     public static ItemBasic<?> CircuitDataControl = new ItemBasic<>(GTCore.ID, "data_control_circuit", "circuits/"); //could be considered BIO
-    public static ItemBasic<?> CircuitNano = new ItemBasic<>(GTCore.ID, "nano_circuit", "circuits/").tip("A Nano Circuit");
-    public static ItemBasic<?> CircuitPico = new ItemBasic<>(GTCore.ID, "pico_circuit", "circuits/").tip("A Pico Circuit");
     public static ItemBasic<?> DataOrb = new ItemBasic<>(GTCore.ID, "data_orb", "circuits/");
 
     public static ItemBasic<?> BatteryHullSmall = new ItemBasic<>(GTCore.ID, "small_battery_hull").tip("An empty LV Battery Hull");
