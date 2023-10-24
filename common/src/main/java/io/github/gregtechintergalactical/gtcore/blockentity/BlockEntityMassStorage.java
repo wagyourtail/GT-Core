@@ -14,6 +14,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -87,6 +89,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                             if (leftover.getCount() < stack.getCount()) {
                                 handler.insertItem(0, stack.copy(), false);
                                 stack.shrink(stack.getCount() - leftover.getCount());
+                                world.playSound(null, this.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundSource.PLAYERS, 1.0F, 1.0F);
                                 return InteractionResult.SUCCESS;
                             }
                         } else {
@@ -101,7 +104,10 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                                         if (inserted.getCount() > 0) break;
                                     }
                                 }
-                                if (sucess) return InteractionResult.SUCCESS;
+                                if (sucess) {
+                                    world.playSound(null, this.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundSource.PLAYERS, 1.0F, 1.0F);
+                                    return InteractionResult.SUCCESS;
+                                }
                             }
                         }
                     }
@@ -129,6 +135,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                 }
 
                 handler.extractItem(0, extract, false);
+                world.playSound(null, this.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundSource.PLAYERS, 1.0F, 1.0F);
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.CONSUME;
