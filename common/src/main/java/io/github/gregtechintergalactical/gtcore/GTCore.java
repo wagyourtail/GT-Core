@@ -10,6 +10,7 @@ import io.github.gregtechintergalactical.gtcore.datagen.GTCoreBlockLootProvider;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreBlockTagProvider;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreItemTagProvider;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreLang;
+import io.github.gregtechintergalactical.gtcore.loader.crafting.CircuitRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.MachineRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.RubberRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.machines.AssemblyLoader;
@@ -104,6 +105,7 @@ public class GTCore extends AntimatterMod {
     }
 
     public static void onCrafting(CraftingEvent event){
+        event.addLoader(CircuitRecipes::initRecipes);
         event.addLoader(MachineRecipes::initRecipes);
         event.addLoader(RubberRecipes::addRecipes);
     }
