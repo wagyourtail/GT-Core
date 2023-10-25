@@ -41,12 +41,12 @@ public class GTCoreItems {
     public static ItemBasic<?> CircuitAdv = new ItemBasic<>(GTCore.ID, "advanced_circuit", "circuits/").tip("A Advanced Circuit");
     public static ItemBasic<?> CircuitComplex = new ItemBasic<>(GTCore.ID, "complex_circuit", "circuits/").tip("A Complex Circuit");
     public static ItemBasic<?> CircuitDataStorage = new ItemBasic<>(GTCore.ID, "data_storage_circuit", "circuits/");
-    public static ItemBasic<?> CircuitElite = new ItemBasic<>(GTCore.ID, "elite_circuit", "circuits/").tip("A Elite Circuit");
+    public static ItemBasic<?> CircuitDataControl = new ItemBasic<>(GTCore.ID, "data_control_circuit", "circuits/").tip("An Elite Circuit"); //could be considered BIO
+    public static ItemBasic<?> CircuitEnergyFlow = new ItemBasic<>(GTCore.ID, "energy_flow_circuit", "circuits/").tip("A Master Circuit"); //maybe name futuristic
+    //public static ItemBasic<?> CircuitElite = new ItemBasic<>(GTCore.ID, "elite_circuit", "circuits/").tip("A Elite Circuit");
     public static ItemBasic<?> CircuitFuturistic = new ItemBasic<>(GTCore.ID, "futuristic_circuit", "circuits/").tip("A Futuristic Circuit");
     public static ItemBasic<?> Circuit3D = new ItemBasic<>(GTCore.ID, "3d_circuit", "circuits/").tip("A 3-Dimensional Circuit");
-    public static ItemBasic<?> CircuitEnergyFlow = new ItemBasic<>(GTCore.ID, "energy_flow_circuit", "circuits/").tip("A High Voltage Processor"); //maybe name futuristic
     public static ItemBasic<?> CircuitInfinite = new ItemBasic<>(GTCore.ID, "infinite_circuit", "circuits/").tip("A Circuit with Infinite Power Throughput");
-    public static ItemBasic<?> CircuitDataControl = new ItemBasic<>(GTCore.ID, "data_control_circuit", "circuits/"); //could be considered BIO
     public static ItemBasic<?> DataOrb = new ItemBasic<>(GTCore.ID, "data_orb", "circuits/");
 
     public static ItemPowerUnit PowerUnitLV = new ItemPowerUnit(GTCore.ID, "power_unit_lv", Aluminium);

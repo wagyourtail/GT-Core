@@ -15,6 +15,7 @@ public class GTCoreTags {
     public static TagKey<Item> CIRCUITS_BASIC = getTag("circuits/basic");
     public static TagKey<Item> CIRCUITS_GOOD = getTag("circuits/good");
     public static TagKey<Item> CIRCUITS_ADVANCED = getTag("circuits/advanced");
+    public static TagKey<Item> CIRCUITS_COMPLEX = getTag("circuits/complex");
     public static TagKey<Item> CIRCUITS_DATA = getTag("circuits/data");
     public static TagKey<Item> CIRCUITS_ELITE = getTag("circuits/elite");
     public static TagKey<Item> CIRCUITS_MASTER = getTag("circuits/master");
