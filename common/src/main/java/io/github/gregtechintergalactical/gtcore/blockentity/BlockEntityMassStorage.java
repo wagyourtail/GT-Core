@@ -48,6 +48,17 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             return InteractionResult.SUCCESS;
         }
+        if (type == AntimatterDefaultTools.WRENCH){
+            Direction hitSide = Utils.getInteractSide(hit);
+            if (hitSide == this.getFacing() || hit.getDirection().getAxis().isVertical()){
+                output = !output;
+                //TODO: translation component
+                player.sendMessage(Utils.literal(output ? "Auto output on" : "Auto output off"), player.getUUID());
+                Utils.damageStack(player.getItemInHand(hand), hand, player);
+                return InteractionResult.SUCCESS;
+            }
+        }
+
         if (hit.getDirection().getAxis().isHorizontal() && hit.getDirection() == this.getFacing() && handler != null){
             double x = hit.getDirection().getAxis() == Direction.Axis.Z ?  vec.x() - hit.getBlockPos().getX() : vec.z() - hit.getBlockPos().getZ(), y = vec.y() - hit.getBlockPos().getY();
             int amountToExtract = 0;
