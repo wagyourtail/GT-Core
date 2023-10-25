@@ -60,6 +60,10 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(BATTERIES_SMALL).add(BatterySmallSodium, BatterySmallCadmium, BatterySmallLithium);
         this.tag(BATTERIES_MEDIUM).add(BatteryMediumSodium, BatteryMediumCadmium, BatteryMediumLithium);
         this.tag(BATTERIES_LARGE).add(BatteryLargeSodium, BatteryLargeCadmium, BatteryLargeLithium, EnergyCrystal);
+        this.tag(POWER_UNIT_LV).add(PowerUnitLV);
+        this.tag(POWER_UNIT_MV).add(PowerUnitMV);
+        this.tag(POWER_UNIT_HV).add(PowerUnitHV);
+        this.tag(POWER_UNIT_SMALL).add(SmallPowerUnit);
         this.tag(FIRESTARTER).add(Items.FLINT_AND_STEEL);
     }
 }

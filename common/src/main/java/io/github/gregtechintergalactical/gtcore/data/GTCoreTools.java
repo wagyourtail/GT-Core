@@ -1,8 +1,10 @@
 package io.github.gregtechintergalactical.gtcore.data;
 
+import com.google.common.collect.ImmutableMap;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
+import muramasa.antimatter.item.ItemBattery;
 import muramasa.antimatter.machine.BlockMachine;
 import muramasa.antimatter.pipe.BlockPipe;
 import muramasa.antimatter.registration.Side;
@@ -11,16 +13,23 @@ import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.tool.MaterialTool;
 import muramasa.antimatter.tool.behaviour.*;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.Nullable;
+import tesseract.TesseractCapUtils;
+import tesseract.api.gt.IEnergyHandlerItem;
+import tesseract.api.gt.IGTNode;
 
 import java.util.function.Supplier;
 
+import static io.github.gregtechintergalactical.gtcore.data.GTCoreItems.*;
 import static muramasa.antimatter.data.AntimatterDefaultTools.*;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
 import static net.minecraft.world.level.material.Material.*;
@@ -67,12 +76,53 @@ public class GTCoreTools {
         CHAINSAW.addBehaviour(BehaviourTreeFelling.INSTANCE, BehaviourLogStripping.INSTANCE);
         DRILL.addBehaviour(new BehaviourAOEBreak(1, 1, 1, "3x3"), BehaviourTorchPlacing.INSTANCE);
         JACKHAMMER.addBehaviour(new BehaviourAOEBreak(1, 1, 1, "3x3"));
+        GTCoreTools.DRILL.setBrokenItems(ImmutableMap.of("drill_lv", i -> getBrokenItem(i, PowerUnitLV), "drill_mv", i -> getBrokenItem(i, PowerUnitMV), "drill_hv", i -> getBrokenItem(i, PowerUnitHV)));
+        GTCoreTools.CHAINSAW.setBrokenItems(ImmutableMap.of("chainsaw_lv", i -> getBrokenItem(i, PowerUnitLV), "chainsaw_mv", i -> getBrokenItem(i, PowerUnitMV), "chainsaw_hv", i -> getBrokenItem(i, PowerUnitHV)));
+        GTCoreTools.ELECTRIC_WRENCH.setBrokenItems(ImmutableMap.of("electric_wrench_lv", i -> getBrokenItem(i, PowerUnitLV), "electric_wrench_mv", i -> getBrokenItem(i, PowerUnitMV), "electric_wrench_hv", i -> getBrokenItem(i, PowerUnitHV)));
+        GTCoreTools.BUZZSAW.setBrokenItems(ImmutableMap.of("buzzsaw_lv", i -> getBrokenItem(i, PowerUnitLV), "buzzsaw_mv", i -> getBrokenItem(i, PowerUnitMV), "buzzsaw_hv", i -> getBrokenItem(i, PowerUnitHV)));
+        GTCoreTools.ELECTRIC_SCREWDRIVER.setBrokenItems(ImmutableMap.of("electric_screwdriver_lv", i -> getBrokenItem(i, SmallPowerUnit)));
+        GTCoreTools.JACKHAMMER.setBrokenItems(ImmutableMap.of("jackhammer_lv", i -> getBrokenItem(i, PowerUnitLV), "jackhammer_mv", i -> getBrokenItem(i, PowerUnitMV), "jackhammer_hv", i -> getBrokenItem(i, PowerUnitHV)));
         if (side.isClient()) clientInit();
     }
 
     private static void clientInit() {
         ELECTRIC_SCREWDRIVER.addBehaviour(new BehaviourExtendedHighlight(b -> b instanceof BlockMachine || b instanceof BlockPipe, BehaviourExtendedHighlight.COVER_FUNCTION));
         ELECTRIC_WRENCH.addBehaviour(new BehaviourExtendedHighlight(b -> b instanceof BlockMachine || (b instanceof BlockPipe && b.builtInRegistryHolder().is(AntimatterDefaultTools.WRENCH.getToolType())), BehaviourExtendedHighlight.PIPE_FUNCTION));
+    }
+
+    private static ItemStack getBrokenItem(ItemStack tool, ItemLike broken){
+        ItemStack powerUnit = new ItemStack(broken);
+        Tuple<Long, Long> tuple = getEnergy(tool);
+        CompoundTag dataTag = powerUnit.getOrCreateTagElement(muramasa.antimatter.Ref.TAG_ITEM_ENERGY_DATA);
+        IEnergyHandlerItem handler = TesseractCapUtils.getEnergyHandlerItem(powerUnit).orElse(null);
+        if (handler != null){
+            handler.setEnergy(tuple.getA());
+            handler.setCapacity(tuple.getB());
+            powerUnit = handler.getContainer().getItemStack();
+        } else {
+            dataTag.putLong(muramasa.antimatter.Ref.KEY_ITEM_ENERGY, tuple.getA());
+            dataTag.putLong(muramasa.antimatter.Ref.KEY_ITEM_MAX_ENERGY, tuple.getB());
+        }
+        if (broken.asItem() == SmallPowerUnit){
+            PowerUnitHV.setMaterial(((IAntimatterTool)tool.getItem()).getSecondaryMaterial(tool), powerUnit);
+        }
+        return powerUnit;
+    }
+
+    public static Tuple<Long, Long> getEnergy(ItemStack stack){
+        if (stack.getItem() instanceof ItemBattery battery){
+            long energy = TesseractCapUtils.getEnergyHandlerItem(stack).map(IGTNode::getEnergy).orElse((long)0);
+            long maxEnergy = TesseractCapUtils.getEnergyHandlerItem(stack).map(IGTNode::getCapacity).orElse(battery.getCapacity());
+            return new Tuple<>(energy, maxEnergy);
+        }
+        if (stack.getItem() instanceof IAntimatterTool tool){
+            if (tool.getAntimatterToolType().isPowered()){
+                long currentEnergy = tool.getCurrentEnergy(stack);
+                long maxEnergy = tool.getMaxEnergy(stack);
+                return new Tuple<>(currentEnergy, maxEnergy);
+            }
+        }
+        return null;
     }
 
 }
