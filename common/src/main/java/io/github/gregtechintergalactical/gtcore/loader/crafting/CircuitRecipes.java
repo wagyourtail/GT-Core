@@ -20,8 +20,8 @@ public class CircuitRecipes {
     public static boolean advancedCircuitCraftingTableRecipe = true;
     public static boolean complexCircuitAndHigherCraftingTableRecipe = true;
     public static void initRecipes(Consumer<FinishedRecipe> output, AntimatterRecipeProvider provider){
-        if (harderCircuits){ // make the condition the harder circuits confighttps://www.youtube.com/watch?v=DJoGm8c523M
-            provider.addStackRecipe(output, GTCore.ID, "circuit_basic_v", "parts", "has_tube", provider.hasSafeItem(VacuumTube), new ItemStack(CircuitBasic, 1), of('C', VacuumTube, 'R', VacuumTube, 'I', VacuumTube), "CRC", "CIC", "CRC");
+        if (harderCircuits){ // make the condition the harder circuits config
+            //provider.addStackRecipe(output, GTCore.ID, "circuit_basic_v", "parts", new ItemStack(CircuitBasic, 1), of('C', VacuumTube, 'R', VacuumTube, 'I', VacuumTube), "CRC", "CIC", "CRC");
         } else {
 
             if (goodCircuit){ // make the condition the good circuits config
