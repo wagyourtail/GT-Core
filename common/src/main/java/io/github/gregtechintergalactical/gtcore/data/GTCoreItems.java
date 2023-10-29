@@ -13,6 +13,9 @@ public class GTCoreItems {
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTCore.ID, "sticky_resin");
     public static ItemRubberBoat RubberBoat = new ItemRubberBoat();
 
+
+    public static ItemBasic<?> CompressedFireClay = new ItemBasic<>(GTCore.ID, "compressed_fire_clay").tip("Brick Shaped");
+    public static ItemBasic<?> FireBrick = new ItemBasic<>(GTCore.ID, "fire_brick").tip("Heat Resistant");
     public static ItemBasic<?> Biochaff = new ItemBasic<>(GTCore.ID, "biochaff");
     public static ItemBasic<?> CarbonFibre = new ItemBasic<>(GTCore.ID, "raw_carbon_fibre");
     public static ItemBasic<?> CarbonMesh = new ItemBasic<>(GTCore.ID, "carbon_mesh");
@@ -29,6 +32,14 @@ public class GTCoreItems {
     public static ItemBasic<?> GlassTube = new ItemBasic<>(GTCore.ID, "glass_tube", "circuits/");
 
     public static ItemBasic<?> VacuumTube = new ItemBasic<>(GTCore.ID, "vacuum_tube", "circuits/");
+
+    public static ItemBasic<?> NandChip = new ItemBasic<>(GTCore.ID, "nand_chip").tip("A very simple circuit");
+    public static ItemBasic<?> AdvCircuitParts = new ItemBasic<>(GTCore.ID, "advanced_circuit_parts").tip("Used for making Advanced Circuits");
+    public static ItemBasic<?> EtchedWiringMV = new ItemBasic<>(GTCore.ID, "copper_etched_wiring").tip("Circuit board parts");
+    public static ItemBasic<?> EtchedWiringHV = new ItemBasic<>(GTCore.ID, "gold_etched_wiring").tip("Circuit board parts");
+    public static ItemBasic<?> EtchedWiringEV = new ItemBasic<>(GTCore.ID, "platinum_etched_wiring").tip("Circuit board parts");
+    public static ItemBasic<?> EngravedCrystalChip = new ItemBasic<>(GTCore.ID, "engraved_crystal_chip").tip("Needed for Circuits");
+    public static ItemBasic<?> EngravedLapotronChip = new ItemBasic<>(GTCore.ID, "engraved_lapotron_chip").tip("Needed for Circuits");
 
     public static ItemBasic<?> CircuitBoardBasic = new ItemBasic<>(GTCore.ID, "basic_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardAdvanced = new ItemBasic<>(GTCore.ID, "advanced_circuit_board", "circuits/");
@@ -48,6 +59,12 @@ public class GTCoreItems {
     public static ItemBasic<?> Circuit3D = new ItemBasic<>(GTCore.ID, "3d_circuit", "circuits/").tip("A 3-Dimensional Circuit");
     public static ItemBasic<?> CircuitInfinite = new ItemBasic<>(GTCore.ID, "infinite_circuit", "circuits/").tip("A Circuit with Infinite Power Throughput");
     public static ItemBasic<?> DataOrb = new ItemBasic<>(GTCore.ID, "data_orb", "circuits/");
+
+    public static ItemBasic<?> MotorLV = new ItemBasic<>(GTCore.ID, "motor_lv");
+    public static ItemBasic<?> MotorMV = new ItemBasic<>(GTCore.ID, "motor_mv");
+    public static ItemBasic<?> MotorHV = new ItemBasic<>(GTCore.ID, "motor_hv");
+    public static ItemBasic<?> MotorEV = new ItemBasic<>(GTCore.ID, "motor_ev");
+    public static ItemBasic<?> MotorIV = new ItemBasic<>(GTCore.ID, "motor_iv");
 
     public static ItemPowerUnit PowerUnitLV = new ItemPowerUnit(GTCore.ID, "power_unit_lv", Aluminium);
     public static ItemPowerUnit PowerUnitMV = new ItemPowerUnit(GTCore.ID, "power_unit_mv", StainlessSteel);
