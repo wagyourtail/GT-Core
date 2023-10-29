@@ -15,6 +15,7 @@ dependencies {
     modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version_fabric}"){
         transitive = false
     }
+    implementation 'com.github.Carbon-Config-Project:CarbonConfigLib:1.0.0'
 }
 
 architectury {

@@ -68,6 +68,7 @@ public class GTCore extends AntimatterMod {
     public void onRegistrationEvent(RegistrationEvent event, Side side) {
         switch (event) {
             case DATA_INIT -> {
+                GTCoreConfig.createConfig();
                 SlotTypes.init();
                 MenuHandlers.init();
                 GTCoreBlocks.init();
@@ -105,7 +106,7 @@ public class GTCore extends AntimatterMod {
     }
 
     public static void onCrafting(CraftingEvent event){
-        event.addLoader(CircuitRecipes::initRecipes);
+        //event.addLoader(CircuitRecipes::initRecipes);
         event.addLoader(MachineRecipes::initRecipes);
         event.addLoader(RubberRecipes::addRecipes);
     }

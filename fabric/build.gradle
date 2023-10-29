@@ -24,6 +24,7 @@ dependencies {
     }
     modImplementation(include("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version_fabric}"))
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}"
+    implementation 'com.github.Carbon-Config-Project:CarbonConfigLib:1.0.0'
 }
 
 task copyAccessWidener(type: Copy) {

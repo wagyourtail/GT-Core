@@ -56,6 +56,14 @@ public class GTCoreItems {
     public static ItemBasic<?> CircuitBoardProcessor = new ItemBasic<>(GTCore.ID, "processor_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardProcessorEmpty = new ItemBasic<>(GTCore.ID, "empty_processor_circuit_board", "circuits/");
 
+    public static ItemBasic<?> CircuitBoardCoated = new ItemBasic<>(GTCore.ID, "coated_circuit_board", "circuits/").tip("The most basic Board");
+    public static ItemBasic<?> CircuitBoardPhenolic = new ItemBasic<>(GTCore.ID, "phenolic_circuit_board", "circuits/").tip("A basic Board");
+    public static ItemBasic<?> CircuitBoardPlastic = new ItemBasic<>(GTCore.ID, "plastic_circuit_board", "circuits/").tip("An advanced Board");
+    public static ItemBasic<?> CircuitBoardEpoxy = new ItemBasic<>(GTCore.ID, "epoxy_circuit_board", "circuits/").tip("4th Tier Board");
+    public static ItemBasic<?> CircuitBoardFiber = new ItemBasic<>(GTCore.ID, "fiber_reinforced_circuit_board", "circuits/").tip("5th Tier Board");
+    public static ItemBasic<?> CircuitBoardMultiFiber = new ItemBasic<>(GTCore.ID, "multilayer_fiber_reinforced_circuit_board", "circuits/").tip("6th Tier Board");
+    public static ItemBasic<?> CircuitBoardWetware = new ItemBasic<>(GTCore.ID, "wetware_circuit_board", "circuits/").tip("7th Tier Board");
+
     public static ItemBasic<?> CircuitBasic = new ItemBasic<>(GTCore.ID, "basic_circuit", "circuits/").tip("A Basic Circuit");
     public static ItemBasic<?> CircuitGood = new ItemBasic<>(GTCore.ID, "good_circuit", "circuits/").tip("A Good Circuit");
     public static ItemBasic<?> CircuitAdv = new ItemBasic<>(GTCore.ID, "advanced_circuit", "circuits/").tip("A Advanced Circuit");

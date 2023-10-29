@@ -1,0 +1,38 @@
+package io.github.gregtechintergalactical.gtcore;
+
+import carbonconfiglib.api.SystemLogger;
+import carbonconfiglib.config.*;
+import carbonconfiglib.config.ConfigEntry.BoolValue;
+import carbonconfiglib.config.ConfigEntry.EnumValue;
+import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.util.AntimatterPlatformUtils;
+
+public class GTCoreConfig {
+    public static final FileSystemWatcher WATCHER = new FileSystemWatcher(new SystemLogger(), AntimatterPlatformUtils.getConfigDir(), null);
+    public static ConfigHandler CONFIG;
+    public static BoolValue GOOD_CIRCUITS;
+    public static BoolValue COMPLEX_CIRCUITS;
+    public static BoolValue USE_SOLDERING_ALLOY;
+    public static BoolValue ADVANCED_CIRCUIT_CRAFTING;
+    public static EnumValue<CircuitRecipeMode> CIRCUIT_RECIPE_MODE;
+
+    public static void createConfig(){
+        Config config = new Config("gtcore");
+        ConfigSection section = config.add("general");
+        GOOD_CIRCUITS = section.addBool("Good Circuits", AntimatterAPI.isModLoaded("gti"), "Whether good circuits are enabled. Note defaults to true when gti is loaded, and result is completely ignored when CIRCUIT_RECIPE_MODE isn't GT4 or GT5.");
+        COMPLEX_CIRCUITS = section.addBool("Complex Circuits", false, "Whether complex circuits are enabled. Note: Ignored when CIRCUIT_RECIPE_MODE is not GT4 or GT5");
+        USE_SOLDERING_ALLOY = section.addBool("Use Soldering Alloy", AntimatterAPI.isModLoaded("gti"), "Whether circuit recipes require soldering alloy. Note: defaults to true when gti is loaded");
+        ADVANCED_CIRCUIT_CRAFTING = section.addBool("Advanced Circuit Crafting", AntimatterAPI.isModLoaded("gt4r"), "Whether crafting table recipes for advanced circuits exist. Note: defaults to true when gt4r is loaded.");
+        CircuitRecipeMode recipeMode = AntimatterAPI.isModLoaded("gti") ? CircuitRecipeMode.GT5 : AntimatterAPI.isModLoaded("gt4r") ? CircuitRecipeMode.GT4 : CircuitRecipeMode.PUP;
+        CIRCUIT_RECIPE_MODE = section.addEnum("Circuit Recipe Mode", recipeMode, CircuitRecipeMode.class, "Determines the various recipes for circuits.", "GT4 is circuits recipes based off gt4, GT5 is circuits recipes based off mostly GT5 but with slight modifications,", "PUP is harder circuit recipes but not crazy like gt5u, and GT%U is exactly what it sounds like: the absurdly grindy circuit recipes from GT5U 09.31 but with slight modifications.");
+        CONFIG = WATCHER.createConfig(config);
+        CONFIG.register();
+    }
+
+    public enum CircuitRecipeMode{
+        GT4,
+        GT5,
+        PUP,
+        GT5U
+    }
+}
