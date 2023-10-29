@@ -41,6 +41,15 @@ public class GTCoreItems {
     public static ItemBasic<?> EngravedCrystalChip = new ItemBasic<>(GTCore.ID, "engraved_crystal_chip").tip("Needed for Circuits");
     public static ItemBasic<?> EngravedLapotronChip = new ItemBasic<>(GTCore.ID, "engraved_lapotron_chip").tip("Needed for Circuits");
 
+    public static ItemBasic<?> Transistor = new ItemBasic<>(GTCore.ID, "transistor").tip("An integral part to Circuitry");
+    public static ItemBasic<?> SMDTransistor = new ItemBasic<>(GTCore.ID, "smd_transistor").tip("An integral part to Circuitry");
+    public static ItemBasic<?> Resistor = new ItemBasic<>(GTCore.ID, "resistor").tip("An integral part to Circuitry");
+    public static ItemBasic<?> SMDResistor = new ItemBasic<>(GTCore.ID, "smd_resistor").tip("An integral part to Circuitry");
+    public static ItemBasic<?> Diode = new ItemBasic<>(GTCore.ID, "diode").tip("An integral part to Circuitry");
+    public static ItemBasic<?> SMDDiode = new ItemBasic<>(GTCore.ID, "smd_diode").tip("An integral part to Circuitry");
+    public static ItemBasic<?> Capacitor = new ItemBasic<>(GTCore.ID, "capacitor").tip("An integral part to Circuitry");
+    public static ItemBasic<?> SMDCapacitor = new ItemBasic<>(GTCore.ID, "smd_capacitor").tip("An integral part to Circuitry");
+
     public static ItemBasic<?> CircuitBoardBasic = new ItemBasic<>(GTCore.ID, "basic_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardAdvanced = new ItemBasic<>(GTCore.ID, "advanced_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardEmpty = new ItemBasic<>(GTCore.ID, "empty_circuit_board", "circuits/");
