@@ -62,6 +62,8 @@ public class GTCoreBlocks {
 
     public static MaterialMachine WOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, AntimatterMaterials.Wood, "item_barrel", 5000).addFlags(MachineFlag.GUI);
 
+    public static MaterialMachine IRONWOOD_ITEM_BARREL = null;
+
     public static StoneType GRANITE_RED = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "red_granite", RedGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
     public static StoneType GRANITE_BLACK = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "black_granite", BlackGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
     public static StoneType MARBLE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "marble", Marble, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(0.75F,7.5F);
@@ -80,6 +82,9 @@ public class GTCoreBlocks {
             RUBBER_SAPLING = new BlockRubberSapling();
         } else if (AntimatterPlatformUtils.isForge()){
             initTFC();
+        }
+        if (AntimatterAPI.isModLoaded("twilightforest")){
+            IRONWOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, AntimatterMaterials.Wood, "item_barrel", 10000).addFlags(MachineFlag.GUI);
         }
         AntimatterAPI.register(BlockEntityType.class, "sap_bag", GTCore.ID, SAP_BAG_BLOCK_ENTITY);
     }

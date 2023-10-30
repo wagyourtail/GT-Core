@@ -7,12 +7,14 @@ import io.github.gregtechintergalactical.gtcore.GTCoreConfig.CircuitRecipeMode;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreTags;
+import io.github.gregtechintergalactical.gtcore.data.RecipeMaps;
 import muramasa.antimatter.Antimatter;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterMaterialTypes;
 import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.material.SubTag;
 import muramasa.antimatter.pipe.PipeSize;
+import muramasa.antimatter.recipe.ingredient.RecipeIngredient;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -88,7 +90,8 @@ public class CircuitRecipes {
 
         } else {
             boolean gt5 = recipeMode == GT5;
-
+            TagKey<Item> copperCable = TagUtils.getItemTag(new ResourceLocation(Ref.ID, SubTag.COPPER_CABLE.getId()+"_"+ PipeSize.VTINY.getId()));
+            RecipeMaps.ASSEMBLING.RB().ii(RecipeIngredient.of(CircuitBoardBasic), RecipeIngredient.ofObject((gt5 ? NandChip : copperCable), gt5 ? 2 : 3)).io(CircuitBasic).add("basic_circuit", 400, 2);
             if (GTCoreConfig.GOOD_CIRCUITS.get()){ // make the condition the good circuits config
 
             }

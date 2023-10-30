@@ -184,6 +184,12 @@ public class GTCoreMaterials {
     public static Material WroughtIron = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "wrought_iron", 0xc8b4b4, METALLIC));
     public static Material YttriumBariumCuprate = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "yttrium_barium_cuprate", 0x504046, METALLIC));
 
+
+    public static Material Ironwood = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "ironwood", 0x968C6E, WOOD, "twilightforest"));
+    public static Material Steeleaf = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "steeleaf", 0x327F32, TextureSets.LEAF, "twilightforest"));
+    public static Material Knightmetal = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "knightmetal", 0xD2F0C8, METALLIC, "twilightforest"));
+    public static Material FierySteel = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "fiery_steel", 0x400000, TextureSets.FIERY, "twilightforest"));
+
     /**
      ** Dusts
      **/
