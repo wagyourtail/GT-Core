@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import org.jetbrains.annotations.Nullable;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
 
@@ -62,6 +63,7 @@ public class GTCoreBlocks {
 
     public static MaterialMachine WOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, AntimatterMaterials.Wood, "item_barrel", 5000).addFlags(MachineFlag.GUI);
 
+    @Nullable
     public static MaterialMachine IRONWOOD_ITEM_BARREL = null;
 
     public static StoneType GRANITE_RED = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "red_granite", RedGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
