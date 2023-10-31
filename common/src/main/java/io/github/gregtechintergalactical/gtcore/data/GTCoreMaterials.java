@@ -91,7 +91,7 @@ public class GTCoreMaterials {
     public static Material Rhenium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "rhenium", 0x61615f, SHINY, Re));
     public static Material Osmium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "osmium", 0x3232ff, METALLIC, Os));
     public static Material Iridium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "iridium", 0xf0f0f5, DULL, Ir));
-    public static Material Platinum = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "platinum", 0x64b4fa, SHINY, Pt));
+    public static Material Platinum = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "platinum", 0xffffc8, SHINY, Pt));
     public static Material Mercury = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "mercury", 0xffdcdc, SHINY, Hg));
     public static Material Thallium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "thallium", 0xB6B6D2, SHINY, Tl));
     public static Material Lead = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "lead", 0x8c648c, DULL, Pb));
