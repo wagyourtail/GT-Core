@@ -84,7 +84,7 @@ public class GTCoreBlocks {
             initTFC();
         }
         if (AntimatterAPI.isModLoaded("twilightforest")){
-            IRONWOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, AntimatterMaterials.Wood, "item_barrel", 10000).addFlags(MachineFlag.GUI);
+            IRONWOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, Ironwood, "item_barrel", 10000).addFlags(MachineFlag.GUI);
         }
         AntimatterAPI.register(BlockEntityType.class, "sap_bag", GTCore.ID, SAP_BAG_BLOCK_ENTITY);
     }
