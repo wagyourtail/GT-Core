@@ -68,7 +68,7 @@ public class GTCore extends AntimatterMod {
     public void onRegistrationEvent(RegistrationEvent event, Side side) {
         switch (event) {
             case DATA_INIT -> {
-                GTCoreConfig.createConfig();
+                //GTCoreConfig.createConfig();
                 SlotTypes.init();
                 MenuHandlers.init();
                 GTCoreBlocks.init();
