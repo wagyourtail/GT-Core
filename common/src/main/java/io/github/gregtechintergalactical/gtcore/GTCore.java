@@ -1,5 +1,6 @@
 package io.github.gregtechintergalactical.gtcore;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.teamresourceful.resourcefullib.common.networking.base.NetworkDirection;
@@ -20,6 +21,8 @@ import io.github.gregtechintergalactical.gtcore.tree.RubberTree;
 import io.github.gregtechintergalactical.gtcore.tree.RubberTreeWorldGen;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.AntimatterMod;
+import muramasa.antimatter.data.AntimatterDefaultTools;
+import muramasa.antimatter.data.AntimatterMaterials;
 import muramasa.antimatter.datagen.AntimatterDynamics;
 import muramasa.antimatter.datagen.builder.AntimatterTagBuilder;
 import muramasa.antimatter.datagen.providers.*;
@@ -39,6 +42,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import org.apache.logging.log4j.LogManager;
@@ -46,8 +50,11 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.function.BiConsumer;
 
-import static muramasa.antimatter.data.AntimatterMaterialTypes.PLATE;
-import static muramasa.antimatter.data.AntimatterMaterialTypes.RING;
+import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
+import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.Steeleaf;
+import static muramasa.antimatter.data.AntimatterDefaultTools.*;
+import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
+import static muramasa.antimatter.material.MaterialTags.WOOD;
 
 public class GTCore extends AntimatterMod {
 
@@ -103,6 +110,27 @@ public class GTCore extends AntimatterMod {
     @Override
     public void onMaterialEvent(MaterialEvent event) {
         event.setMaterial(GTCoreMaterials.Rubber).asSolid(295, PLATE, RING);
+        event.setMaterial(GTCoreMaterials.FierySteel).asMetal().tool().toolDamage(4).toolSpeed(9).toolDurability(1024).toolQuality(4)
+                .toolEnchantments(ImmutableMap.of(Enchantments.FIRE_ASPECT, 2)).handleMaterial(AntimatterMaterials.Blaze)
+                .blacklistToolTypes(PICKAXE, SWORD).build();
+        event.setMaterial(GTCoreMaterials.Knightmetal).asMetal(GEAR).tool().toolDamage(3).toolSpeed(8).toolDurability(512).toolQuality(3)
+                .blacklistToolTypes(AXE, PICKAXE, SWORD).build();
+        event.setMaterial(Ironwood).asMetal(WOOD, ROD_LONG).tool().toolDamage(2).toolSpeed(6.5f).toolDurability(512).toolQuality(2)
+                .toolEnchantments(ImmutableMap.of(Enchantments.KNOCKBACK, 1))
+                .blacklistToolTypes(AXE, PICKAXE, SHOVEL, SWORD, HOE).build();
+        event.setMaterial(GTCoreMaterials.Steeleaf).asMetal().tool().toolDamage(4).toolSpeed(8).toolDurability(131).toolQuality(3)
+                .toolEnchantments(ImmutableMap.of(Enchantments.MOB_LOOTING, 2, Enchantments.BLOCK_FORTUNE, 2))
+                .blacklistToolTypes(AXE, PICKAXE, SHOVEL, SWORD, HOE).build();
+        if (AntimatterAPI.isModLoaded("twilightforest")){
+            INGOT.replacement(Ironwood, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "ironwood_ingot"));
+            BLOCK.replacement(Ironwood, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "ironwood_block"));
+            INGOT.replacement(Knightmetal, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "knightmetal_ingot"));
+            BLOCK.replacement(Knightmetal, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "knightmetal_block"));
+            INGOT.replacement(Steeleaf, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "steeleaf_ingot"));
+            BLOCK.replacement(Steeleaf, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "steeleaf_block"));
+            INGOT.replacement(FierySteel, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "fiery_ingot"));
+            BLOCK.replacement(FierySteel, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "fiery_block"));
+        }
     }
 
     public static void onCrafting(CraftingEvent event){

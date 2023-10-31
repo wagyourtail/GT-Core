@@ -23,6 +23,7 @@ dependencies {
     modImplementation(include("com.github.Reforged-Mods.Terraform-Reforged:terraform-wood-api-v1:${project.terraform_version_forge}"))
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
     implementation 'com.github.Carbon-Config-Project:CarbonConfigLib:1.0.0'
+    modRuntimeOnly("curse.maven:the-twilight-forest-227639:4337390")
 }
 
 processResources {
