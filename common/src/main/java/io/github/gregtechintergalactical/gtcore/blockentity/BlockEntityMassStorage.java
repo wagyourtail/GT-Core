@@ -50,7 +50,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         }
         if (type == AntimatterDefaultTools.WRENCH){
             Direction hitSide = Utils.getInteractSide(hit);
-            if (hitSide == this.getFacing() || hit.getDirection().getAxis().isVertical()){
+            if (hitSide == this.getFacing()){
                 output = !output;
                 //TODO: translation component
                 player.sendMessage(Utils.literal(output ? "Auto output on" : "Auto output off"), player.getUUID());
