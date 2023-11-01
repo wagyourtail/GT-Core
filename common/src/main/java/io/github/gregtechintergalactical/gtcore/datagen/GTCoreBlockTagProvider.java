@@ -12,6 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 
+import static muramasa.antimatter.material.MaterialTags.WOOD;
+
 
 public class GTCoreBlockTagProvider extends AntimatterBlockTagProvider {
 
@@ -23,10 +25,18 @@ public class GTCoreBlockTagProvider extends AntimatterBlockTagProvider {
     public void processTags(String domain) {
         super.processTags(domain);
         AntimatterAPI.all(BlockMachineMaterial.class, cas -> {
-            this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
+            if (cas.getMaterial().has(WOOD)){
+                this.tag(AntimatterDefaultTools.AXE.getToolType()).add(cas);
+            } else {
+                this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
+            }
         });
         AntimatterAPI.all(BlockMultiMachineMaterial.class, cas -> {
-            this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
+            if (cas.getMaterial().has(WOOD)){
+                this.tag(AntimatterDefaultTools.AXE.getToolType()).add(cas);
+            } else {
+                this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
+            }
         });
         /*AntimatterAPI.all(BlockMaterialChest.class, Ref.ID, cas -> {
             this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);

@@ -38,6 +38,10 @@ public class BlockMachineMaterial extends BlockMachine implements IColorHandler 
         }
     }
 
+    public Material getMaterial() {
+        return material;
+    }
+
     @Override
     public int getBlockColor(BlockState state, @Nullable BlockGetter world, @Nullable BlockPos pos, int i) {
         return i == 0 ? material.getRGB() : -1;
