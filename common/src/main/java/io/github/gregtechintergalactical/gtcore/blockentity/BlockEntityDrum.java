@@ -98,17 +98,15 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
     @Override
     public void onPlacedBy(Level world, BlockPos pos, BlockState state, @org.jetbrains.annotations.Nullable LivingEntity placer, ItemStack stack) {
         CompoundTag nbt = stack.getTag();
-        if (nbt != null && (nbt.contains("Fluid") || nbt.contains("Outputs"))){
-            this.fluidHandler.ifPresent(f -> {
-                FluidHolder fluid = nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.safeGetItemFluidManager(stack).map(fi -> fi.getFluidInTank(0)).orElse(FluidHooks.emptyFluid());
-                if (!fluid.isEmpty()){
-                    f.insertFluid(fluid, false);
-                }
-                if (nbt.contains("Outputs")){
-                    ((DrumFluidHandler)f).setOutput(nbt.getBoolean("Outputs"));
-                }
-            });
-        }
+        this.fluidHandler.ifPresent(f -> {
+            FluidHolder fluid = nbt != null && nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.safeGetItemFluidManager(stack).map(fi -> fi.getFluidInTank(0)).orElse(FluidHooks.emptyFluid());
+            if (!fluid.isEmpty()){
+                f.insertFluid(fluid, false);
+            }
+            if (nbt != null && nbt.contains("Outputs")){
+                ((DrumFluidHandler)f).setOutput(nbt.getBoolean("Outputs"));
+            }
+        });
     }
 
     public FluidHolder getDrop() {
