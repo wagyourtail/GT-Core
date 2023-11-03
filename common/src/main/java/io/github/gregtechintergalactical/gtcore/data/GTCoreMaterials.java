@@ -294,6 +294,8 @@ public class GTCoreMaterials {
     public static Material Marble = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "marble", 0xc8c8c8, NONE));
     public static Material Quartzite = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "quartzite", 0xe6cdcd, QUARTZ));
     public static Material RedGranite = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "red_granite", 0xff0080, ROUGH));
+    public static Material Shale = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "shale", 0x8E8EA8, NONE));
+    public static Material Slate = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "slate", 0x94979C, NONE));
 
     /**
      ** Misc

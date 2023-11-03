@@ -66,8 +66,8 @@ public class GTCoreBlocks {
     @Nullable
     public static MaterialMachine IRONWOOD_ITEM_BARREL = null;
 
-    public static StoneType GRANITE_RED = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "red_granite", RedGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
-    public static StoneType GRANITE_BLACK = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "black_granite", BlackGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
+    public static StoneType RED_GRANITE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "red_granite", RedGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
+    public static StoneType BLACK_GRANITE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "black_granite", BlackGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
     public static StoneType MARBLE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "marble", Marble, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(0.75F,7.5F);
 
     public static StoneType KOMATIITE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "komatiite", Komatiite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(3.0F, 30.0F).setHarvestLevel(2);
@@ -76,7 +76,8 @@ public class GTCoreBlocks {
     public static StoneType BLUE_SCHIST = AntimatterAPI.register(StoneType.class,  new CobbleStoneType(GTCore.ID, "blue_schist", BlueSchist, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(0.75F,7.5F);
     public static StoneType KIMBERLITE = AntimatterAPI.register(StoneType.class,  new CobbleStoneType(GTCore.ID, "kimberlite", Kimberlite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(3.0F, 30.0F).setHarvestLevel(2);
     public static StoneType QUARTZITE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "quartzite", Quartzite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(0.75F,7.5F);
-    
+    public static StoneType SHALE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "shale", Shale, "block/stone", SoundType.STONE, true)).setHardnessAndResistance(0.75f, 7.5f);
+    public static StoneType SLATE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "slate", Slate, "block/stone", SoundType.STONE, true)).setHardnessAndResistance(0.75f, 7.5f);
 
     public static void init() {
         if (!AntimatterAPI.isModLoaded("tfc")){
