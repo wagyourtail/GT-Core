@@ -16,6 +16,7 @@ dependencies {
         transitive = false
     }
     implementation 'com.github.Carbon-Config-Project:CarbonConfigLib:1.0.0'
+    modCompileOnly("curse.maven:the-one-probe-fabric-581847:${project.top_fabric_file}")
 }
 
 architectury {
