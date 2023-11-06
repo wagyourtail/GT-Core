@@ -15,6 +15,8 @@ public class GTCoreConfig {
     public static BoolValue USE_SOLDERING_ALLOY;
     public static BoolValue ADVANCED_CIRCUIT_CRAFTING;
     public static BoolValue LOSSY_PART_CRAFTING;
+    public static BoolValue HARDER_WOOD;
+    public static BoolValue HARDER_LAPOTRON_CRYSTALS;
     public static EnumValue<CircuitRecipeMode> CIRCUIT_RECIPE_MODE;
 
     public static void createConfig(){
@@ -28,7 +30,9 @@ public class GTCoreConfig {
         CIRCUIT_RECIPE_MODE = section.addEnum("Circuit Recipe Mode", recipeMode, CircuitRecipeMode.class, "Determines the various recipes for circuits.", "GT4 is circuits recipes based off gt4, GT5 is circuits recipes based off mostly GT5 but with slight modifications,", "PUP is harder circuit recipes but not crazy like gt5u, and GT%U is exactly what it sounds like: the absurdly grindy circuit recipes from GT5U 09.31 but with slight modifications.");
         LOSSY_PART_CRAFTING = section.addBool("lossy_part_crafting", true, "Enable crating recipes for things like rods and plates being lossy - Default: true",
                 "Note: make sure to run /reload after changing this.");
-        CONFIG = CarbonConfig.createConfig(GTCore.ID, config);
+        HARDER_WOOD = section.addBool("harder_wood", AntimatterAPI.isModLoaded("gti"),"If true logs to planks and planks to sticks give half of vanilla amounts - Default: true with gti, false otherwise");
+        HARDER_LAPOTRON_CRYSTALS = section.addBool("harder_lapotron_crystals", false, "If true lapotron crystals will require assembling with raw lapotron crystals, which are made with lapotronium dust - Default: false");
+        CONFIG = AntimatterPlatformUtils.createConfig(GTCore.ID, config);
         CONFIG.register();
     }
 

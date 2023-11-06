@@ -69,13 +69,13 @@ public class GTCore extends AntimatterMod {
         AntimatterDynamics.clientProvider(ID, () -> new AntimatterBlockStateProvider(ID, NAME + " BlockStates"));
         AntimatterDynamics.clientProvider(ID, () -> new AntimatterItemModelProvider(ID, NAME + " Item Models"));
         AntimatterDynamics.clientProvider(ID, GTCoreLang.en_US::new);
+        GTCoreConfig.createConfig();
     }
 
     @Override
     public void onRegistrationEvent(RegistrationEvent event, Side side) {
         switch (event) {
             case DATA_INIT -> {
-                //GTCoreConfig.createConfig();
                 SlotTypes.init();
                 MenuHandlers.init();
                 GTCoreBlocks.init();
