@@ -5,12 +5,9 @@ import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.GTCoreConfig;
 import io.github.gregtechintergalactical.gtcore.GTCoreConfig.CircuitRecipeMode;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
-import io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreTags;
 import io.github.gregtechintergalactical.gtcore.data.RecipeMaps;
-import muramasa.antimatter.Antimatter;
 import muramasa.antimatter.Ref;
-import muramasa.antimatter.data.AntimatterMaterialTypes;
 import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.material.SubTag;
 import muramasa.antimatter.pipe.PipeSize;
@@ -29,10 +26,8 @@ import static io.github.gregtechintergalactical.gtcore.GTCoreConfig.CircuitRecip
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreCables.*;
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreItems.*;
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
-import static muramasa.antimatter.data.AntimatterDefaultTools.WRENCH;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
 import static muramasa.antimatter.data.AntimatterMaterials.*;
-import static muramasa.antimatter.machine.Tier.MV;
 
 public class CircuitRecipes {
     public static void initRecipes(Consumer<FinishedRecipe> output, AntimatterRecipeProvider provider){

@@ -1,6 +1,5 @@
 package io.github.gregtechintergalactical.gtcore;
 
-import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
 import io.github.gregtechintergalactical.gtcore.machine.DrumMachine;
 import io.github.gregtechintergalactical.gtcore.machine.LockerMachine;
 import io.github.gregtechintergalactical.gtcore.machine.WorkbenchMachine;

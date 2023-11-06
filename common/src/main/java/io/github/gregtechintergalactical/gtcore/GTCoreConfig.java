@@ -1,7 +1,5 @@
 package io.github.gregtechintergalactical.gtcore;
 
-import carbonconfiglib.CarbonConfig;
-import carbonconfiglib.api.SystemLogger;
 import carbonconfiglib.config.*;
 import carbonconfiglib.config.ConfigEntry.BoolValue;
 import carbonconfiglib.config.ConfigEntry.EnumValue;

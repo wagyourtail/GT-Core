@@ -1,7 +1,6 @@
 package io.github.gregtechintergalactical.gtcore.data;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
-import muramasa.antimatter.Ref;
 import muramasa.antimatter.material.TextureSet;
 
 public class TextureSets {

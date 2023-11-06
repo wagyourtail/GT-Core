@@ -5,14 +5,11 @@ import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityMassStora
 import io.github.gregtechintergalactical.gtcore.proxy.ClientHandler;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.tree.RubberFoliagePlacer;
-import muramasa.antimatter.Antimatter;
-import muramasa.antimatter.Ref;
 import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
 import muramasa.antimatter.event.forge.AntimatterLoaderEvent;
 import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
