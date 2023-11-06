@@ -11,6 +11,7 @@ import io.github.gregtechintergalactical.gtcore.datagen.GTCoreBlockLootProvider;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreBlockTagProvider;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreItemTagProvider;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreLang;
+import io.github.gregtechintergalactical.gtcore.integration.top.MassStorageProvider;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.CircuitRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.MachineRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.MaterialRecipes;
@@ -24,6 +25,7 @@ import io.github.gregtechintergalactical.gtcore.tree.RubberTree;
 import io.github.gregtechintergalactical.gtcore.tree.RubberTreeWorldGen;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.AntimatterMod;
+import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.data.AntimatterMaterials;
 import muramasa.antimatter.datagen.AntimatterDynamics;
@@ -92,6 +94,9 @@ public class GTCore extends AntimatterMod {
                 if (side.isClient()) RecipeMaps.clientMaps();
                 RubberTree.init();
                 RubberTreeWorldGen.init();
+                if (AntimatterAPI.isModLoaded(Ref.MOD_TOP)){
+                    MassStorageProvider.createTopProvider();
+                }
                 AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, SYNC_ID, MessageCraftingSync.HANDLER, MessageCraftingSync.class);
                 AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.SERVER_TO_CLIENT, INV_SYNC_ID, MessageInventorySync.HANDLER, MessageInventorySync.class);
             }
