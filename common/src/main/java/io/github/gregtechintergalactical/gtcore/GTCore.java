@@ -13,7 +13,10 @@ import io.github.gregtechintergalactical.gtcore.datagen.GTCoreItemTagProvider;
 import io.github.gregtechintergalactical.gtcore.datagen.GTCoreLang;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.CircuitRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.MachineRecipes;
+import io.github.gregtechintergalactical.gtcore.loader.crafting.MaterialRecipes;
+import io.github.gregtechintergalactical.gtcore.loader.crafting.Pipes;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.RubberRecipes;
+import io.github.gregtechintergalactical.gtcore.loader.crafting.Tools;
 import io.github.gregtechintergalactical.gtcore.loader.machines.AssemblyLoader;
 import io.github.gregtechintergalactical.gtcore.network.MessageCraftingSync;
 import io.github.gregtechintergalactical.gtcore.network.MessageInventorySync;
@@ -54,6 +57,7 @@ import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.Steeleaf;
 import static muramasa.antimatter.data.AntimatterDefaultTools.*;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
+import static muramasa.antimatter.material.MaterialTags.TOOLS;
 import static muramasa.antimatter.material.MaterialTags.WOOD;
 
 public class GTCore extends AntimatterMod {
@@ -137,6 +141,9 @@ public class GTCore extends AntimatterMod {
         //event.addLoader(CircuitRecipes::initRecipes);
         event.addLoader(MachineRecipes::initRecipes);
         event.addLoader(RubberRecipes::addRecipes);
+        event.addLoader(MaterialRecipes::loadMaterialRecipes);
+        event.addLoader(Pipes::loadRecipes);
+        event.addLoader(Tools::init);
     }
 
     public static void registerRecipeLoaders(IAntimatterRegistrar registrar, IRecipeRegistrate reg) {

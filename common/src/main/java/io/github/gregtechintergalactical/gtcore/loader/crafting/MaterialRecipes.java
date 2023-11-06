@@ -31,12 +31,6 @@ public class MaterialRecipes {
     public static void loadMaterialRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
         final CriterionTriggerInstance in = provider.hasSafeItem(AntimatterDefaultTools.WRENCH.getTag());
         int craftingMultiplier = GTCoreConfig.LOSSY_PART_CRAFTING.get() ? 1 : 2;
-        DUST.all().forEach(m -> {
-            provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_small_dust", "antimatter_materials", DUST_SMALL.get(m, 4),
-                    of('D', DUST.getMaterialTag(m)), " D");
-            provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_tiny_dust", "antimatter_materials", DUST_TINY.get(m, 9),
-                    of('D', DUST.getMaterialTag(m)), "D ");
-        });
         AntimatterMaterialTypes.ROD.all().forEach(m -> {
             if (m.has(AntimatterMaterialTypes.INGOT)) {
                 provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_rod", "antimatter_material", AntimatterMaterialTypes.ROD.get(m, craftingMultiplier), of('F', AntimatterDefaultTools.FILE.getTag(), 'I', AntimatterMaterialTypes.INGOT.getMaterialTag(m)), "F", "I");
