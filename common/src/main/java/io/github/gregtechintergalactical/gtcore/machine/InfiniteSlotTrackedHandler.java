@@ -4,6 +4,7 @@ import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityMassStora
 import muramasa.antimatter.capability.IGuiHandler;
 import muramasa.antimatter.capability.item.TrackedItemHandler;
 import muramasa.antimatter.gui.SlotType;
+import muramasa.antimatter.machine.MachineState;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -31,6 +32,7 @@ public class InfiniteSlotTrackedHandler extends TrackedItemHandler<BlockEntityMa
     @Override
     public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
         if (barrel instanceof BlockEntityMassStorage barrel1 && barrel1.itemHandler.isPresent()) {
+            if (barrel1.getMachineState() == MachineState.ACTIVE) return stack;
             var handler = barrel1.itemHandler.get().getHandler(SlotType.DISPLAY);
             if (!handler.getItem(0).isEmpty() && !Utils.equals(stack, handler.getItem(0))) {
                 return stack;

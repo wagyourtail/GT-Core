@@ -1,11 +1,15 @@
 package io.github.gregtechintergalactical.gtcore.data;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
+import io.github.gregtechintergalactical.gtcore.item.ItemMatch;
 import io.github.gregtechintergalactical.gtcore.item.ItemPowerUnit;
+import io.github.gregtechintergalactical.gtcore.item.ItemTape;
 import io.github.gregtechintergalactical.gtcore.tree.item.ItemRubberBoat;
+import muramasa.antimatter.Ref;
 import muramasa.antimatter.item.ItemBasic;
 import muramasa.antimatter.item.ItemMultiTextureBattery;
 import muramasa.antimatter.machine.Tier;
+import net.minecraft.world.item.Item;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
 
@@ -17,6 +21,7 @@ public class GTCoreItems {
     public static ItemBasic<?> CompressedFireClay = new ItemBasic<>(GTCore.ID, "compressed_fire_clay").tip("Brick Shaped");
     public static ItemBasic<?> FireBrick = new ItemBasic<>(GTCore.ID, "fire_brick").tip("Heat Resistant");
     public static ItemBasic<?> Biochaff = new ItemBasic<>(GTCore.ID, "biochaff");
+    public static ItemBasic<?> Plantball = new ItemBasic<>(GTCore.ID, "plantball");
     public static ItemBasic<?> CarbonFibre = new ItemBasic<>(GTCore.ID, "raw_carbon_fibre");
     public static ItemBasic<?> CarbonMesh = new ItemBasic<>(GTCore.ID, "carbon_mesh");
     public static ItemBasic<?> CoalBall = new ItemBasic<>(GTCore.ID, "coal_ball");
@@ -28,6 +33,18 @@ public class GTCoreItems {
     public static ItemBasic<?> IridiumAlloyIngot = new ItemBasic<>(GTCore.ID, "iridium_alloy_ingot").tip("Used to make Iridium Plates");
     public static ItemBasic<?> IridiumReinforcedPlate = new ItemBasic<>(GTCore.ID, "iridium_reinforced_plate").tip("GT2s Most Expensive Component");
     public static ItemBasic<?> IridiumNeutronReflector = new ItemBasic<>(GTCore.ID, "iridium_neutron_reflector").tip("Indestructible");
+
+    public static ItemBasic<?> LighterEmpty = new ItemBasic<>(GTCore.ID, "lighter_empty");
+    public static ItemBasic<ItemMatch> Match = new ItemMatch(GTCore.ID, "match", new Item.Properties().tab(Ref.TAB_ITEMS));
+    public static ItemBasic<ItemMatch> MatchBook = new ItemMatch(GTCore.ID, "match_book", new Item.Properties().tab(Ref.TAB_ITEMS).defaultDurability(64));
+    public static ItemBasic<ItemMatch> Lighter = new ItemMatch(GTCore.ID, "lighter", new Item.Properties().tab(Ref.TAB_ITEMS).defaultDurability(100));
+
+    public static ItemBasic<?> TapeEmpty = new ItemTape(GTCore.ID, "tape_empty");
+    public static ItemBasic<?> Tape = new ItemTape(GTCore.ID, "tape", 10000);
+    public static ItemBasic<?> DuctTapeEmpty = new ItemTape(GTCore.ID, "duct_tape_empty");
+    public static ItemBasic<?> DuctTape = new ItemTape(GTCore.ID, "duct_tape", 100000);
+    public static ItemBasic<?> FALDuctTapeEmpty = new ItemTape(GTCore.ID, "fal_duct_tape_empty");
+    public static ItemBasic<?> FALDuctTape = new ItemTape(GTCore.ID, "fal_duct_tape", 10000000);
 
     public static ItemBasic<?> GlassTube = new ItemBasic<>(GTCore.ID, "glass_tube", "circuits/");
 

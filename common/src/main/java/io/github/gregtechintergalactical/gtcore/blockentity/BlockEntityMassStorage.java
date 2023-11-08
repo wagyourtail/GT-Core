@@ -1,11 +1,13 @@
 package io.github.gregtechintergalactical.gtcore.blockentity;
 
 import io.github.gregtechintergalactical.gtcore.data.SlotTypes;
+import io.github.gregtechintergalactical.gtcore.item.ItemTape;
 import io.github.gregtechintergalactical.gtcore.machine.MassStorageMachine;
 import io.github.gregtechintergalactical.gtcore.machine.MassStoragelItemHandler;
 import io.github.gregtechintergalactical.gtcore.network.MessageInventorySync;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.gui.SlotType;
+import muramasa.antimatter.machine.MachineState;
 import muramasa.antimatter.machine.event.IMachineEvent;
 import muramasa.antimatter.network.AntimatterNetwork;
 import muramasa.antimatter.tool.AntimatterToolType;
@@ -18,15 +20,22 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import tesseract.TesseractCapUtils;
+
+import java.util.List;
+
+import static io.github.gregtechintergalactical.gtcore.data.GTCoreItems.Lighter;
+import static io.github.gregtechintergalactical.gtcore.data.GTCoreItems.LighterEmpty;
 
 public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassStorage> {
     boolean output = false;
@@ -38,9 +47,58 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     }
 
     @Override
+    public void onDrop(BlockState state, LootContext.Builder builder, List<ItemStack> drops) {
+        if (!drops.isEmpty() && getMachineState() == MachineState.ACTIVE){
+            ItemStack massStorage = drops.get(0);
+            CompoundTag nbt = new CompoundTag();
+            this.itemHandler.ifPresent(handler -> {
+                handler.getAll().forEach((f, i) -> {
+                    if (i.isEmpty()) return;
+                    nbt.put(f.getId(), i.serialize(new CompoundTag()));
+                });
+            });
+            if (!nbt.isEmpty()) {
+                massStorage.getOrCreateTag().put("inventories", nbt);
+            }
+            massStorage.getOrCreateTag().putBoolean("taped", true);
+        }
+    }
+
+    @Override
+    public void onPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        CompoundTag nbt = stack.getTag();
+        if (nbt != null && nbt.contains("taped") && nbt.contains("inventories")){
+            CompoundTag inventories = nbt.getCompound("inventories");
+            this.itemHandler.ifPresent(handler -> {
+                handler.getAll().forEach((f, i) -> {
+                    if (!inventories.contains(f.getId())) return;
+                    i.deserialize(inventories.getCompound(f.getId()));
+                });
+            });
+            this.setMachineState(MachineState.ACTIVE);
+        }
+    }
+
+    @Override
     public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable AntimatterToolType type) {
+        if (type == AntimatterDefaultTools.KNIFE && this.getMachineState() == MachineState.ACTIVE){
+            setMachineState(MachineState.IDLE);
+            Utils.damageStack(player.getItemInHand(hand), hand, player);
+            return InteractionResult.SUCCESS;
+        }
+        if (this.getMachineState() == MachineState.ACTIVE) return super.onInteractServer(state, world, pos, player, hand, hit, type);
         Vec3 vec = hit.getLocation();
         var handler = itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
+        ItemStack stack = player.getItemInHand(hand);
+        if (stack.getItem() instanceof ItemTape tape && stack.isDamageableItem() && handler.getItem(0).getCount() <= stack.getMaxDamage() - stack.getDamageValue()){
+            this.setMachineState(MachineState.ACTIVE);
+            if (!player.isCreative()){
+                stack.hurtAndBreak(handler.getItem(0).getCount(), player, (player2) -> {
+                    player2.broadcastBreakEvent(hand);
+                    if (!player2.addItem(new ItemStack(tape.getEmpty()))) player2.drop(new ItemStack(tape.getEmpty()), true);
+                });
+            }
+        }
         if (type == AntimatterDefaultTools.WIRE_CUTTER){
             outputOverflow = !outputOverflow;
             //TODO: translation component
@@ -89,7 +147,6 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
             } else if (x > 0.25 && x < 0.75){
                 if (y > 0.125 && y < 0.625){
                     ItemStack stored = handler.getItem(0);
-                    ItemStack stack = player.getItemInHand(hand);
                     if (type == AntimatterDefaultTools.SOFT_HAMMER){
                         amountToExtract = stored.getCount();
                         Utils.damageStack(stack, hand, player);

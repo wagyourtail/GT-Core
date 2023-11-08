@@ -43,6 +43,16 @@ public class GTCoreLang {
             add("block.gtcore.rubber_twig", "Rubber Twig");
             add("block.gtcore.rubber_fallen_leaves", "Rubber Fallen Leaves");
             add("block.gtcore.rubber_log_fence", "Rubber Log Fence");
+            override(GTCoreItems.TapeEmpty.getDescriptionId(), "Tape");
+            override(GTCoreItems.DuctTapeEmpty.getDescriptionId(), "Duct Tape");
+            override(GTCoreItems.FALDuctTapeEmpty.getDescriptionId(), "BrainTech Aerospace Advanced Reinforced Duct Tape FAL-84");
+            override(GTCoreItems.FALDuctTape.getDescriptionId(), "BrainTech Aerospace Advanced Reinforced Duct Tape FAL-84");
+            override(GTCoreItems.LighterEmpty.getDescriptionId(), "Lighter (Empty)");
+            override(GTCoreItems.Lighter.getDescriptionId(), "Lighter (Full)");
+            add("tooltip.gtcore.tape.used_roll", "Used Roll");
+            add("tooltip.gtcore.tape.full_roll", "Full Roll");
+            add("tooltip.gtcore.tape.can_fix_anything", "Can fix anything!*");
+            add("tooltip.gtcore.tape.remaining_uses", "Remaining Uses: %s");
         }
     }
 }

@@ -2,6 +2,7 @@ package io.github.gregtechintergalactical.gtcore.datagen;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreTags;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
@@ -64,6 +65,6 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(POWER_UNIT_MV).add(PowerUnitMV);
         this.tag(POWER_UNIT_HV).add(PowerUnitHV);
         this.tag(POWER_UNIT_SMALL).add(SmallPowerUnit);
-        this.tag(FIRESTARTER).add(Items.FLINT_AND_STEEL);
+        this.tag(FIRESTARTER).add(Items.FLINT_AND_STEEL, Match, Lighter, MatchBook);
     }
 }

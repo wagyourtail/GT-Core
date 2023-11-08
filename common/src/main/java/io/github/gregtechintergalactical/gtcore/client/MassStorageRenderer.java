@@ -10,6 +10,7 @@ import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityMassStora
 import io.github.gregtechintergalactical.gtcore.data.SlotTypes;
 import io.github.gregtechintergalactical.gtcore.machine.MassStorageMachine;
 import muramasa.antimatter.gui.SlotType;
+import muramasa.antimatter.machine.MachineState;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -33,6 +34,7 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
 
     @Override
     public void render(T tile, float pPartialTicks, PoseStack matrixStack, MultiBufferSource pBuffer, int pCombinedLight, int pCombinedOverlay) {
+        if (tile.getMachineState() == MachineState.ACTIVE) return;
         if (Minecraft.getInstance().player != null && !tile.getBlockPos().closerThan(Minecraft.getInstance().player.getOnPos(), 16)) {
             return;
         }

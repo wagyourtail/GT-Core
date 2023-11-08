@@ -2,6 +2,7 @@ package io.github.gregtechintergalactical.gtcore.machine;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityMassStorage;
+import io.github.gregtechintergalactical.gtcore.item.ItemBlockMassStorage;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.machine.MachineState;
 import muramasa.antimatter.machine.Tier;
@@ -14,6 +15,7 @@ public class MassStorageMachine extends MaterialMachine{
         super(domain, material.getId() + "_" + suffix, material);
         this.setTiers(Tier.NONE);
         this.setTile((m, p, s) -> new BlockEntityMassStorage(this, p, s));
+        this.setItemBlock(ItemBlockMassStorage::new);
         this.capacity = capacity;
         tesr();
         String barrel = material.getId().contains("wood") ? "item_barrel" : "mass_storage";
