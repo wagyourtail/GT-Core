@@ -157,7 +157,6 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                             if (leftover.getCount() < stack.getCount()) {
                                 handler.insertItem(0, stack.copy(), false);
                                 stack.shrink(stack.getCount() - leftover.getCount());
-                                world.playSound(null, this.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundSource.PLAYERS, 1.0F, 1.0F);
                                 return InteractionResult.SUCCESS;
                             }
                         } else {
@@ -173,7 +172,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                                     }
                                 }
                                 if (sucess) {
-                                    world.playSound(null, this.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundSource.PLAYERS, 1.0F, 1.0F);
+                                    world.playSound(null, this.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 1.0F, 1.0F);
                                     return InteractionResult.SUCCESS;
                                 }
                             }
