@@ -65,7 +65,15 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     }
 
     @Override
+    public void dropInventory(BlockState state, LootContext.Builder builder, List<ItemStack> drops) {
+        if (getMachineState() != MachineState.ACTIVE) {
+            super.dropInventory(state, builder, drops);
+        }
+    }
+
+    @Override
     public void onPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        super.onPlacedBy(world, pos, state, placer, stack);
         CompoundTag nbt = stack.getTag();
         if (nbt != null && nbt.contains("taped") && nbt.contains("inventories")){
             CompoundTag inventories = nbt.getCompound("inventories");

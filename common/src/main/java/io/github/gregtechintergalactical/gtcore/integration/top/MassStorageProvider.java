@@ -46,7 +46,6 @@ public class MassStorageProvider implements IProbeInfoProvider {
     public void addProbeInfo(ProbeMode probeMode, IProbeInfo iProbeInfo, Player player, Level level, BlockState blockState, IProbeHitData iProbeHitData) {
         BlockEntity blockEntity = level.getBlockEntity(iProbeHitData.getPos());
         if (blockEntity instanceof BlockEntityMassStorage massStorage){
-            if (massStorage.getMachineState() == MachineState.ACTIVE) return;
             var handler = massStorage.itemHandler.map(i -> {
                 var h = i.getHandler(SlotTypes.UNLIMITED);
                 if (h.getItem(0).isEmpty()) return i.getHandler(SlotType.DISPLAY);
