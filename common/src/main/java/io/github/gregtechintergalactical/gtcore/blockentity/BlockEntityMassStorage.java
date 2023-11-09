@@ -283,6 +283,10 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         return outputOverflow;
     }
 
+    public boolean isOutput() {
+        return output;
+    }
+
     @Override
     public void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
