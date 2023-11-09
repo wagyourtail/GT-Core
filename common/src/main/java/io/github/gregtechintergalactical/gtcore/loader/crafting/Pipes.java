@@ -52,10 +52,10 @@ public class Pipes {
                 provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_pipe_fluid_tiny", "antimatter_pipes", new ItemStack(f.getBlock(PipeSize.TINY), 1), of('H', HAMMER.getTag(), 'W', WRENCH.getTag(), 'P', PLATE.getMaterialTag(m), 'S', SAW.getTag()), "SP ", "W H");
             }
             if (f.getSizes().contains(PipeSize.SMALL)){
-                provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_pipe_fluid_small", "antimatter_pipes", new ItemStack(f.getBlock(PipeSize.SMALL), 6), of('H', HAMMER.getTag(), 'W', WRENCH.getTag(), 'P', PLATE.getMaterialTag(m)), " P ", "W H");
+                provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_pipe_fluid_small", "antimatter_pipes", new ItemStack(f.getBlock(PipeSize.SMALL), 1), of('H', HAMMER.getTag(), 'W', WRENCH.getTag(), 'P', PLATE.getMaterialTag(m)), " P ", "W H");
             }
             if (f.getSizes().contains(PipeSize.NORMAL)){
-                provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_pipe_fluid_normal", "antimatter_pipes", new ItemStack(f.getBlock(PipeSize.NORMAL), 3), of('H', HAMMER.getTag(), 'W', WRENCH.getTag(), 'P', PLATE.getMaterialTag(m)), "PPP", "W H");
+                provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_pipe_fluid_normal", "antimatter_pipes", new ItemStack(f.getBlock(PipeSize.NORMAL), 1), of('H', HAMMER.getTag(), 'W', WRENCH.getTag(), 'P', PLATE.getMaterialTag(m)), "PPP", "W H");
             }
             if (f.getSizes().contains(PipeSize.LARGE)){
                 provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_pipe_fluid_large", "antimatter_pipes", new ItemStack(f.getBlock(PipeSize.LARGE), 1), of('H', HAMMER.getTag(), 'W', WRENCH.getTag(), 'P', PLATE.getMaterialTag(m)), "PPP", "W H", "PPP");
