@@ -1,5 +1,6 @@
 package io.github.gregtechintergalactical.gtcore;
 
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import io.github.gregtechintergalactical.gtcore.machine.DrumMachine;
 import io.github.gregtechintergalactical.gtcore.machine.LockerMachine;
 import io.github.gregtechintergalactical.gtcore.machine.WorkbenchMachine;
@@ -33,5 +34,9 @@ public class GTCoreRemapping {
             AntimatterRemapping.remap(new ResourceLocation("gt4r", b.getId()), b.getLoc());
         });
         AntimatterRemapping.remapBlockEntity(new ResourceLocation("gtrubber", "sap_bag"), new ResourceLocation(GTCore.ID, "sap_bag"));
+        AntimatterRemapping.remapMachine("wood_item_barrel", GTCoreBlocks.WOOD_ITEM_BARREL);
+        if (GTCoreBlocks.IRONWOOD_ITEM_BARREL != null){
+            AntimatterRemapping.remapMachine("ironwood_item_barrel", GTCoreBlocks.IRONWOOD_ITEM_BARREL);
+        }
     }
 }

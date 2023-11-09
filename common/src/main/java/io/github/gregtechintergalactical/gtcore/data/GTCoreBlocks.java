@@ -61,7 +61,7 @@ public class GTCoreBlocks {
 
     public static final BlockEntityType<?> SAP_BAG_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntitySapBag::new, SAP_BAG).build(null);
 
-    public static MaterialMachine WOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, AntimatterMaterials.Wood, "item_barrel", 5000).addFlags(MachineFlag.GUI);
+    public static MaterialMachine WOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, AntimatterMaterials.Wood, "item_storage", 5000).addFlags(MachineFlag.GUI);
 
     @Nullable
     public static MaterialMachine IRONWOOD_ITEM_BARREL = null;
@@ -87,7 +87,7 @@ public class GTCoreBlocks {
             initTFC();
         }
         if (AntimatterAPI.isModLoaded("twilightforest")){
-            IRONWOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, Ironwood, "item_barrel", 10000).addFlags(MachineFlag.GUI);
+            IRONWOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, Ironwood, "item_storage", 10000).addFlags(MachineFlag.GUI);
         }
         AntimatterAPI.register(BlockEntityType.class, "sap_bag", GTCore.ID, SAP_BAG_BLOCK_ENTITY);
     }
