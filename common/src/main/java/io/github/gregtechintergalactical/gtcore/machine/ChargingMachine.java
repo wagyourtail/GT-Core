@@ -5,12 +5,12 @@ import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;
 
-import static muramasa.antimatter.machine.MachineFlag.ENERGY;
+import static muramasa.antimatter.machine.MachineFlag.EU;
 
 public class ChargingMachine extends MaterialMachine{
     public ChargingMachine(String domain, Material material, String suffix, boolean charge) {
         super(domain, material.getId() + (charge ? "_charging" : "") + "_" + suffix, material);
-        if (charge) this.addFlags(ENERGY);
+        if (charge) this.addFlags(EU);
         this.setTiers(charge ? Tier.HV : Tier.NONE);
         this.baseTexture((m, t) -> new Texture[] {
                 new Texture(GTCore.ID, "block/machine/base/" + suffix + "/bottom"),

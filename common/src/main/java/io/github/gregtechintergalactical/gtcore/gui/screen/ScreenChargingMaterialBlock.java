@@ -11,8 +11,6 @@ import net.minecraft.world.entity.player.Inventory;
 public class ScreenChargingMaterialBlock<T extends BlockEntityMaterial<T>> extends ScreenMachine<T, ContainerMachine<T>> {
     public ScreenChargingMaterialBlock(ContainerMachine<T> container, Inventory inv, Component name, String location) {
         super(container, inv, name);
-        boolean charged = container.getTile().has(MachineFlag.ENERGY);
-        //gui = new ResourceLocation(Ref.ID, "textures/gui/machine/" + (charged ? "charging_" : "") + location + ".png");
     }
 
     @Override
