@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import org.jetbrains.annotations.Nullable;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
+import static muramasa.antimatter.gui.SlotType.STORAGE;
 
 public class GTCoreBlocks {
 
@@ -127,5 +128,17 @@ public class GTCoreBlocks {
             return machine;
         }
         return new LockerMachine(GTCore.ID, material, charge);
+    }
+
+    public static ChestMachine createChest(Material material){
+        return createChest(material, true);
+    }
+
+    public static ChestMachine createChest(Material material, boolean addSlots){
+        ChestMachine machine = AntimatterAPI.get(ChestMachine.class, material.getId() + "_chest", GTCore.ID);
+        if (machine != null){
+            return machine;
+        }
+        return new ChestMachine(GTCore.ID, material, addSlots);
     }
 }

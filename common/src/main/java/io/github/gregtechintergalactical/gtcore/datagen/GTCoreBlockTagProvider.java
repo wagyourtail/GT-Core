@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtcore.datagen;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
+import io.github.gregtechintergalactical.gtcore.block.BlockMaterialChest;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import io.github.gregtechintergalactical.gtcore.machine.BlockMachineMaterial;
 import io.github.gregtechintergalactical.gtcore.machine.BlockMultiMachineMaterial;
@@ -31,6 +32,13 @@ public class GTCoreBlockTagProvider extends AntimatterBlockTagProvider {
                 this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
             }
         });
+        AntimatterAPI.all(BlockMaterialChest.class, cas -> {
+            if (cas.getMaterial().has(WOOD)){
+                this.tag(AntimatterDefaultTools.AXE.getToolType()).add(cas);
+            } else {
+                this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
+            }
+        });
         AntimatterAPI.all(BlockMultiMachineMaterial.class, cas -> {
             if (cas.getMaterial().has(WOOD)){
                 this.tag(AntimatterDefaultTools.AXE.getToolType()).add(cas);
@@ -38,10 +46,7 @@ public class GTCoreBlockTagProvider extends AntimatterBlockTagProvider {
                 this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
             }
         });
-        /*AntimatterAPI.all(BlockMaterialChest.class, Ref.ID, cas -> {
-            this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
-        });
-        AntimatterAPI.all(BlockNonSolidMachine.class, Ref.ID, cas -> {
+        /*AntimatterAPI.all(BlockNonSolidMachine.class, Ref.ID, cas -> {
             this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
         });
         AntimatterAPI.all(BlockRedstoneMachine.class, Ref.ID, cas -> {

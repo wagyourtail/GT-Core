@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.ChunkWatchEvent;
@@ -31,6 +32,7 @@ public class GTCoreForge extends GTCore {
         FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(FoliagePlacerType.class, this::onRegistration);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
+            FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onStitch);
             TerraformBoatClientHelper.registerModelLayer(new ResourceLocation(GTCore.ID, "rubber"));
         });
     }
@@ -46,6 +48,11 @@ public class GTCoreForge extends GTCore {
     @OnlyIn(Dist.CLIENT)
     private void clientSetup(FMLClientSetupEvent event){
         ClientHandler.init();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private void onStitch(TextureStitchEvent.Pre event) {
+        ClientHandler.onStitch(event.getAtlas(), event::addSprite);
     }
 
     private void onProvidersEvent(AntimatterProvidersEvent event){
