@@ -8,6 +8,7 @@ import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.gui.ButtonOverlay;
 import muramasa.antimatter.gui.SlotData;
 import muramasa.antimatter.gui.widget.SlotWidget;
+import muramasa.antimatter.machine.MachineFlag;
 import muramasa.antimatter.material.Material;
 import net.minecraft.resources.ResourceLocation;
 
@@ -39,6 +40,7 @@ public class WorkbenchMachine extends ChargingMachine{
             t.addButton(154, 28, new ButtonOverlay(GTCore.ID, "to_player", 18, 18));
             t.addWidget(SlotWidget.build(new SlotData<>(STORAGE, 136, 46, new ResourceLocation(GTCore.ID, "textures/gui/slots/crafting_output.png"))));
         });
+        this.removeFlags(COVERABLE);
         AntimatterAPI.register(WorkbenchMachine.class, this);
     }
 }

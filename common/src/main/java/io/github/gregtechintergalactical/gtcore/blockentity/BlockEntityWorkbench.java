@@ -19,12 +19,6 @@ import javax.annotation.Nonnull;
 public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkbench>{
     public BlockEntityWorkbench(MaterialMachine type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        coverHandler.set(() -> new MachineCoverHandler<>(this) {
-            @Override
-            public boolean placeCover(Player player, Direction side, ItemStack stack, ICover cover) {
-                return false;
-            }
-        });
     }
 
     @Override
