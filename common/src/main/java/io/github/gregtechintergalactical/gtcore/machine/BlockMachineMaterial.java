@@ -61,34 +61,39 @@ public class BlockMachineMaterial extends BlockMachine implements IColorHandler 
     }
 
     public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
-        if (!(type instanceof MassStorageMachine)) {
+        if (!(type instanceof MassStorageMachine) && !(type instanceof BarrelMachine)) {
             super.onItemModelBuild(item, prov);
             return;
         }
-        AntimatterItemModelBuilder b = prov.getBuilder(item).parent(prov.existing("antimatter", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier)[0]).override().predicate(new ResourceLocation(GTCore.ID, "taped"), 1.0F).model(new ResourceLocation(getDomain(), "item/" +id + "_taped")).end();
-        Texture[] base = this.type.getBaseTexture(this.tier);
+        AntimatterItemModelBuilder b = prov.getBuilder(item).parent(prov.existing("antimatter", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier, MachineState.IDLE)[0]);
+        Texture[] base = this.type.getBaseTexture(this.tier, MachineState.IDLE);
+        if (base.length >= 6) {
+            for(int s = 0; s < 6; ++s) {
+                b.texture("base" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName(), base[s]);
+            }
+        }
+        for (int i = 0; i < type.getOverlayLayers(); i++) {
+            Texture[] overlays = type.getOverlayTextures(MachineState.IDLE, tier, i);
+            for (int s = 0; s < 6; s++) {
+                String suffix = i == 0 ? "" : String.valueOf(i);
+                b.texture("overlay" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName() + suffix, overlays[s]);
+            }
+        }
+        if (!(type instanceof MassStorageMachine)) return;
+        b.override().predicate(new ResourceLocation(GTCore.ID, "taped"), 1.0F).model(new ResourceLocation(getDomain(), "item/" +id + "_taped")).end();
+        b = prov.getBuilder(getId() + "_taped").parent(prov.existing("antimatter", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier, MachineState.ACTIVE)[0]);
         if (base.length >= 6) {
             for(int s = 0; s < 6; ++s) {
                 b.texture("base" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName(), base[s]);
             }
         }
 
-        Texture[] overlays = this.type.getOverlayTextures(MachineState.IDLE, this.tier);
-
-        for(int s = 0; s < 6; ++s) {
-            b.texture("overlay" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName(), overlays[s]);
-        }
-        b = prov.getBuilder(getId() + "_taped").parent(prov.existing("antimatter", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier)[0]);
-        if (base.length >= 6) {
-            for(int s = 0; s < 6; ++s) {
-                b.texture("base" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName(), base[s]);
+        for (int i = 0; i < type.getOverlayLayers(); i++) {
+            Texture[] overlays = type.getOverlayTextures(MachineState.ACTIVE, tier, i);
+            for (int s = 0; s < 6; s++) {
+                String suffix = i == 0 ? "" : String.valueOf(i);
+                b.texture("overlay" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName() + suffix, overlays[s]);
             }
-        }
-
-        overlays = this.type.getOverlayTextures(MachineState.ACTIVE, this.tier);
-
-        for(int s = 0; s < 6; ++s) {
-            b.texture("overlay" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName(), overlays[s]);
         }
 
     }

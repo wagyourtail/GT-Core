@@ -141,4 +141,16 @@ public class GTCoreBlocks {
         }
         return new ChestMachine(GTCore.ID, material, addSlots);
     }
+
+    public static BarrelMachine createBarrel(Material material){
+        return createBarrel(material, true);
+    }
+
+    public static BarrelMachine createBarrel(Material material, boolean addSlots){
+        BarrelMachine machine = AntimatterAPI.get(BarrelMachine.class, material.getId() + "_barrel", GTCore.ID);
+        if (machine != null){
+            return machine;
+        }
+        return new BarrelMachine(GTCore.ID, material, addSlots);
+    }
 }
