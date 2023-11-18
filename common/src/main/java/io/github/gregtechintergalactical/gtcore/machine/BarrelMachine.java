@@ -44,6 +44,6 @@ public class BarrelMachine extends MaterialMachine{
                 }
             }
         }
-        AntimatterAPI.register(ChestMachine.class, this);
+        AntimatterAPI.register(BarrelMachine.class, this);
     }
 }
