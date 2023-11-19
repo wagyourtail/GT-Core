@@ -110,11 +110,11 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         if (type == AntimatterDefaultTools.WIRE_CUTTER){
             outputOverflow = !outputOverflow;
             //TODO: translation component
-            player.sendMessage(Utils.literal(outputOverflow ? "Outputs overlflow" : "Doesn't output overflow"), player.getUUID());
+            player.sendMessage(Utils.literal(outputOverflow ? "Outputs overflow" : "Doesn't output overflow"), player.getUUID());
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             return InteractionResult.SUCCESS;
         }
-        if (type == AntimatterDefaultTools.WRENCH){
+        if (type == AntimatterDefaultTools.WRENCH_ALT){
             Direction hitSide = Utils.getInteractSide(hit);
             if (hitSide == this.getFacing()){
                 output = !output;
