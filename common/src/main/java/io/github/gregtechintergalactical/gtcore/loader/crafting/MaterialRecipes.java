@@ -3,6 +3,7 @@ package io.github.gregtechintergalactical.gtcore.loader.crafting;
 import com.google.common.collect.ImmutableMap;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.GTCoreConfig;
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.data.AntimatterMaterialTypes;
@@ -27,8 +28,33 @@ import static muramasa.antimatter.material.MaterialTags.*;
 public class MaterialRecipes {
 
     public static void loadMaterialRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
-        final CriterionTriggerInstance in = provider.hasSafeItem(AntimatterDefaultTools.WRENCH.getTag());
         int craftingMultiplier = GTCoreConfig.LOSSY_PART_CRAFTING.get() ? 1 : 2;
+        if (!AntimatterAPI.isModLoaded("tfc")) {
+            AntimatterMaterialTypes.DUST.all().forEach(m -> {
+                if (m.has(AntimatterMaterialTypes.INGOT)) {
+                    provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_grind_ingot", "antimatter_material",
+                            AntimatterMaterialTypes.DUST.get(m, 1), ImmutableMap.<Character, Object>builder()
+                                    .put('M', AntimatterDefaultTools.MORTAR.getTag())
+                                    .put('I', AntimatterMaterialTypes.INGOT.getMaterialTag(m))
+                                    .build(),
+                            "MI");
+                }
+                if (m.has(AntimatterMaterialTypes.ROCK)) {
+                    provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_grind_rock", "antimatter_material",
+                            AntimatterMaterialTypes.DUST.get(m, 1), ImmutableMap.<Character, Object>builder()
+                                    .put('M', AntimatterDefaultTools.MORTAR.getTag())
+                                    .put('I', AntimatterMaterialTypes.ROCK.getMaterialTag(m))
+                                    .build(),
+                            "II ", "IIM");
+                    provider.shapeless(consumer, m.getId() + "_grind_rock_2", "antimatter_material", AntimatterMaterialTypes.DUST_SMALL.get(m, 1),
+                            AntimatterDefaultTools.MORTAR.getTag(), AntimatterMaterialTypes.ROCK.getMaterialTag(m));
+                }
+                if (m.has(AntimatterMaterialTypes.CRUSHED)){
+                    provider.shapeless(consumer, m.getId() + "_grind_crushed", "antimatter_material", AntimatterMaterialTypes.DUST_IMPURE.get(m, 1),
+                            AntimatterDefaultTools.MORTAR.getTag(), AntimatterMaterialTypes.CRUSHED.getMaterialTag(m));
+                }
+            });
+        }
         AntimatterMaterialTypes.ROD.all().forEach(m -> {
             if (m.has(AntimatterMaterialTypes.INGOT)) {
                 provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_rod", "antimatter_material", AntimatterMaterialTypes.ROD.get(m, craftingMultiplier), of('F', AntimatterDefaultTools.FILE.getTag(), 'I', AntimatterMaterialTypes.INGOT.getMaterialTag(m)), "F", "I");

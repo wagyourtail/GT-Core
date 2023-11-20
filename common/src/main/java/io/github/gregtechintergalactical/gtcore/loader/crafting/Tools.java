@@ -126,8 +126,10 @@ public class Tools {
 
                if (t.toolTypes().contains(PICKAXE)){
                    if (m.has(FLINT)){
-                       provider.addStackRecipe(consumer, GTCore.ID, "", "", PICKAXE.getToolStack(m),
-                               of('R', rod, 'P', ingotGem), "PPP", " R ");
+                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                           provider.addStackRecipe(consumer, GTCore.ID, "", "", PICKAXE.getToolStack(m),
+                                   of('R', rod, 'P', ingotGem), "PPP", " R ");
+                       }
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", PICKAXE.getToolStack(m),
                                of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PII", "FRH", " R ");
@@ -136,8 +138,10 @@ public class Tools {
 
                if (t.toolTypes().contains(AXE)){
                    if (m.has(FLINT)){
-                       provider.addStackRecipe(consumer, GTCore.ID, "", "", AXE.getToolStack(m),
-                               of('R', rod, 'P', ingotGem), "PP", "PR");
+                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                           provider.addStackRecipe(consumer, GTCore.ID, "", "", AXE.getToolStack(m),
+                                   of('R', rod, 'P', ingotGem), "PP", "PR");
+                       }
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", AXE.getToolStack(m),
                                of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PIH", "PR ", "FR ");
@@ -146,8 +150,10 @@ public class Tools {
 
                if (t.toolTypes().contains(SHOVEL)){
                    if (m.has(FLINT)){
-                       provider.addStackRecipe(consumer, GTCore.ID, "", "", SHOVEL.getToolStack(m),
-                               of('R', rod, 'P', ingotGem), "P", "R");
+                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                           provider.addStackRecipe(consumer, GTCore.ID, "", "", SHOVEL.getToolStack(m),
+                                   of('R', rod, 'P', ingotGem), "P", "R");
+                       }
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", SHOVEL.getToolStack(m),
                                of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " R ", " R ");
@@ -156,8 +162,10 @@ public class Tools {
 
                if (t.toolTypes().contains(SWORD)){
                    if (m.has(FLINT)){
-                       provider.addStackRecipe(consumer, GTCore.ID, "", "", SWORD.getToolStack(m),
-                               of('R', rod, 'P', ingotGem), "P", "P", "R");
+                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                           provider.addStackRecipe(consumer, GTCore.ID, "", "", SWORD.getToolStack(m),
+                                   of('R', rod, 'P', ingotGem), "P", "P", "R");
+                       }
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", SWORD.getToolStack(m),
                                of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " P ", " R ");
@@ -166,8 +174,10 @@ public class Tools {
 
                if (t.toolTypes().contains(HOE)){
                    if (m.has(FLINT)){
-                       provider.addStackRecipe(consumer, GTCore.ID, "", "", HOE.getToolStack(m),
-                               of('R', rod, 'P', ingotGem), "PP", " R");
+                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                           provider.addStackRecipe(consumer, GTCore.ID, "", "", HOE.getToolStack(m),
+                                   of('R', rod, 'P', ingotGem), "PP", " R");
+                       }
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", HOE.getToolStack(m),
                                of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PIH", "FR ", " R ");
@@ -176,8 +186,10 @@ public class Tools {
 
                if (t.toolTypes().contains(KNIFE)){
                    if (m.has(FLINT)){
-                       provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
-                               of('R', rod, 'P', ingotGem), "R", "P");
+                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                           provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
+                                   of('R', rod, 'P', ingotGem), "R", "P");
+                       }
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
                                of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FP", "HR");
