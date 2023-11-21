@@ -34,11 +34,13 @@ import muramasa.antimatter.datagen.providers.*;
 import muramasa.antimatter.event.CraftingEvent;
 import muramasa.antimatter.event.MaterialEvent;
 import muramasa.antimatter.event.ProvidersEvent;
+import muramasa.antimatter.integration.jeirei.AntimatterJEIREIPlugin;
 import muramasa.antimatter.network.AntimatterNetwork;
 import muramasa.antimatter.recipe.loader.IRecipeRegistrate;
 import muramasa.antimatter.registration.IAntimatterRegistrar;
 import muramasa.antimatter.registration.RegistrationEvent;
 import muramasa.antimatter.registration.Side;
+import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.core.Registry;
@@ -104,6 +106,11 @@ public class GTCore extends AntimatterMod {
             case DATA_READY -> {
                 WoodType.register(GTCoreBlocks.RUBBER_WOOD_TYPE);
                 GTCoreRemapping.init();
+                AntimatterJEIREIPlugin.addItemsToHide(l -> {
+                    l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_lv").getItem());
+                    l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_mv").getItem());
+                    l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_hv").getItem());
+                });
             }
             case CLIENT_DATA_INIT -> {
                 BakedModels.init();
