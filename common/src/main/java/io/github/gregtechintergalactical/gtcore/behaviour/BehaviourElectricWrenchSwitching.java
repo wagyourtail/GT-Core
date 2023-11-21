@@ -1,5 +1,6 @@
 package io.github.gregtechintergalactical.gtcore.behaviour;
 
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.behaviour.IItemRightClick;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
@@ -24,8 +25,8 @@ public class BehaviourElectricWrenchSwitching implements IItemRightClick<IAntima
     public InteractionResultHolder<ItemStack> onRightClick(IAntimatterTool instance, Level level, Player player, InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
         if (player.isShiftKeyDown() && !level.isClientSide){
-            AntimatterToolType toolType = instance.getAntimatterToolType() == ELECTRIC_WRENCH ? ELECTRIC_WRENCH_ALT : ELECTRIC_WRENCH;
-            Item newWrench = toolType.getToolStack(instance.getPrimaryMaterial(stack)).getItem();
+            String id = instance.getAntimatterToolType() == ELECTRIC_WRENCH ? instance.getId().replace("electric_wrench", "electric_wrench_alt") : instance.getId().replace("electric_wrench_alt", "electric_wrench");
+            Item newWrench = AntimatterAPI.get(IAntimatterTool.class, id).getItem();
             ItemStack newStack = new ItemStack(newWrench);
             newStack.setTag(stack.getTag());
             player.setItemSlot(usedHand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND, newStack);
