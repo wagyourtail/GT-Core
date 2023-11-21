@@ -7,6 +7,7 @@ import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.recipe.ingredient.PropertyIngredient;
+import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -15,6 +16,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
+import java.util.Arrays;
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
@@ -56,10 +58,10 @@ public class Tools {
         });
        TOOLS.getAll().forEach((m, t) -> {
            TagKey<Item> rod = t.handleMaterial().has(ROD) ? ROD.getMaterialTag(t.handleMaterial()) : ROD.getMaterialTag(Wood);
-           t.toolTypes().forEach(type -> {
-               if (type.getMaterialTypeItem() != null && !type.isPowered() && type.isSimple()){
+           AntimatterToolType[] toolHeadTypes = new AntimatterToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW};
+           Arrays.stream(toolHeadTypes).forEach(type -> {
+               if (t.toolTypes().contains(type)){
                    if (m.has(type.getMaterialTypeItem())){
-
                        provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_" + type.getId() + "_from_" + type.getMaterialTypeItem().getId(), "antimatter_tools_from_tool_parts", type.getToolStack(m), of('T', type.getMaterialTypeItem().getMaterialTag(m), 'R', rod), "T", "R");
                    }
                }
