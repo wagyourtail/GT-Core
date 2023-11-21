@@ -19,7 +19,7 @@ import static muramasa.antimatter.data.AntimatterDefaultTools.WRENCH_ALT;
 
 public class BehaviourElectricWrenchSwitching implements IItemRightClick<IAntimatterTool> {
 
-    public static BehaviourWrenchSwitching INSTANCE = new BehaviourWrenchSwitching();
+    public static BehaviourElectricWrenchSwitching INSTANCE = new BehaviourElectricWrenchSwitching();
     @Override
     public InteractionResultHolder<ItemStack> onRightClick(IAntimatterTool instance, Level level, Player player, InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
