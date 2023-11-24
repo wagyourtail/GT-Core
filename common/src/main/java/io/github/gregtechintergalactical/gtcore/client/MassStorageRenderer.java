@@ -35,7 +35,7 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
     @Override
     public void render(T tile, float pPartialTicks, PoseStack matrixStack, MultiBufferSource pBuffer, int pCombinedLight, int pCombinedOverlay) {
         if (tile.getMachineState() == MachineState.ACTIVE) return;
-        if (Minecraft.getInstance().player != null && !tile.getBlockPos().closerThan(Minecraft.getInstance().player.getOnPos(), 16)) {
+        if (Minecraft.getInstance().player != null && !tile.getBlockPos().closerThan(Minecraft.getInstance().player.getOnPos(), 32)) {
             return;
         }
         matrixStack.pushPose();
