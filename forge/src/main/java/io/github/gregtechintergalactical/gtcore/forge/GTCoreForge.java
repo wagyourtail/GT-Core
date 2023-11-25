@@ -38,11 +38,11 @@ public class GTCoreForge extends GTCore {
     }
 
     private void onChunkWatch(ChunkWatchEvent.Watch event){
-        event.getWorld().getChunk(event.getPos().x, event.getPos().z).getBlockEntities().values().forEach(b -> {
+        /*event.getWorld().getChunk(event.getPos().x, event.getPos().z).getBlockEntities().values().forEach(b -> {
             if (b instanceof BlockEntityMassStorage storage && storage.isServerSide() && !storage.isRemoved()){
                 storage.setSyncSlots(true);
             }
-        });
+        });*/
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -18,6 +18,7 @@ public class MassStorageMachine extends MaterialMachine{
         this.setItemBlock(ItemBlockMassStorage::new);
         this.capacity = capacity;
         tesr();
+        setClientTicking();
         String barrel = material.getId().contains("wood") ? "item_storage" : "mass_storage";
         baseTexture((m, t, s) -> new Texture[] {
                 new Texture(GTCore.ID, "block/machine/base/" + barrel + "/bottom"),

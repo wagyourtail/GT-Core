@@ -5,6 +5,7 @@ import io.github.gregtechintergalactical.gtcore.item.ItemTape;
 import io.github.gregtechintergalactical.gtcore.machine.MassStorageMachine;
 import io.github.gregtechintergalactical.gtcore.machine.MassStoragelItemHandler;
 import io.github.gregtechintergalactical.gtcore.network.MessageInventorySync;
+import io.github.gregtechintergalactical.gtcore.network.MessageTriggerInventorySync;
 import muramasa.antimatter.Antimatter;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterDefaultTools;
@@ -221,12 +222,19 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     }
 
     @Override
+    public void onFirstTick() {
+        super.onFirstTick();
+        if (level != null && isClientSide()){
+            AntimatterNetwork.NETWORK.sendToServer(new MessageTriggerInventorySync(this.getBlockPos()));
+        }
+    }
+
+    @Override
     public void serverTick(Level level, BlockPos pos, BlockState state) {
         super.serverTick(level, pos, state);
         if (output){
             processItemOutput(ItemStack.EMPTY);
         }
-        if (getLevel() != null && getLevel().getGameTime() % 200 == 0) syncSlots = true;
         if (syncSlots){
             syncSlots();
             syncSlots = false;
@@ -243,7 +251,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                 i.getAll().keySet().forEach(s -> {
                     var handler = i.getHandler(s);
                     for (int i1 = 0; i1 < handler.getSlots(); i1++) {
-                        AntimatterNetwork.NETWORK.sendToPlayersInRange(new MessageInventorySync(this.getBlockPos(), s, i1, i.getHandler(s).getItem(i1)), this.getLevel(), this.getBlockPos(), 32.0);
+                        AntimatterNetwork.NETWORK.sendToAllLoaded(new MessageInventorySync(this.getBlockPos(), s, i1, i.getHandler(s).getItem(i1)), this.getLevel(), this.getBlockPos());
                     }
                 });
             });
