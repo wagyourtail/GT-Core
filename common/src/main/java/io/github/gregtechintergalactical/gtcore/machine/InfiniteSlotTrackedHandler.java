@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtcore.machine;
 
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityMassStorage;
+import muramasa.antimatter.blockentity.BlockEntityMachine;
 import muramasa.antimatter.capability.IGuiHandler;
 import muramasa.antimatter.capability.item.TrackedItemHandler;
 import muramasa.antimatter.gui.SlotType;
@@ -16,10 +17,10 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 import java.util.function.BiPredicate;
 
-public class InfiniteSlotTrackedHandler extends TrackedItemHandler<BlockEntityMassStorage> {
+public class InfiniteSlotTrackedHandler extends TrackedItemHandler<BlockEntityMachine<?>> {
     BlockEntity barrel;
 
-    public InfiniteSlotTrackedHandler(BlockEntityMassStorage tile, SlotType<?> type, int size, boolean output, boolean input, BiPredicate<IGuiHandler, ItemStack> validator, int limit) {
+    public InfiniteSlotTrackedHandler(BlockEntityMachine<?> tile, SlotType<?> type, int size, boolean output, boolean input, BiPredicate<IGuiHandler, ItemStack> validator, int limit) {
         super(tile, type, size, output, input, validator, limit);
         this.barrel = tile;
     }

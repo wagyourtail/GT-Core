@@ -14,9 +14,9 @@ import tesseract.api.item.ExtendedItemContainer;
 
 import java.util.Optional;
 
-public class MassStoragelItemHandler extends MachineItemHandler<BlockEntityMassStorage> {
+public class MassStorageItemHandler extends MachineItemHandler<BlockEntityMassStorage> {
 
-    public MassStoragelItemHandler(BlockEntityMassStorage tile) {
+    public MassStorageItemHandler(BlockEntityMassStorage tile) {
         super(tile);
         inventories.put(SlotType.DISPLAY, new FakeTrackedItemHandler<>(tile, SlotType.DISPLAY, 1, SlotType.DISPLAY.output, SlotType.DISPLAY.input, SlotType.DISPLAY.tester));
         inventories.put(SlotTypes.UNLIMITED, new InfiniteSlotTrackedHandler(tile, SlotTypes.UNLIMITED, 1, SlotTypes.UNLIMITED.output, SlotTypes.UNLIMITED.input, SlotTypes.UNLIMITED.tester, ((MassStorageMachine)tile.getMachineType()).getCapacity()));

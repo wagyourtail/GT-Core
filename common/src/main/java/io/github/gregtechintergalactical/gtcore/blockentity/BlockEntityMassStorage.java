@@ -3,11 +3,9 @@ package io.github.gregtechintergalactical.gtcore.blockentity;
 import io.github.gregtechintergalactical.gtcore.data.SlotTypes;
 import io.github.gregtechintergalactical.gtcore.item.ItemTape;
 import io.github.gregtechintergalactical.gtcore.machine.MassStorageMachine;
-import io.github.gregtechintergalactical.gtcore.machine.MassStoragelItemHandler;
+import io.github.gregtechintergalactical.gtcore.machine.MassStorageItemHandler;
 import io.github.gregtechintergalactical.gtcore.network.MessageInventorySync;
 import io.github.gregtechintergalactical.gtcore.network.MessageTriggerInventorySync;
-import muramasa.antimatter.Antimatter;
-import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.machine.MachineState;
@@ -18,7 +16,6 @@ import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -37,16 +34,13 @@ import tesseract.TesseractCapUtils;
 
 import java.util.List;
 
-import static io.github.gregtechintergalactical.gtcore.data.GTCoreItems.Lighter;
-import static io.github.gregtechintergalactical.gtcore.data.GTCoreItems.LighterEmpty;
-
 public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassStorage> {
     boolean output = false;
     boolean outputOverflow = false;
     boolean syncSlots;
     public BlockEntityMassStorage(MassStorageMachine type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        this.itemHandler.set(() -> new MassStoragelItemHandler(this));
+        this.itemHandler.set(() -> new MassStorageItemHandler(this));
     }
 
     @Override
