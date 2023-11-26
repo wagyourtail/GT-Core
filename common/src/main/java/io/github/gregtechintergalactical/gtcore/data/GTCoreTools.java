@@ -58,7 +58,7 @@ public class GTCoreTools {
     public static final AntimatterToolType ELECTRIC_WRENCH_ALT = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "electric_wrench_alt", WRENCH).setTag(WRENCH_ALT).setPowered(100000, 1, 2, 3)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseSound(Ref.WRENCH).addEffectiveBlocks(Blocks.HOPPER).setType(WRENCH).setMaterialTypeItem(WRENCHBIT).addBlacklistedEnchantments(Enchantments.BLOCK_EFFICIENCY).setCustomName("Electric Wrench (Alt)");
     public static final AntimatterToolType CHAINSAW = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "chainsaw", 2, 1, 5, 3.0F, -2.0F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseAction(UseAnim.BLOCK).setPowered(100000, 1, 2, 3).setMaterialTypeItem(CHAINSAWBIT).addEffectiveMaterials(WOOD, PLANT, REPLACEABLE_PLANT, BAMBOO, LEAVES).addEffectiveBlocks(Blocks.COBWEB).addTags("axe", "saw");
 
-    public static final AntimatterToolType JACKHAMMER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "jackhammer", 2, 2, 10, 1.0F, -3.2F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setPowered(100000, 1, 2, 3).setToolSpeedMultiplier(12.0f).setUseSound(Ref.DRILL).addEffectiveBlockTags(TagUtils.getForgelikeBlockTag("stone"), TagUtils.getForgelikeBlockTag("cobblestone")).setOverlayLayers(2);
+    public static final AntimatterToolType JACKHAMMER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "jackhammer", 2, 2, 10, 1.0F, -3.2F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setPowered(100000, 1, 2, 3).setToolSpeedMultiplier(12.0f).setUseSound(Ref.DRILL).addEffectiveBlockTags(TagUtils.getForgelikeBlockTag("stone"), TagUtils.getForgelikeBlockTag("cobblestone")).addEffectiveBlocks(Blocks.BASALT, Blocks.NETHERRACK).setOverlayLayers(2);
 
     public static class PoweredTool extends MaterialTool {
 
@@ -80,7 +80,7 @@ public class GTCoreTools {
     public static void init(Side side){
         CHAINSAW.addBehaviour(BehaviourTreeFelling.INSTANCE, BehaviourLogStripping.INSTANCE);
         DRILL.addBehaviour(new BehaviourAOEBreak(1, 1, 1, 8, "3x3"), BehaviourTorchPlacing.INSTANCE);
-        JACKHAMMER.addBehaviour(new BehaviourAOEBreak(1, 1, 1, 8, "3x3"));
+        JACKHAMMER.addBehaviour(new BehaviourAOEBreak(1, 1, 1, 8, "3x3"), BehaviourTorchPlacing.INSTANCE);
         ELECTRIC_WRENCH.addBehaviour(BehaviourElectricWrenchSwitching.INSTANCE);
         ELECTRIC_WRENCH_ALT.addBehaviour(BehaviourElectricWrenchSwitching.INSTANCE);
         GTCoreTools.DRILL.setBrokenItems(ImmutableMap.of("drill_lv", i -> getBrokenItem(i, PowerUnitLV), "drill_mv", i -> getBrokenItem(i, PowerUnitMV), "drill_hv", i -> getBrokenItem(i, PowerUnitHV)));
