@@ -17,12 +17,10 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 import java.util.function.BiPredicate;
 
-public class InfiniteSlotTrackedHandler extends TrackedItemHandler<BlockEntityMachine<?>> {
-    BlockEntity barrel;
+public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedItemHandler<T> {
 
-    public InfiniteSlotTrackedHandler(BlockEntityMachine<?> tile, SlotType<?> type, int size, boolean output, boolean input, BiPredicate<IGuiHandler, ItemStack> validator, int limit) {
+    public InfiniteSlotTrackedHandler(T tile, SlotType<?> type, int size, boolean output, boolean input, BiPredicate<IGuiHandler, ItemStack> validator, int limit) {
         super(tile, type, size, output, input, validator, limit);
-        this.barrel = tile;
     }
 
     @Override
@@ -32,18 +30,18 @@ public class InfiniteSlotTrackedHandler extends TrackedItemHandler<BlockEntityMa
 
     @Override
     public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-        if (barrel instanceof BlockEntityMassStorage barrel1 && barrel1.itemHandler.isPresent()) {
-            if (barrel1.getMachineState() == MachineState.ACTIVE) return stack;
-            var handler = barrel1.itemHandler.get().getHandler(SlotType.DISPLAY);
+        if (getTile() instanceof BlockEntityMassStorage barrel && barrel.itemHandler.isPresent()) {
+            if (barrel.getMachineState() == MachineState.ACTIVE) return stack;
+            var handler = barrel.itemHandler.get().getHandler(SlotType.DISPLAY);
             if (!handler.getItem(0).isEmpty() && !Utils.equals(stack, handler.getItem(0))) {
                 return stack;
             } else if (handler.getItem(0).isEmpty() && !simulate) {
-                barrel1.itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setItem(0, Utils.ca(1, stack)));
+                barrel.itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setItem(0, Utils.ca(1, stack)));
             }
-            if (barrel1.isOutputOverflow()){
+            if (barrel.isOutputOverflow()){
                 ItemStack leftover = super.insertItem(slot, stack, simulate);
                 if (leftover.getCount() > 0 && !simulate){
-                    barrel1.processItemOutput(leftover);
+                    barrel.processItemOutput(leftover);
                 }
                 return leftover;
             }
