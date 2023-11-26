@@ -193,59 +193,18 @@ public class GTCoreMaterials {
     /**
      ** Dusts
      **/
-
-    public static Material AluminiumHydroxide = AntimatterAPI.register(Material.class, new Material(GTCore.ID,"aluminium_hydroxide", 0xbebec8, DULL));
-    public static Material AluminiumTrichloride = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "aluminium_trichloride", 0xf0d77d, FINE));
-    public static Material Aluminosilicate = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "aluminosilicate", 0xbfbdb0, FINE));
-    public static Material AmmoniumChloride = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "ammonium_chloride", 0xffffff, DULL));
-    public static Material AntimonyTrioxide = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "antimony_trioxide", 0xe6e6f0, DULL));
-    public static Material ArsenicTrioxide = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "arsenic_trioxide", 0xffffff, SHINY));
-    public static Material Ash = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "ash", 0x969696, DULL));
-    public static Material BenzoylChloride = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "benzoyl_chloride", 0xf7f5eb, NONE));
-    public static Material Biotite = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "biotite", 0x141e14, METALLIC));
-    public static Material BorosilicateGlass = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "borosilicate_glass", 0xfafafa, NONE));
     public static Material Brick = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "brick", 0x9b5643, ROUGH));
-    public static Material Calcite = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "calcite", 0xfae6dc, DULL));
-    public static Material CalciumChloride = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "calcium_chloride", 0xebebfa, DULL));
-    public static Material CalciumSulfate = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "calcium_sulfate", 0xf0dcd2, DULL));
     public static Material Clay = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "clay", 0xc8c8dc, ROUGH));
-    public static Material CobaltOxide = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "cobalt_oxide", 0x668000, DULL));
-    public static Material Concrete = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "concrete", 0x646464, ROUGH));
-    public static Material CupricOxide = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "cupric_oxide", 0x0f0f0f, DULL));
-    public static Material DarkAsh = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "dark_ash", 0x323232, DULL)).setMassMultiplierAndDivider(2, 1);
-    public static Material DialuminiumTrioxide = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "dialuminium_trioxide", 0xfaf6e6, FINE));
-    public static Material Dibenzene = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "dibenzene", 0xfaf0c8, FINE));
-    public static Material DibenzoylPeroxide = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "dibenzoyl_peroxide", 0xf7f5eb, FINE));
-    public static Material Dichloroethane = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "dichloroethane", 0xf8f6fc, NONE));
     public static Material Energium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "energium", 0xe81e21, NONE));
-    public static Material FerriteMixture = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "ferrite_mixture", 0xb4b4b4, METALLIC));
-    public static Material Ferrosilite = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "ferrosilite", 0x97632a, DULL));
     public static Material Fireclay = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "fireclay", 0xada09b, ROUGH));
-    public static Material Fluorite = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "fluorite", 0xFFB98C, NONE));
-    public static Material GelledToluene = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "gelled_toluene", 0xeeeeee, NONE));
-    public static Material Graphene = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "graphene", 0x808080, DULL));
-    public static Material IndiumGalliumPhosphide = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "indium_gallium_phosphide", 0x570b79, NONE));
-    public static Material IridiumSodiumOxide = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "iridium_sodium_oxide", 0xffffff, NONE));
-    public static Material LithiumChloride = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "lithium_chloride", 0xdedefa, DULL));
-    public static Material Magnesia = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "magnesia", 0xffffff, DULL));
-    public static Material MagnesiumChloride = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "magnesium_chloride", 0xd40d5c, DULL));
-    public static Material Massicot = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "massicot", 0xffdd55, DULL));
-    public static Material Obsidian = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "obsidian", 0x503264, DULL));
-    public static Material PhosphorousPentoxide = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "phosphorous_pentoxide", 0xdcdc00, NONE));
-    public static Material PlatinumGroupSludge = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "platinum_group_sludge", 0x001e00, NONE));
-    public static Material Polydimethylsiloxane = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "polydimethylsiloxane", 0xf5f5f5, NONE));
-    public static Material Potash = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "potash", 0x784237, DULL));
-    public static Material PotassiumFeldspar = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "potassium_feldspar", 0x782828, FINE));
-    public static Material Quicklime = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "quicklime", 0xf0f0f0, DULL));
-    public static Material RareEarth = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "rare_earth", 0x808064, FINE));
-    public static Material RawRubber = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "raw_rubber", 0xccc789, DULL));
-    public static Material RawStyreneButadieneRubber = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "raw_styrene_butadiene_rubber", 0x54403d, SHINY));
-    public static Material ReactionCatalyst = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "reaction_catalyst", 0x43ab43, NONE));
 
 
     /**
      ** Gems
      **/
+
+    public static Material CoalCoke = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "coal_coke", 0x8c8caa, LIGNITE));
+    public static Material LigniteCoke = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "lignite_coke", 0x8c6464, LIGNITE));
 
     public static Material Apatite = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "apatite", 0x78B4FA, DIAMOND));
     public static Material Amber = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "amber", 0xFFB400, RUBY));
@@ -256,13 +215,11 @@ public class GTCoreMaterials {
     public static Material CertusQuartz = AntimatterAPI.register(Material.class,new Material(GTCore.ID, "certus_quartz", 0xd2d2e6, QUARTZ, Ref.MOD_AE));
     public static Material ChargedCertusQuartz = AntimatterAPI.register(Material.class,new Material(GTCore.ID, "charged_certus_quartz", 0xd2d2e6, QUARTZ, Ref.MOD_AE));
     public static Material Fluix = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "fluix", 0x78468C, QUARTZ, Ref.MOD_AE));
-    public static Material CoalCoke = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "coal_coke", 0x8c8caa, LIGNITE));
     public static Material Dilithium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "dilithium", 0xfffafa, DIAMOND));
     public static Material Glass = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "glass", 0xfafafa, SHINY));
     public static Material GreenSapphire = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "green_sapphire", 0x64c882, GEM_H));
     public static Material Jade = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "jade", 0x64ff7d, LAPIS));
     public static Material Lazurite = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "lazurite", 0x6478ff, LAPIS));
-    public static Material LigniteCoke = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "lignite_coke", 0x8c6464, LIGNITE));
     public static Material Monazite = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "monazite", 0x324632, DIAMOND));
     public static Material NetherStar = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "nether_star", 0xffffff, NONE));
     public static Material Olivine = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "olivine", 0x96ff96, RUBY));
@@ -279,6 +236,7 @@ public class GTCoreMaterials {
      ** Plastic
      **/
     public static Material Rubber = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "rubber", 0x141414, SHINY));
+    public static Material Plastic = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "plastic", 0xc8c8c8, DULL)).setDisplayNameString("Plastic (Polyethylene)");
 
 
     /**
