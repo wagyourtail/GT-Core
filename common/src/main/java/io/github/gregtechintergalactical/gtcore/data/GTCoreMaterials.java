@@ -236,7 +236,7 @@ public class GTCoreMaterials {
      ** Plastic
      **/
     public static Material Rubber = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "rubber", 0x141414, SHINY));
-    public static Material Plastic = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "plastic", 0xc8c8c8, DULL)).setDisplayNameString("Plastic (Polyethylene)");
+    public static Material Plastic = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "plastic", 0xc8c8c8, DULL));
 
 
     /**
