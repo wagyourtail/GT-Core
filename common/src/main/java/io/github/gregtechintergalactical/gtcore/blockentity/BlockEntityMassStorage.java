@@ -58,6 +58,12 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                 massStorage.getOrCreateTag().put("inventories", nbt);
             }
             massStorage.getOrCreateTag().putBoolean("taped", true);
+            if (output){
+                massStorage.getOrCreateTag().putBoolean("output", output);
+            }
+            if (outputOverflow){
+                massStorage.getOrCreateTag().putBoolean("outputOverflow", outputOverflow);
+            }
         }
     }
 
@@ -72,15 +78,19 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     public void onPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         super.onPlacedBy(world, pos, state, placer, stack);
         CompoundTag nbt = stack.getTag();
-        if (nbt != null && nbt.contains("taped") && nbt.contains("inventories")){
-            CompoundTag inventories = nbt.getCompound("inventories");
-            this.itemHandler.ifPresent(handler -> {
-                handler.getAll().forEach((f, i) -> {
-                    if (!inventories.contains(f.getId())) return;
-                    i.deserialize(inventories.getCompound(f.getId()));
+        if (nbt != null && nbt.contains("taped")) {
+            if (nbt.contains("inventories")) {
+                CompoundTag inventories = nbt.getCompound("inventories");
+                this.itemHandler.ifPresent(handler -> {
+                    handler.getAll().forEach((f, i) -> {
+                        if (!inventories.contains(f.getId())) return;
+                        i.deserialize(inventories.getCompound(f.getId()));
+                    });
                 });
-            });
-            this.setMachineState(MachineState.ACTIVE);
+                this.setMachineState(MachineState.ACTIVE);
+            }
+            if (nbt.contains("output") && nbt.getBoolean("output")) output = true;
+            if (nbt.contains("outputOverflow") && nbt.getBoolean("outputOverflow")) outputOverflow = true;
         }
     }
 

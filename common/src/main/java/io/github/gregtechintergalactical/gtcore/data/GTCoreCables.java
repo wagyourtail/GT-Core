@@ -29,7 +29,6 @@ public class GTCoreCables {
     public static final Cable<?> CABLE_STEEL = AntimatterAPI.register(Cable.class, new Cable<>(GTCore.ID, Steel, 2, Tier.EV).amps(2));
     public static final Cable<?> CABLE_TITANIUM = AntimatterAPI.register(Cable.class, new Cable<>(GTCore.ID, Titanium, 2, Tier.EV).amps(4));
     public static final Cable<?> CABLE_ALUMINIUM = AntimatterAPI.register(Cable.class, new Cable<>(GTCore.ID, Aluminium, 1, Tier.EV).amps(1));
-    public static final Cable<?> CABLE_GRAPHENE = AntimatterAPI.register(Cable.class, new Cable<>(GTCore.ID, Graphene, 1, Tier.IV).amps(1)); //I);
     public static final Cable<?> CABLE_OSMIUM = AntimatterAPI.register(Cable.class,new Cable<>(GTCore.ID, Osmium, 2, Tier.IV).amps(4));
     public static final Cable<?> CABLE_PLATINUM = AntimatterAPI.register(Cable.class, new Cable<>(GTCore.ID, Platinum, 1, Tier.IV).amps(2));
     public static final Cable<?> CABLE_TUNGSTEN_STEEL = AntimatterAPI.register(Cable.class, new Cable<>(GTCore.ID, TungstenSteel, 2, Tier.IV).amps(3));
@@ -63,7 +62,6 @@ public class GTCoreCables {
     public static final Wire<?> WIRE_STEEL = AntimatterAPI.register(Wire.class, new Wire<>(GTCore.ID, Steel, 4, Tier.EV).amps(2));
     public static final Wire<?> WIRE_TITANIUM = AntimatterAPI.register(Wire.class,  new Wire<>(GTCore.ID, Titanium, 4, Tier.EV).amps(4));
     public static final Wire<?> WIRE_ALUMINIUM = AntimatterAPI.register(Wire.class,new Wire<>(GTCore.ID, Aluminium, 2, Tier.EV).amps(1));
-    public static final Wire<?> WIRE_GRAPHENE = AntimatterAPI.register(Wire.class,  new Wire<>(GTCore.ID, Graphene, 2, Tier.IV).amps(1)); //I);
     public static final Wire<?> WIRE_OSMIUM = AntimatterAPI.register(Wire.class,new Wire<>(GTCore.ID, Osmium, 4, Tier.IV).amps(4));
     public static final Wire<?> WIRE_PLATINUM = AntimatterAPI.register(Wire.class, new Wire<>(GTCore.ID, Platinum, 2, Tier.IV).amps(2));
     public static final Wire<?> WIRE_TUNGSTEN_STEEL = AntimatterAPI.register(Wire.class, new Wire<>(GTCore.ID, TungstenSteel, 2, Tier.IV).amps(3));

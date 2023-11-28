@@ -22,6 +22,10 @@ public class GTCoreLang {
             add("machine.drum.fluid", "Contains %s L of %s");
             add("machine.drum.output", "Currently set to auto output");
             add("machine.drum.capacity", "Capacity: %sL(MB)");
+            add("machine.mass_storage.contains", "Contains: %s of %s");
+            add("machine.mass_storage.display", "Locked to: %s");
+            add("machine.mass_storage.output", "Auto outputs");
+            add("machine.mass_storage.output_overflow", "Auto outputs overflow");
             add(GTCoreBlocks.RUBBER_LEAVES, "Rubber Leaves");
             add(GTCoreBlocks.RUBBER_LOG, "Rubber Log");
             add(GTCoreBlocks.STRIPPED_RUBBER_LOG, "Stripped Rubber Log");
