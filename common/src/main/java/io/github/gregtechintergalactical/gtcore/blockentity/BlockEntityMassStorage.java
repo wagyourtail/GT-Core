@@ -296,11 +296,13 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     public void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putBoolean("outputOverflow", outputOverflow);
+        tag.putBoolean("output", output);
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
         outputOverflow = tag.getBoolean("outputOverflow");
+        output = tag.getBoolean("output");
     }
 }
