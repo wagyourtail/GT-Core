@@ -162,6 +162,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
             } else if (x > 0.25 && x < 0.75){
                 if (y > 0.125 && y < 0.625){
                     ItemStack stored = handler.getItem(0);
+                    ItemStack displayed = itemHandler.map(i -> i.getHandler(SlotType.DISPLAY).getItem(0)).orElse(ItemStack.EMPTY);
                     if (type == AntimatterDefaultTools.SOFT_HAMMER){
                         amountToExtract = stored.getCount();
                         Utils.damageStack(stack, hand, player);
@@ -175,11 +176,11 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                                 return InteractionResult.SUCCESS;
                             }
                         } else {
-                            if (!stored.isEmpty()) {
+                            if (!stored.isEmpty() || !displayed.isEmpty()) {
                                 boolean sucess = false;
                                 for (int i = 0; i < player.getInventory().items.size(); i++){
                                     ItemStack stack1 = player.getInventory().items.get(i);
-                                    if (Utils.equals(stack1, handler.getItem(0))){
+                                    if (Utils.equals(stack1, displayed)){
                                         ItemStack inserted = handler.insertItem(0, stack1.copy(), false);
                                         stack1.shrink(stack1.getCount() - inserted.getCount());
                                         sucess = true;
