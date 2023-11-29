@@ -237,7 +237,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     @Override
     public void serverTick(Level level, BlockPos pos, BlockState state) {
         super.serverTick(level, pos, state);
-        if (output){
+        if (output && level.getGameTime() % 10 == 0){
             processItemOutput(ItemStack.EMPTY);
         }
         if (syncSlots){
