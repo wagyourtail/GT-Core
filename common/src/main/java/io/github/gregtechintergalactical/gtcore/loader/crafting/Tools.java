@@ -210,7 +210,7 @@ public class Tools {
                    if (m.has(FLINT)){
                        if (!AntimatterAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
-                                   of('R', rod, 'P', ingotGem), "PR");
+                                   of('R', rod, 'P', ingotGem), "RP");
                        }
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
