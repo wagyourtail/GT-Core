@@ -15,6 +15,7 @@ public class GTCoreConfig {
     public static BoolValue LOSSY_PART_CRAFTING;
     public static BoolValue HARDER_WOOD;
     public static BoolValue HARDER_LAPOTRON_CRYSTALS;
+    public static BoolValue VANILLA_OVERRIDES;
     public static EnumValue<CircuitRecipeMode> CIRCUIT_RECIPE_MODE;
 
     public static void createConfig(){
@@ -30,6 +31,7 @@ public class GTCoreConfig {
                 "Note: make sure to run /reload after changing this.");
         HARDER_WOOD = section.addBool("harder_wood", AntimatterAPI.isModLoaded("gti"),"If true logs to planks and planks to sticks give half of vanilla amounts - Default: true with gti, false otherwise");
         HARDER_LAPOTRON_CRYSTALS = section.addBool("harder_lapotron_crystals", false, "If true lapotron crystals will require assembling with raw lapotron crystals, which are made with lapotronium dust - Default: false");
+        VANILLA_OVERRIDES = section.addBool("vanilla_overrides", true, "If true enables gregified recipes of some vanilla blocks and items - Default: true");
         CONFIG = AntimatterPlatformUtils.createConfig(GTCore.ID, config);
         CONFIG.register();
     }

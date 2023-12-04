@@ -18,6 +18,7 @@ import io.github.gregtechintergalactical.gtcore.loader.crafting.MaterialRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.Pipes;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.RubberRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.crafting.Tools;
+import io.github.gregtechintergalactical.gtcore.loader.crafting.VanillaRecipes;
 import io.github.gregtechintergalactical.gtcore.loader.machines.AssemblyLoader;
 import io.github.gregtechintergalactical.gtcore.network.MessageCraftingSync;
 import io.github.gregtechintergalactical.gtcore.network.MessageInventorySync;
@@ -50,12 +51,15 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
 import java.util.function.BiConsumer;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
@@ -113,6 +117,9 @@ public class GTCore extends AntimatterMod {
                     l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_lv").getItem());
                     l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_mv").getItem());
                     l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_hv").getItem());
+                    if (GTCoreConfig.VANILLA_OVERRIDES.get()){
+                        l.addAll(Arrays.asList(Items.WOODEN_AXE, Items.WOODEN_HOE, Items.WOODEN_PICKAXE, Items.WOODEN_SWORD, Items.WOODEN_SHOVEL));
+                    }
                 });
             }
             case CLIENT_DATA_INIT -> {
@@ -160,6 +167,7 @@ public class GTCore extends AntimatterMod {
         event.addLoader(MaterialRecipes::loadMaterialRecipes);
         event.addLoader(Pipes::loadRecipes);
         event.addLoader(Tools::init);
+        event.addLoader(VanillaRecipes::loadRecipes);
     }
 
     public static void registerRecipeLoaders(IAntimatterRegistrar registrar, IRecipeRegistrate reg) {
