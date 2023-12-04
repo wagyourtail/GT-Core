@@ -118,8 +118,8 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
     }
 
     @Override
-    public List<String> getInfo() {
-        List<String> list = super.getInfo();
+    public List<String> getInfo(boolean simple) {
+        List<String> list = super.getInfo(simple);
         fluidHandler.ifPresent(f -> {
             FluidHolder stack = f.getInputTanks().getFluidInTank(0);
             String addition = AntimatterPlatformUtils.isFabric() && !stack.isEmpty() ? "/" + stack.getFluidAmount() + "droplets" : "";
