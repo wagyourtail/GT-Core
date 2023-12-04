@@ -12,6 +12,7 @@ import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -29,7 +30,10 @@ import static muramasa.antimatter.recipe.RecipeBuilders.PROBE_BUILDER;
 
 public class Tools {
     public static void init(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
-        final CriterionTriggerInstance in = provider.hasSafeItem(WRENCH.getTag());
+        provider.removeRecipe(new ResourceLocation("farmersdelight", "flint_knife"));
+        provider.removeRecipe(new ResourceLocation("farmersdelight", "iron_knife"));
+        provider.removeRecipe(new ResourceLocation("farmersdelight", "gold_knife"));
+        provider.removeRecipe(new ResourceLocation("farmersdelight", "diamond_knife"));
 
         if (AntimatterAPI.isModLoaded(Ref.MOD_TOP)) {
             ARMOR.getAll().forEach((m, a) ->{
