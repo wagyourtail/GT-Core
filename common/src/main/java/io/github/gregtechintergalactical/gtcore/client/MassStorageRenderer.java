@@ -28,6 +28,8 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 
+import static muramasa.antimatter.material.MaterialTags.WOOD;
+
 
 public class MassStorageRenderer<T extends BlockEntityMassStorage> implements BlockEntityRenderer<T> {
 
@@ -76,7 +78,7 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
             int count = storage.getItem(0).getCount();
             String text = "" + (count == max ? 100 + "%" : count);
             if (!stack.isEmpty())
-                renderText(matrix, bufferIn, combinedOverlayIn, new TextComponent(text).withStyle(count == max ? ChatFormatting.DARK_RED : ChatFormatting.BLACK), Direction.NORTH, 0.03f);
+                renderText(matrix, bufferIn, combinedOverlayIn, new TextComponent(text).withStyle(count == max ? ChatFormatting.DARK_RED : (tile.getMaterial().has(WOOD) ? ChatFormatting.BLACK : ChatFormatting.WHITE)), Direction.NORTH, 0.03f);
         }
     }
 
