@@ -3,7 +3,9 @@ package io.github.gregtechintergalactical.gtcore.data;
 import com.google.common.collect.ImmutableMap;
 import io.github.gregtechintergalactical.gtcore.behaviour.BehaviourElectricWrenchSwitching;
 import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.Data;
 import muramasa.antimatter.Ref;
+import muramasa.antimatter.capability.energy.ItemEnergyHandler;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.item.ItemBattery;
 import muramasa.antimatter.machine.BlockMachine;
@@ -21,16 +23,19 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.Nullable;
 import tesseract.TesseractCapUtils;
 import tesseract.api.gt.IEnergyHandlerItem;
 import tesseract.api.gt.IGTNode;
 
+import java.util.Map;
 import java.util.function.Supplier;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreItems.*;
@@ -58,12 +63,45 @@ public class GTCoreTools {
     public static final AntimatterToolType ELECTRIC_WRENCH_ALT = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "electric_wrench_alt", WRENCH).setTag(WRENCH_ALT).setPowered(100000, 1, 2, 3)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseSound(Ref.WRENCH).addEffectiveBlocks(Blocks.HOPPER).setType(WRENCH).setMaterialTypeItem(WRENCHBIT).addBlacklistedEnchantments(Enchantments.BLOCK_EFFICIENCY).setCustomName("Electric Wrench (Alt)");
     public static final AntimatterToolType CHAINSAW = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "chainsaw", 1, 1, 5, 3.0F, -2.0F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseAction(UseAnim.BLOCK).setPowered(100000, 1, 2, 3).setMaterialTypeItem(CHAINSAWBIT).addEffectiveMaterials(WOOD, PLANT, REPLACEABLE_PLANT, BAMBOO, LEAVES).addEffectiveBlocks(Blocks.COBWEB).addTags("axe", "saw");
 
-    public static final AntimatterToolType JACKHAMMER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "jackhammer", 1, 2, 10, 1.0F, -3.2F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setPowered(100000, 1, 2, 3).setToolSpeedMultiplier(12.0f).setUseSound(Ref.DRILL).addEffectiveBlockTags(TagUtils.getForgelikeBlockTag("stone"), TagUtils.getForgelikeBlockTag("cobblestone")).addEffectiveBlocks(Blocks.BASALT, Blocks.NETHERRACK, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN).setOverlayLayers(2);
+    public static final AntimatterToolType JACKHAMMER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "jackhammer", 1, 2, 10, 1.0F, -3.2F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setPowered(100000, 3).setToolSpeedMultiplier(2.0f).setUseSound(Ref.DRILL).addEffectiveBlockTags(TagUtils.getForgelikeBlockTag("stone"), TagUtils.getForgelikeBlockTag("cobblestone")).addEffectiveBlocks(Blocks.BASALT, Blocks.NETHERRACK, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, Blocks.DRIPSTONE_BLOCK).setOverlayLayers(2);
 
     public static class PoweredTool extends MaterialTool {
 
         public PoweredTool(String domain, AntimatterToolType type, AntimatterItemTier tier, Properties properties, int energyTier) {
             super(domain, type, tier, properties, energyTier);
+        }
+
+        @Override
+        public float getDestroySpeed(ItemStack stack, BlockState state) {
+            return super.getDestroySpeed(stack, state) * (3 * energyTier);
+        }
+
+        public int damage(ItemStack stack, int amount) {
+            if (!getAntimatterToolType().isPowered()) return amount;
+            IEnergyHandlerItem h = TesseractCapUtils.getEnergyHandlerItem(stack).orElse(null);
+            if (!(h instanceof ItemEnergyHandler)) {
+                return amount;
+            }
+            long currentEnergy = h.getEnergy();
+            Map<Enchantment, Integer> enchants = EnchantmentHelper.getEnchantments(stack);
+            int energyEfficiency = enchants.getOrDefault(Data.ENERGY_EFFICIENCY, 0);
+            int defaultUse = (int) (25 * Math.pow(2, energyTier - 1));
+            if (this.type == JACKHAMMER) defaultUse /=2;
+            int energyUse = Math.max(1, defaultUse - (int)((energyEfficiency * 0.1f) * defaultUse));
+            int multipliedDamage = amount * energyUse;
+            if (Ref.RNG.nextInt(20) == 0) return amount; // 1/20 chance of taking durability off the tool
+            else if (currentEnergy >= multipliedDamage) {
+                h.extractEu(multipliedDamage, false);
+                stack.setTag(h.getContainer().getTag());
+                //tag.putLong(Ref.KEY_TOOL_DATA_ENERGY, currentEnergy - multipliedDamage); // Otherwise take energy off of tool if energy is larger than multiplied damage
+                return 0; // Nothing is taken away from main durability
+            } else { // Lastly, set energy to 0 and take leftovers off of tool durability itself
+                int leftOver = (int) (multipliedDamage - currentEnergy);
+                h.extractEu(currentEnergy, false);
+                stack.setTag(h.getContainer().getTag());
+                //tag.putLong(Ref.KEY_TOOL_DATA_ENERGY, 0);
+                return Math.max(1, leftOver / defaultUse);
+            }
         }
 
         @Override
