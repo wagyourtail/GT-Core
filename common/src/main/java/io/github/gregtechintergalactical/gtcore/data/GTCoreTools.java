@@ -73,7 +73,7 @@ public class GTCoreTools {
 
         @Override
         public float getDestroySpeed(ItemStack stack, BlockState state) {
-            return super.getDestroySpeed(stack, state) * (3 * energyTier);
+            return state.getBlock() == Blocks.AIR || isCorrectToolForDrops(stack, state) ? super.getDestroySpeed(stack, state) * (3 * energyTier) : 1.0f;
         }
 
         public int damage(ItemStack stack, int amount) {
