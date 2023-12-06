@@ -122,14 +122,11 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
             return InteractionResult.SUCCESS;
         }
         if (type == AntimatterDefaultTools.WRENCH_ALT){
-            Direction hitSide = Utils.getInteractSide(hit);
-            if (hitSide == this.getFacing()){
-                output = !output;
-                //TODO: translation component
-                player.sendMessage(Utils.literal(output ? "Auto output on" : "Auto output off"), player.getUUID());
-                Utils.damageStack(player.getItemInHand(hand), hand, player);
-                return InteractionResult.SUCCESS;
-            }
+            output = !output;
+            //TODO: translation component
+            player.sendMessage(Utils.literal(output ? "Auto output on" : "Auto output off"), player.getUUID());
+            Utils.damageStack(player.getItemInHand(hand), hand, player);
+            return InteractionResult.SUCCESS;
         }
 
         if (hit.getDirection().getAxis().isHorizontal() && hit.getDirection() == this.getFacing() && handler != null){
