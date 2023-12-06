@@ -5,8 +5,10 @@ import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreTags;
 import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemTagProvider;
+import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -37,6 +39,10 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(ItemTags.WOODEN_SLABS).add(GTCoreBlocks.RUBBER_SLAB.asItem());
         this.tag(ItemTags.WOODEN_STAIRS).add(GTCoreBlocks.RUBBER_STAIRS.asItem());
         this.tag(ItemTags.WOODEN_TRAPDOORS).add(GTCoreBlocks.RUBBER_TRAPDOOR.asItem());
+        var knives = AntimatterAPI.all(IAntimatterTool.class).stream().filter(i -> i.getAntimatterToolType() == AntimatterDefaultTools.KNIFE).map(IAntimatterTool::getItem).toArray(Item[]::new);
+        if (AntimatterAPI.isModLoaded("farmersdelight")) {
+            this.tag(TagUtils.getItemTag(new ResourceLocation("farmersdelight:tools/knives"))).add(knives);
+        }
         if (AntimatterAPI.isModLoaded("tfc")){
             this.tag(ItemTags.WOODEN_FENCES).add(AntimatterAPI.get(Item.class, "rubber_log_fence", GTCore.ID));
             this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "lumber"))).add(AntimatterAPI.get(Item.class, "rubber_lumber", GTCore.ID));
