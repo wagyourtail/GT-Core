@@ -2,6 +2,7 @@ package io.github.gregtechintergalactical.gtcore.data;
 
 import com.google.common.collect.ImmutableMap;
 import io.github.gregtechintergalactical.gtcore.behaviour.BehaviourElectricWrenchSwitching;
+import io.github.gregtechintergalactical.gtcore.behaviour.BehaviourKnifeTooltip;
 import io.github.gregtechintergalactical.gtcore.behaviour.BehaviourMultitoolSwitching;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Data;
@@ -19,12 +20,15 @@ import muramasa.antimatter.tool.MaterialSword;
 import muramasa.antimatter.tool.MaterialTool;
 import muramasa.antimatter.tool.behaviour.*;
 import muramasa.antimatter.util.TagUtils;
+import muramasa.antimatter.util.Utils;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -38,6 +42,7 @@ import tesseract.TesseractCapUtils;
 import tesseract.api.gt.IEnergyHandlerItem;
 import tesseract.api.gt.IGTNode;
 
+import java.util.List;
 import java.util.Map;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreItems.*;
@@ -124,6 +129,13 @@ public class GTCoreTools {
         }
 
         @Override
+        public void onGenericAddInformation(ItemStack stack, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Utils.translatable("tooltip.gtcore.pocket_multitool"));
+            super.onGenericAddInformation(stack, tooltip, flag);
+            tooltip.add(Utils.translatable("tooltip.gtcore.pocket_multitool.switch_mode"));
+        }
+
+        @Override
         public int getItemColor(ItemStack stack, @Nullable Block block, int i) {
             if (i == 1) return -1;
             return super.getItemColor(stack, block, i);
@@ -143,6 +155,7 @@ public class GTCoreTools {
         POCKET_MULTITOOL_SCREWDRIVER.addBehaviour(BehaviourMultitoolSwitching.INSTANCE);
         POCKET_MULTITOOL_WIRE_CUTTER.addBehaviour(BehaviourMultitoolSwitching.INSTANCE);
         POCKET_MULTITOOL_SCISSORS.addBehaviour(BehaviourMultitoolSwitching.INSTANCE);
+        POCKET_MULTITOOL_SCISSORS.addBehaviour(BehaviourShearing.INSTANCE);
         GTCoreTools.DRILL.setBrokenItems(ImmutableMap.of("drill_lv", i -> getBrokenItem(i, PowerUnitLV), "drill_mv", i -> getBrokenItem(i, PowerUnitMV), "drill_hv", i -> getBrokenItem(i, PowerUnitHV)));
         GTCoreTools.CHAINSAW.setBrokenItems(ImmutableMap.of("chainsaw_lv", i -> getBrokenItem(i, PowerUnitLV), "chainsaw_mv", i -> getBrokenItem(i, PowerUnitMV), "chainsaw_hv", i -> getBrokenItem(i, PowerUnitHV)));
         GTCoreTools.ELECTRIC_WRENCH.setBrokenItems(ImmutableMap.of("electric_wrench_lv", i -> getBrokenItem(i, PowerUnitLV), "electric_wrench_mv", i -> getBrokenItem(i, PowerUnitMV), "electric_wrench_hv", i -> getBrokenItem(i, PowerUnitHV)));
@@ -150,6 +163,7 @@ public class GTCoreTools {
         GTCoreTools.BUZZSAW.setBrokenItems(ImmutableMap.of("buzzsaw_lv", i -> getBrokenItem(i, PowerUnitLV), "buzzsaw_mv", i -> getBrokenItem(i, PowerUnitMV), "buzzsaw_hv", i -> getBrokenItem(i, PowerUnitHV)));
         GTCoreTools.ELECTRIC_SCREWDRIVER.setBrokenItems(ImmutableMap.of("electric_screwdriver_lv", i -> getBrokenItem(i, SmallPowerUnit)));
         GTCoreTools.JACKHAMMER.setBrokenItems(ImmutableMap.of("jackhammer_lv", i -> getBrokenItem(i, PowerUnitLV), "jackhammer_mv", i -> getBrokenItem(i, PowerUnitMV), "jackhammer_hv", i -> getBrokenItem(i, PowerUnitHV)));
+        KNIFE.addBehaviour(BehaviourKnifeTooltip.INSTANCE);
         if (side.isClient()) clientInit();
     }
 

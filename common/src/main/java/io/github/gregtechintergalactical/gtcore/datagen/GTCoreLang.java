@@ -57,6 +57,10 @@ public class GTCoreLang {
             add("tooltip.gtcore.tape.full_roll", "Full Roll");
             add("tooltip.gtcore.tape.can_fix_anything", "Can fix anything!*");
             add("tooltip.gtcore.tape.remaining_uses", "Remaining Uses: %s");
+            add("tooltip.gtcore.pocket_multitool", "6 useful Tools in one!");
+            add("tooltip.gtcore.pocket_multitool.switch_mode", "Sneak Rightclick to switch Mode");
+            add("tooltip.gtcore.knife", "Can be used to harvest rubber from spots on rubber trees");
+
         }
     }
 }
