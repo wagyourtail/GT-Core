@@ -67,7 +67,6 @@ public class GTCoreTools {
 
     public static final AntimatterToolType JACKHAMMER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "jackhammer", 1, 2, 10, 1.0F, -3.2F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setPowered(100000, 3).setToolSpeedMultiplier(2.0f).setUseSound(Ref.DRILL).addEffectiveBlockTags(TagUtils.getForgelikeBlockTag("stone"), TagUtils.getForgelikeBlockTag("cobblestone")).addEffectiveBlocks(Blocks.BASALT, Blocks.NETHERRACK, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, Blocks.DRIPSTONE_BLOCK).setOverlayLayers(2);
 
-    public static final AntimatterToolType SCISSORS = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "scissors", 1, 2, 2, 1.0f, -1.5f, false));
     public static final AntimatterToolType POCKET_MULTITOOL = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new);
     public static final AntimatterToolType POCKET_MULTITOOL_KNIFE = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_knife", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolKnifeTool::new).setCustomName("Pocket Multitool (Knife)").setTag(new ResourceLocation(Ref.ID, "knives"));
     public static final AntimatterToolType POCKET_MULTITOOL_SAW = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_saw", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Saw)").setTag(SAW);
@@ -87,32 +86,11 @@ public class GTCoreTools {
             return super.getDefaultMiningSpeed(stack)  * (3 * energyTier);
         }
 
-        public int damage(ItemStack stack, int amount) {
-            if (!getAntimatterToolType().isPowered()) return amount;
-            IEnergyHandlerItem h = TesseractCapUtils.getEnergyHandlerItem(stack).orElse(null);
-            if (!(h instanceof ItemEnergyHandler)) {
-                return amount;
-            }
-            long currentEnergy = h.getEnergy();
-            Map<Enchantment, Integer> enchants = EnchantmentHelper.getEnchantments(stack);
-            int energyEfficiency = enchants.getOrDefault(Data.ENERGY_EFFICIENCY, 0);
+        @Override
+        public int getDefaultEnergyUse() {
             int defaultUse = (int) (25 * Math.pow(2, energyTier - 1));
             if (this.type == JACKHAMMER) defaultUse /=2;
-            int energyUse = Math.max(1, defaultUse - (int)((energyEfficiency * 0.1f) * defaultUse));
-            int multipliedDamage = amount * energyUse;
-            if (Ref.RNG.nextInt(20) == 0) return amount; // 1/20 chance of taking durability off the tool
-            else if (currentEnergy >= multipliedDamage) {
-                h.extractEu(multipliedDamage, false);
-                stack.setTag(h.getContainer().getTag());
-                //tag.putLong(Ref.KEY_TOOL_DATA_ENERGY, currentEnergy - multipliedDamage); // Otherwise take energy off of tool if energy is larger than multiplied damage
-                return 0; // Nothing is taken away from main durability
-            } else { // Lastly, set energy to 0 and take leftovers off of tool durability itself
-                int leftOver = (int) (multipliedDamage - currentEnergy);
-                h.extractEu(currentEnergy, false);
-                stack.setTag(h.getContainer().getTag());
-                //tag.putLong(Ref.KEY_TOOL_DATA_ENERGY, 0);
-                return Math.max(1, leftOver / defaultUse);
-            }
+            return defaultUse;
         }
 
         @Override

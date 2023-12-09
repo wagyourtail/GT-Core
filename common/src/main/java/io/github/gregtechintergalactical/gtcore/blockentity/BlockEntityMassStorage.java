@@ -1,5 +1,6 @@
 package io.github.gregtechintergalactical.gtcore.blockentity;
 
+import io.github.gregtechintergalactical.gtcore.data.GTCoreTools;
 import io.github.gregtechintergalactical.gtcore.data.SlotTypes;
 import io.github.gregtechintergalactical.gtcore.item.ItemTape;
 import io.github.gregtechintergalactical.gtcore.machine.MassStorageMachine;
@@ -96,7 +97,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
 
     @Override
     public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable AntimatterToolType type) {
-        if (type == AntimatterDefaultTools.KNIFE && this.getMachineState() == MachineState.ACTIVE){
+        if ((type == AntimatterDefaultTools.KNIFE || type == AntimatterDefaultTools.SCISSORS) && this.getMachineState() == MachineState.ACTIVE){
             setMachineState(MachineState.IDLE);
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             return InteractionResult.SUCCESS;
