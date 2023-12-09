@@ -116,6 +116,13 @@ public class GTCoreTools {
         }
 
         @Override
+        public void onGenericAddInformation(ItemStack stack, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Utils.translatable("tooltip.gtcore.pocket_multitool"));
+            super.onGenericAddInformation(stack, tooltip, flag);
+            tooltip.add(Utils.translatable("tooltip.gtcore.pocket_multitool.switch_mode"));
+        }
+
+        @Override
         public int getItemColor(ItemStack stack, @Nullable Block block, int i) {
             if (i == 1) return -1;
             return super.getItemColor(stack, block, i);
