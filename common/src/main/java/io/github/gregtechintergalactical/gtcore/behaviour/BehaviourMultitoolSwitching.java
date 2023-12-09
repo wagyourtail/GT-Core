@@ -21,14 +21,14 @@ public class BehaviourMultitoolSwitching implements IItemRightClick<IAntimatterT
         ItemStack stack = player.getItemInHand(usedHand);
         if (player.isShiftKeyDown() && !level.isClientSide){
             var toolType = instance.getAntimatterToolType();
-            String id = getId();
-            if (toolType == POCKET_MULTITOOL) id = getId() + "_knife";
-            if (toolType == POCKET_MULTITOOL_KNIFE) id = getId().replace("knife", "saw");
-            if (toolType == POCKET_MULTITOOL_SAW) id = getId().replace("saw", "file");
-            if (toolType == POCKET_MULTITOOL_FILE) id = getId().replace("file", "screwdriver");
-            if (toolType == POCKET_MULTITOOL_SCREWDRIVER) id = getId().replace("screwdriver", "wire_cutter");
-            if (toolType == POCKET_MULTITOOL_WIRE_CUTTER) id = getId().replace("wire_cutter", "scissors");
-            if (toolType == POCKET_MULTITOOL_SCISSORS) id = getId().replace("_scissors", "");
+            String id = instance.getId();
+            if (toolType == POCKET_MULTITOOL) id = id + "_knife";
+            if (toolType == POCKET_MULTITOOL_KNIFE) id = id.replace("knife", "saw");
+            if (toolType == POCKET_MULTITOOL_SAW) id = id.replace("saw", "file");
+            if (toolType == POCKET_MULTITOOL_FILE) id = id.replace("file", "screwdriver");
+            if (toolType == POCKET_MULTITOOL_SCREWDRIVER) id = id.replace("screwdriver", "wire_cutter");
+            if (toolType == POCKET_MULTITOOL_WIRE_CUTTER) id = id.replace("wire_cutter", "scissors");
+            if (toolType == POCKET_MULTITOOL_SCISSORS) id = id.replace("_scissors", "");
             Item newWrench = AntimatterAPI.get(IAntimatterTool.class, id).getItem();
             ItemStack newStack = new ItemStack(newWrench);
             newStack.setTag(stack.getTag());
