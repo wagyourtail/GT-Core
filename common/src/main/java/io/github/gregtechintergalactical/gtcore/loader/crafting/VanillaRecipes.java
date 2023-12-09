@@ -47,6 +47,14 @@ public class VanillaRecipes {
                 Items.HOPPER, of('I', PLATE.getMaterialTag(Iron), 'W', WRENCH.getTag(), 'C', ForgeCTags.CHESTS), "IWI", "ICI", " I ");
         provider.addStackRecipe(consumer, "minecraft", "", "cauldrons", new ItemStack(Items.CAULDRON),
                 of('P', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "P P", "PHP", "PPP");
+        provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.IRON_DOOR, 3),
+                of('I', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "II ", "IIH", "II ");
+        provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.IRON_TRAPDOOR),
+                of('I', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "II ", "IIH");
+        provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.LIGHT_WEIGHTED_PRESSURE_PLATE),
+                of('I', PLATE.getMaterialTag(Gold), 'H', HAMMER.getTag()), "IIH");
+        provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.HEAVY_WEIGHTED_PRESSURE_PLATE),
+                of('I', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "IIH");
         provider.addItemRecipe(consumer, "vanilla_tools", Items.IRON_AXE,
                 of('P', PLATE.getMaterialTag(Iron), 'I', INGOT.getMaterialTag(Iron), 'F', FILE.getTag(), 'H', HAMMER.getTag(), 'R', ROD.getMaterialTag(Wood)), "PIH", "PR ", "FR ");
         provider.addItemRecipe(consumer, "vanilla_tools", Items.IRON_PICKAXE,
