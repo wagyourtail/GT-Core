@@ -120,6 +120,15 @@ public class GTCore extends AntimatterMod {
                     if (GTCoreConfig.VANILLA_OVERRIDES.get()){
                         l.addAll(Arrays.asList(Items.WOODEN_AXE, Items.WOODEN_HOE, Items.WOODEN_PICKAXE, Items.WOODEN_SWORD, Items.WOODEN_SHOVEL));
                     }
+                    AntimatterAPI.all(IAntimatterTool.class).stream().filter(t -> {
+                        var toolType = t.getAntimatterToolType();
+                        return toolType == GTCoreTools.POCKET_MULTITOOL_SCISSORS
+                                || toolType == GTCoreTools.POCKET_MULTITOOL_FILE
+                                || toolType == GTCoreTools.POCKET_MULTITOOL_KNIFE
+                                || toolType == GTCoreTools.POCKET_MULTITOOL_SAW
+                                || toolType == GTCoreTools.POCKET_MULTITOOL_SCREWDRIVER
+                                || toolType == GTCoreTools.POCKET_MULTITOOL_WIRE_CUTTER;
+                    }).forEach(tool -> l.add(tool.getItem()));
                 });
             }
             case CLIENT_DATA_INIT -> {
