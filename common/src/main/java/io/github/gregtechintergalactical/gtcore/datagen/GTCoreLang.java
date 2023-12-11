@@ -3,7 +3,11 @@ package io.github.gregtechintergalactical.gtcore.datagen;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
+import muramasa.antimatter.item.ItemBasic;
+
+import static muramasa.antimatter.util.Utils.lowerUnderscoreToUpperSpaced;
 
 public class GTCoreLang {
     public static class en_US extends AntimatterLanguageProvider {
@@ -17,8 +21,8 @@ public class GTCoreLang {
         }
 
         @Override
-        protected void addTranslations() {
-            super.addTranslations();
+        protected void english(String domain, String locale) {
+            super.english(domain, locale);
             add("machine.drum.fluid", "Contains %s L of %s");
             add("machine.drum.output", "Currently set to auto output");
             add("machine.drum.capacity", "Capacity: %sL(MB)");
@@ -60,7 +64,12 @@ public class GTCoreLang {
             add("tooltip.gtcore.pocket_multitool", "6 useful Tools in one!");
             add("tooltip.gtcore.pocket_multitool.switch_mode", "Sneak Rightclick to switch Mode");
             add("tooltip.gtcore.knife", "Can be used to harvest rubber from spots on rubber trees");
-
+            AntimatterAPI.all(ItemBasic.class, domain).forEach(i -> override(i.getDescriptionId(), lowerUnderscoreToUpperSpaced(i.getId())
+                    .replace("Lv", "(LV)")
+                    .replace("Mv", "(MV)")
+                    .replace("Hv", "(HV)")
+                    .replace("Ev", "(EV)")
+                    .replace("Iv", "(IV)")));
         }
     }
 }
