@@ -247,7 +247,6 @@ public class Tools {
 
     private static void toolPartRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
         PICKAXE_HEAD.all().forEach(m -> {
-            if (m.has(NOSMASH)) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", PICKAXE_HEAD.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GGG", "F  ");
@@ -258,7 +257,6 @@ public class Tools {
             }
         });
         AXE_HEAD.all().forEach(m -> {
-            if (m.has(NOSMASH)) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", AXE_HEAD.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GG", "G ", "F ");
@@ -269,7 +267,6 @@ public class Tools {
             }
         });
         SHOVEL_HEAD.all().forEach(m -> {
-            if (m.has(NOSMASH)) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SHOVEL_HEAD.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "FG");
@@ -280,7 +277,6 @@ public class Tools {
             }
         });
         HOE_HEAD.all().forEach(m -> {
-            if (m.has(NOSMASH)) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", HOE_HEAD.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GG", "F ");
@@ -291,7 +287,6 @@ public class Tools {
             }
         });
         SWORD_BLADE.all().forEach(m -> {
-            if (m.has(NOSMASH)) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SWORD_BLADE.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "FG", " G");
@@ -302,7 +297,6 @@ public class Tools {
             }
         });
         HAMMER_HEAD.all().forEach(m -> {
-            if (m.has(NOSMASH)) return;
             if (!m.has(GEM) && !m.has(INGOT)) return;
             TagKey<Item> input = m.has(GEM) ? GEM.getMaterialTag(m) : INGOT.getMaterialTag(m);
             TagKey<Item> tool = m.has(GEM) ? FILE.getTag() : HAMMER.getTag();
@@ -310,7 +304,6 @@ public class Tools {
                     of('I', input, 'H', tool), "II ", "IIH", "II ");
         });
         FILE_HEAD.all().forEach(m -> {
-            if (m.has(NOSMASH)) return;
             if (!m.has(GEM) && !m.has(INGOT)) return;
             TagKey<Item> input = m.has(GEM) ? GEM.getMaterialTag(m) : m.has(PLATE) ? PLATE.getMaterialTag(m) : INGOT.getMaterialTag(m);
             TagKey<Item> tool = m.has(GEM) ? FILE.getTag() : KNIFE.getTag();
@@ -318,7 +311,6 @@ public class Tools {
                     of('I', input, 'H', tool), "I ", "IH");
         });
         SAW_BLADE.all().forEach(m -> {
-            if (m.has(NOSMASH)) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SAW_BLADE.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GG", "F ");
@@ -329,7 +321,7 @@ public class Tools {
             }
         });
         SCREWDRIVER_TIP.all().forEach(m -> {
-            if (m.has(NOSMASH) || !m.has(ROD)) return;
+            if (!m.has(ROD)) return;
             provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCREWDRIVER_TIP.get(m),
                     of('R', ROD.getMaterialTag(m), 'F', FILE.getTag(), 'H', HAMMER.getTag()), "HR", "RF");
         });
