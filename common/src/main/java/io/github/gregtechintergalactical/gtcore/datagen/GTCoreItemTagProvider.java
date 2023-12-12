@@ -39,9 +39,8 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(ItemTags.WOODEN_SLABS).add(GTCoreBlocks.RUBBER_SLAB.asItem());
         this.tag(ItemTags.WOODEN_STAIRS).add(GTCoreBlocks.RUBBER_STAIRS.asItem());
         this.tag(ItemTags.WOODEN_TRAPDOORS).add(GTCoreBlocks.RUBBER_TRAPDOOR.asItem());
-        var knives = AntimatterAPI.all(IAntimatterTool.class).stream().filter(i -> i.getAntimatterToolType() == AntimatterDefaultTools.KNIFE).map(IAntimatterTool::getItem).toArray(Item[]::new);
         if (AntimatterAPI.isModLoaded("farmersdelight")) {
-            this.tag(TagUtils.getItemTag(new ResourceLocation("farmersdelight:tools/knives"))).add(knives);
+            this.tag(TagUtils.getItemTag(new ResourceLocation("farmersdelight:tools/knives"))).addTag(AntimatterDefaultTools.KNIFE.getTag());
         }
         if (AntimatterAPI.isModLoaded("tfc")){
             this.tag(ItemTags.WOODEN_FENCES).add(AntimatterAPI.get(Item.class, "rubber_log_fence", GTCore.ID));
