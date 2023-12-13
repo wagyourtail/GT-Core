@@ -73,12 +73,12 @@ public class GTCoreTools {
     public static final AntimatterToolType JACKHAMMER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "jackhammer", 1, 2, 10, 1.0F, -3.2F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setPowered(100000, 3).setToolSpeedMultiplier(2.0f).setUseSound(Ref.DRILL).addEffectiveBlockTags(TagUtils.getForgelikeBlockTag("stone"), TagUtils.getForgelikeBlockTag("cobblestone")).addEffectiveBlocks(Blocks.BASALT, Blocks.NETHERRACK, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, Blocks.DRIPSTONE_BLOCK).setOverlayLayers(2);
 
     public static final AntimatterToolType POCKET_MULTITOOL = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setMaterialTypeItem(RING);
-    public static final AntimatterToolType POCKET_MULTITOOL_KNIFE = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_knife", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolKnifeTool::new).setCustomName("Pocket Multitool (Knife)").setTag(new ResourceLocation(Ref.ID, "knives")).setType(KNIFE);
-    public static final AntimatterToolType POCKET_MULTITOOL_SAW = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_saw", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Saw)").setType(SAW).setTag(SAW);
-    public static final AntimatterToolType POCKET_MULTITOOL_FILE = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_file", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (File)").setType(FILE).setTag(FILE);
-    public static final AntimatterToolType POCKET_MULTITOOL_SCREWDRIVER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_screwdriver", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Screwdriver)").setTag(SCREWDRIVER).setType(SCREWDRIVER).setUseSound(Ref.WRENCH);
-    public static final AntimatterToolType POCKET_MULTITOOL_WIRE_CUTTER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_wire_cutter", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Wire Cutter)").setTag(WIRE_CUTTER).setType(WIRE_CUTTER).setUseSound(SoundEvents.SHEEP_SHEAR).addEffectiveMaterials(WOOL, SPONGE, WEB, CLOTH_DECORATION);
-    public static final AntimatterToolType POCKET_MULTITOOL_SCISSORS = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_scissors", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Scissors)").setTag(SCISSORS).setType(SCISSORS);
+    public static final AntimatterToolType POCKET_MULTITOOL_KNIFE = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_knife", KNIFE)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Knife)").setTag(new ResourceLocation(Ref.ID, "knives")).setType(KNIFE);
+    public static final AntimatterToolType POCKET_MULTITOOL_SAW = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_saw", SAW)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Saw)").setType(SAW).setTag(SAW);
+    public static final AntimatterToolType POCKET_MULTITOOL_FILE = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_file", FILE)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (File)").setType(FILE).setTag(FILE);
+    public static final AntimatterToolType POCKET_MULTITOOL_SCREWDRIVER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_screwdriver", SCREWDRIVER)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Screwdriver)").setTag(SCREWDRIVER).setType(SCREWDRIVER).setUseSound(Ref.WRENCH);
+    public static final AntimatterToolType POCKET_MULTITOOL_WIRE_CUTTER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_wire_cutter", WIRE_CUTTER)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Wire Cutter)").setTag(WIRE_CUTTER).setType(WIRE_CUTTER).setUseSound(SoundEvents.SHEEP_SHEAR).addEffectiveMaterials(WOOL, SPONGE, WEB, CLOTH_DECORATION);
+    public static final AntimatterToolType POCKET_MULTITOOL_SCISSORS = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_scissors", SCISSORS)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Scissors)").setTag(SCISSORS).setType(SCISSORS);
 
     public static class PoweredTool extends MaterialTool {
 
@@ -112,26 +112,6 @@ public class GTCoreTools {
     public static class PocketMultitoolTool extends MaterialTool{
 
         public PocketMultitoolTool(String domain, AntimatterToolType type, AntimatterItemTier tier, Properties properties) {
-            super(domain, type, tier, properties);
-        }
-
-        @Override
-        public void onGenericAddInformation(ItemStack stack, List<Component> tooltip, TooltipFlag flag) {
-            tooltip.add(Utils.translatable("tooltip.gtcore.pocket_multitool"));
-            super.onGenericAddInformation(stack, tooltip, flag);
-            tooltip.add(Utils.translatable("tooltip.gtcore.pocket_multitool.switch_mode"));
-        }
-
-        @Override
-        public int getItemColor(ItemStack stack, @Nullable Block block, int i) {
-            if (i == 1) return -1;
-            return super.getItemColor(stack, block, i);
-        }
-    }
-
-    public static class PocketMultitoolKnifeTool extends MaterialSword {
-
-        public PocketMultitoolKnifeTool(String domain, AntimatterToolType type, AntimatterItemTier tier, Properties properties) {
             super(domain, type, tier, properties);
         }
 
