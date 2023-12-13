@@ -16,7 +16,7 @@ public class GTCommonEvents {
 
     private static int BEAR_INVENTORY_COOL_DOWN = 5;
 
-    private static final UUID BEAR_UUID = UUID.fromString("1964e3d1-6500-40e7-9ff2-e6161d41a8c2");
+    public static final UUID BEAR_UUID = UUID.fromString("1964e3d1-6500-40e7-9ff2-e6161d41a8c2");
 
     public static void onPlayerTick(boolean end, boolean logicalServer, Player player){
         if (end && logicalServer && !player.isCreative() && player.getInventory().contains(AntimatterMaterialTypes.INGOT_HOT.getTag())){
