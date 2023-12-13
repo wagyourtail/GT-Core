@@ -2,7 +2,9 @@ package io.github.gregtechintergalactical.gtcore.loader.crafting;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.GTCoreConfig;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreTags;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
@@ -111,24 +113,28 @@ public class VanillaRecipes {
         provider.removeRecipe(new ResourceLocation("energizedpower", "smelting/charcoal_from_smelting_sawdust_block"));
     }
 
-    private static void addWoodRecipe(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider, String domain, TagKey<Item> log, Item plank){
-        provider.shapeless(consumer, domain, "", "planks", new ItemStack(plank, 2), log);
-        provider.addStackRecipe(consumer, domain, AntimatterPlatformUtils.getIdFromItem(plank).getPath() + "_4", "planks", new ItemStack(plank, 4), of('S', SAW.getTag(), 'P', log), "S", "P");
+    static void addWoodRecipe(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider, String domain, TagKey<Item> log, Item plank){
+        int amount1 = GTCoreConfig.HARDER_WOOD.get() ? 2 : 4;
+        int amount2 = GTCoreConfig.HARDER_WOOD.get() ? 4 : 6;
+        provider.shapeless(consumer, domain, "", "planks", new ItemStack(plank, amount1), log);
+        provider.addStackRecipe(consumer, domain, AntimatterPlatformUtils.getIdFromItem(plank).getPath() + "_" + amount2, "planks", new ItemStack(plank, amount2), of('S', SAW.getTag(), 'P', log), "S", "P");
     }
 
     private static void loadWood(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
         if (GTCoreConfig.HARDER_WOOD.get()){
             provider.addStackRecipe(consumer, "minecraft", "", "wood_stuff", new ItemStack(Items.STICK, 2), of('P', ItemTags.PLANKS), "P", "P");
             provider.addStackRecipe(consumer, GTCore.ID, "sticks_4", "wood_stuff", new ItemStack(Items.STICK, 4), of('P', ItemTags.PLANKS, 'S', SAW.getTag()), "S", "P", "P");
-            addWoodRecipe(consumer, provider, "minecraft", ItemTags.OAK_LOGS, Items.OAK_PLANKS);
-            addWoodRecipe(consumer, provider, "minecraft", ItemTags.BIRCH_LOGS, Items.BIRCH_PLANKS);
-            addWoodRecipe(consumer, provider, "minecraft", ItemTags.SPRUCE_LOGS, Items.SPRUCE_PLANKS);
-            addWoodRecipe(consumer, provider, "minecraft", ItemTags.JUNGLE_LOGS, Items.JUNGLE_PLANKS);
-            addWoodRecipe(consumer, provider, "minecraft", ItemTags.ACACIA_LOGS, Items.ACACIA_PLANKS);
-            addWoodRecipe(consumer, provider, "minecraft", ItemTags.DARK_OAK_LOGS, Items.DARK_OAK_PLANKS);
-            addWoodRecipe(consumer, provider, "minecraft", ItemTags.CRIMSON_STEMS, Items.CRIMSON_PLANKS);
-            addWoodRecipe(consumer, provider, "minecraft", ItemTags.WARPED_STEMS, Items.WARPED_PLANKS);
+
         }
+        addWoodRecipe(consumer, provider, "minecraft", ItemTags.OAK_LOGS, Items.OAK_PLANKS);
+        addWoodRecipe(consumer, provider, "minecraft", ItemTags.BIRCH_LOGS, Items.BIRCH_PLANKS);
+        addWoodRecipe(consumer, provider, "minecraft", ItemTags.SPRUCE_LOGS, Items.SPRUCE_PLANKS);
+        addWoodRecipe(consumer, provider, "minecraft", ItemTags.JUNGLE_LOGS, Items.JUNGLE_PLANKS);
+        addWoodRecipe(consumer, provider, "minecraft", ItemTags.ACACIA_LOGS, Items.ACACIA_PLANKS);
+        addWoodRecipe(consumer, provider, "minecraft", ItemTags.DARK_OAK_LOGS, Items.DARK_OAK_PLANKS);
+        addWoodRecipe(consumer, provider, "minecraft", ItemTags.CRIMSON_STEMS, Items.CRIMSON_PLANKS);
+        addWoodRecipe(consumer, provider, "minecraft", ItemTags.WARPED_STEMS, Items.WARPED_PLANKS);
+
         String[] stones = {"stone", "smooth_stone", "sandstone", "cut_sandstone", "cobblestone", "red_sandstone", "cut_red_sandstone", "prismarine", "dark_prismarine", "polished_granite", "smooth_red_sandstone", "polished_diorite", "mossy_cobblestone", "smooth_sandstone", "smooth_quartz", "granite", "andesite", "polished_andesite", "diorite", "blackstone", "polished_blackstone", "purpur", "quartz", "brick", "stone_brick", "nether_brick", "prismarine_brick", "mossy_stone_brick", "end_stone_brick", "red_nether_brick", "polished_blackstone_brick"};
         for (String stone : stones) {
             Item full = AntimatterPlatformUtils.getItemFromID(new ResourceLocation(stone + (stone.equals("purpur") || stone.equals("quartz") ? "_block" : stone.contains("brick") ? "s" : "")));
