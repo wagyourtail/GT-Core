@@ -137,6 +137,7 @@ public class GTCoreItems {
     public static ItemBasic<?> MoldCoinage = new ItemBasic<>(GTCore.ID, "coinage_mold", "molds/").tip("Secure Mold for making Coins (Don't lose it!)");
     public static ItemBasic<?> MoldBottle = new ItemBasic<>(GTCore.ID, "bottle_mold", "molds/").tip("Mold for making Bottles");
     public static ItemBasic<?> MoldIngot = new ItemBasic<>(GTCore.ID, "ingot_mold", "molds/").tip("Mold for making Ingots");
+    public static ItemBasic<?> MoldLongRod = new ItemBasic<>(GTCore.ID, "long_rod_mold", "molds/").tip("Mold for making long rods");
     public static ItemBasic<?> MoldBall = new ItemBasic<>(GTCore.ID, "ball_mold", "molds/").tip("Mold for making Balls");
     public static ItemBasic<?> MoldBlock = new ItemBasic<>(GTCore.ID, "block_mold", "molds/").tip("Mold for making Blocks");
     public static ItemBasic<?> MoldNugget = new ItemBasic<>(GTCore.ID, "nugget_mold", "molds/").tip("Mold for making Nuggets");
@@ -144,8 +145,10 @@ public class GTCoreItems {
     public static ItemBasic<?> ShapePlate = new ItemBasic<>(GTCore.ID, "plate_shape", "molds/").tip("Shape for making Plates");
     public static ItemBasic<?> ShapeCasing = new ItemBasic<>(GTCore.ID, "casing_shape", "molds/").tip("Shape for making Item Casings");
     public static ItemBasic<?> ShapeRod = new ItemBasic<>(GTCore.ID, "rod_shape", "molds/").tip("Shape for making Rods");
+    public static ItemBasic<?> ShapeLongRod = new ItemBasic<>(GTCore.ID, "long_rod_shape", "molds/").tip("Shape for making Long Rods");
     public static ItemBasic<?> ShapeBolt = new ItemBasic<>(GTCore.ID, "bolt_shape", "molds/").tip("Shape for making Bolts");
     public static ItemBasic<?> ShapeRing = new ItemBasic<>(GTCore.ID, "ring_shape", "molds/").tip("Shape for making Rings");
+    public static ItemBasic<?> ShapeFoil = new ItemBasic<>(GTCore.ID, "foil_shape", "molds/").tip("Shape for making Foils");
     public static ItemBasic<?> ShapeCell = new ItemBasic<>(GTCore.ID, "cell_shape", "molds/").tip("Shape for making Cells");
     public static ItemBasic<?> ShapeIngot = new ItemBasic<>(GTCore.ID, "ingot_shape", "molds/").tip("Shape for making Ingots");
     public static ItemBasic<?> ShapeWire = new ItemBasic<>(GTCore.ID, "wire_shape", "molds/").tip("Shape for making Wires");
