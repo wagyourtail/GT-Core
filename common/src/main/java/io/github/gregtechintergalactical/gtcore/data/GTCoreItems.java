@@ -152,20 +152,22 @@ public class GTCoreItems {
     public static ItemBasic<?> ShapeCell = new ItemBasic<>(GTCore.ID, "cell_shape", "molds/").tip("Shape for making Cells");
     public static ItemBasic<?> ShapeIngot = new ItemBasic<>(GTCore.ID, "ingot_shape", "molds/").tip("Shape for making Ingots");
     public static ItemBasic<?> ShapeWire = new ItemBasic<>(GTCore.ID, "wire_shape", "molds/").tip("Shape for making Wires");
+    public static ItemBasic<?> ShapeFineWire = new ItemBasic<>(GTCore.ID, "fine_wire_shape", "molds/").tip("Shape for making Fine Wires");
+    public static ItemBasic<?> ShapeTinyPlate = new ItemBasic<>(GTCore.ID, "tiny_plate_shape", "molds/").tip("Shape for making Tiny Plates");
     public static ItemBasic<?> ShapePipeTiny = new ItemBasic<>(GTCore.ID, "tiny_pipe_shape", "molds/").tip("Shape for making Tiny Pipes");
     public static ItemBasic<?> ShapePipeSmall = new ItemBasic<>(GTCore.ID, "small_pipe_shape", "molds/").tip("Shape for making Small Pipes");
     public static ItemBasic<?> ShapePipeNormal = new ItemBasic<>(GTCore.ID, "normal_pipe_shape", "molds/").tip("Shape for making Normal Pipes");
     public static ItemBasic<?> ShapePipeLarge = new ItemBasic<>(GTCore.ID, "large_pipe_shape", "molds/").tip("Shape for making Large Pipes");
     public static ItemBasic<?> ShapePipeHuge = new ItemBasic<>(GTCore.ID, "huge_pipe_shape", "molds/").tip("Shape for making Huge Pipes");
     public static ItemBasic<?> ShapeBlock = new ItemBasic<>(GTCore.ID, "block_shape", "molds/").tip("Shape for making Blocks");
-    public static ItemBasic<?> ShapeHeadSword = new ItemBasic<>(GTCore.ID, "sword_head_shape", "molds/").tip("Shape for making Sword Blades");
+    public static ItemBasic<?> ShapeBladeSword = new ItemBasic<>(GTCore.ID, "sword_blade_shape", "molds/").tip("Shape for making Sword Blades");
     public static ItemBasic<?> ShapeHeadPickaxe = new ItemBasic<>(GTCore.ID, "pickaxe_head_shape", "molds/").tip("Shape for making Pickaxe Heads");
     public static ItemBasic<?> ShapeHeadShovel = new ItemBasic<>(GTCore.ID, "shovel_head_shape", "molds/").tip("Shape for making Shovel Heads");
     public static ItemBasic<?> ShapeHeadAxe = new ItemBasic<>(GTCore.ID, "axe_head_shape", "molds/").tip("Shape for making Axe Heads");
     public static ItemBasic<?> ShapeHeadHoe = new ItemBasic<>(GTCore.ID, "hoe_head_shape", "molds/").tip("Shape for making Hoe Heads");
     public static ItemBasic<?> ShapeHeadHammer = new ItemBasic<>(GTCore.ID, "hammer_head_shape", "molds/").tip("Shape for making Hammer Heads");
     public static ItemBasic<?> ShapeHeadFile = new ItemBasic<>(GTCore.ID, "file_head_shape", "molds/").tip("Shape for making File Heads");
-    public static ItemBasic<?> ShapeHeadSaw = new ItemBasic<>(GTCore.ID, "saw_head_shape", "molds/").tip("Shape for making Saw Heads");
+    public static ItemBasic<?> ShapeBladeSaw = new ItemBasic<>(GTCore.ID, "saw_blade_shape", "molds/").tip("Shape for making Saw Heads");
     public static ItemBasic<?> ShapeGear = new ItemBasic<>(GTCore.ID, "gear_shape", "molds/").tip("Shape for making Gears");
     public static ItemBasic<?> ShapeGearSmall = new ItemBasic<>(GTCore.ID, "small_gear_shape", "molds/").tip("Shape for making Small Gears");
 

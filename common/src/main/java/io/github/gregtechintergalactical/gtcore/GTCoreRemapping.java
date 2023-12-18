@@ -38,5 +38,7 @@ public class GTCoreRemapping {
         if (GTCoreBlocks.IRONWOOD_ITEM_BARREL != null){
             AntimatterRemapping.remapMachine("ironwood_item_barrel", GTCoreBlocks.IRONWOOD_ITEM_BARREL);
         }
+        AntimatterRemapping.remap(GTCore.ID, "sword_head_shape", "sword_blade_shape");
+        AntimatterRemapping.remap(GTCore.ID, "saw_head_shape", "saw_blade_shape");
     }
 }
