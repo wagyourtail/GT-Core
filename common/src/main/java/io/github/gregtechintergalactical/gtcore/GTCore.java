@@ -118,7 +118,7 @@ public class GTCore extends AntimatterMod {
                     l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_lv").getItem());
                     l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_mv").getItem());
                     l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_hv").getItem());
-                    if (GTCoreConfig.VANILLA_OVERRIDES.get()){
+                    if (GTCoreConfig.DISABLE_WOOD_TOOLS.get()){
                         l.addAll(Arrays.asList(Items.WOODEN_AXE, Items.WOODEN_HOE, Items.WOODEN_PICKAXE, Items.WOODEN_SWORD, Items.WOODEN_SHOVEL));
                     }
                     AntimatterAPI.all(IAntimatterTool.class).stream().filter(t -> {

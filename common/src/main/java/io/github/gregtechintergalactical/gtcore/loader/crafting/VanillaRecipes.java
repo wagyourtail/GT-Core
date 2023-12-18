@@ -41,6 +41,17 @@ public class VanillaRecipes {
     }
 
     private static void loadOverrides(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
+        if (GTCoreConfig.DISABLE_WOOD_TOOLS.get()){
+            provider.removeRecipe(new ResourceLocation("wooden_axe"));
+            provider.removeRecipe(new ResourceLocation("wooden_pickaxe"));
+            provider.removeRecipe(new ResourceLocation("wooden_shovel"));
+            provider.removeRecipe(new ResourceLocation("wooden_hoe"));
+            provider.removeRecipe(new ResourceLocation("wooden_sword"));
+        }
+        if (GTCoreConfig.DISABLE_CHARCOAL_SMELTING.get()){
+            provider.removeRecipe(new ResourceLocation("charcoal"));
+            provider.removeRecipe(new ResourceLocation("energizedpower", "smelting/charcoal_from_smelting_sawdust_block"));
+        }
         if (!GTCoreConfig.VANILLA_OVERRIDES.get()) return;
         provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.IRON_BARS, 8), of('R', ROD.getMaterialTag(Iron)), "RRR", "RRR");
         provider.addItemRecipe(consumer, "minecraft", "", "misc",
@@ -104,13 +115,6 @@ public class VanillaRecipes {
                 of('I', PLATE.getMaterialTag(Gold), 'H', HAMMER.getTag()), "III", "IHI", "I I");
         provider.addItemRecipe(consumer, "vanilla_armor", Items.GOLDEN_BOOTS,
                 of('I', PLATE.getMaterialTag(Gold), 'H', HAMMER.getTag()), "I I", "IHI");
-        provider.removeRecipe(new ResourceLocation("charcoal"));
-        provider.removeRecipe(new ResourceLocation("wooden_axe"));
-        provider.removeRecipe(new ResourceLocation("wooden_pickaxe"));
-        provider.removeRecipe(new ResourceLocation("wooden_shovel"));
-        provider.removeRecipe(new ResourceLocation("wooden_hoe"));
-        provider.removeRecipe(new ResourceLocation("wooden_sword"));
-        provider.removeRecipe(new ResourceLocation("energizedpower", "smelting/charcoal_from_smelting_sawdust_block"));
     }
 
     static void addWoodRecipe(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider, String domain, TagKey<Item> log, Item plank){
