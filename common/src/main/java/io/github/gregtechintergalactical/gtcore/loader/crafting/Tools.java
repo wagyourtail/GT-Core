@@ -65,7 +65,7 @@ public class Tools {
         });
        TOOLS.getAll().forEach((m, t) -> {
            TagKey<Item> rod = t.handleMaterial().has(ROD) ? ROD.getMaterialTag(t.handleMaterial()) : ROD.getMaterialTag(Wood);
-           AntimatterToolType[] toolHeadTypes = new AntimatterToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW, SCREWDRIVER};
+           AntimatterToolType[] toolHeadTypes = new AntimatterToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW, HAMMER, SCREWDRIVER};
            Arrays.stream(toolHeadTypes).forEach(type -> {
                if (t.toolTypes().contains(type)){
                    if (type.getMaterialTypeItem() == null) return;
