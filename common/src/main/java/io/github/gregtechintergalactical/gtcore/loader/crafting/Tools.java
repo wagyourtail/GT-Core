@@ -65,7 +65,7 @@ public class Tools {
         });
        TOOLS.getAll().forEach((m, t) -> {
            TagKey<Item> rod = t.handleMaterial().has(ROD) ? ROD.getMaterialTag(t.handleMaterial()) : ROD.getMaterialTag(Wood);
-           AntimatterToolType[] toolHeadTypes = new AntimatterToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW, HAMMER, SCREWDRIVER};
+           AntimatterToolType[] toolHeadTypes = new AntimatterToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW, HAMMER, SCREWDRIVER, SCYTHE};
            Arrays.stream(toolHeadTypes).forEach(type -> {
                if (t.toolTypes().contains(type)){
                    if (type.getMaterialTypeItem() == null) return;
@@ -129,6 +129,20 @@ public class Tools {
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", SAW.getToolStack(m),
                                of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPR", "FH ");
+                   }
+               }
+               if (t.toolTypes().contains(SCYTHE)){
+                   if (m.has(FLINT)){
+                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                           provider.addStackRecipe(consumer, GTCore.ID, "", "", SCYTHE.getToolStack(m),
+                                   of('R', rod, 'P', ingotGem), "PPP", "  R");
+                       }
+                   } else if (m.has(GEM)){
+                       provider.addStackRecipe(consumer, GTCore.ID, "", "", SCYTHE.getToolStack(m),
+                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag()), "PPI", " FR", "  R");
+                   } else {
+                       provider.addStackRecipe(consumer, GTCore.ID, "", "", SCYTHE.getToolStack(m),
+                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPI", "HFR", "  R");
                    }
                }
                if (t.toolTypes().contains(WIRE_CUTTER)){
@@ -324,6 +338,16 @@ public class Tools {
             if (!m.has(ROD)) return;
             provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCREWDRIVER_TIP.get(m),
                     of('R', ROD.getMaterialTag(m), 'F', FILE.getTag(), 'H', HAMMER.getTag()), "HR", "RF");
+        });
+        SCYTHE_BLADE.all().forEach(m -> {
+            if (m.has(GEM)){
+                provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCYTHE_BLADE.get(m),
+                        of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GGG", " F ");
+            } else if (m.has(INGOT)){
+                TagKey<Item> plate = m.has(PLATE) ? PLATE.getMaterialTag(m) : INGOT.getMaterialTag(m);
+                provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCYTHE_BLADE.get(m),
+                        of('P', plate, 'I', INGOT.getMaterialTag(m), 'H', HAMMER.getTag(), 'F', FILE.getTag()), "PPI", "HF ");
+            }
         });
     }
 }
