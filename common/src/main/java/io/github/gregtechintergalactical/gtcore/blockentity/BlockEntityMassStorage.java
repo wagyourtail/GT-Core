@@ -39,6 +39,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     boolean output = false;
     boolean outputOverflow = false;
     boolean syncSlots;
+    public boolean keepFilter = true;
     public BlockEntityMassStorage(MassStorageMachine type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         this.itemHandler.set(() -> new MassStorageItemHandler(this));
@@ -129,7 +130,13 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             return InteractionResult.SUCCESS;
         }
-
+        if (type == AntimatterDefaultTools.SCREWDRIVER && coverHandler.map(c -> c.get(Utils.getInteractSide(hit)).isEmpty()).orElse(true)){
+            keepFilter = !keepFilter;
+            //TODO: translation component
+            player.sendMessage(Utils.literal("Filter " + (keepFilter ? "Stays" : "Resets") + " when empty"), player.getUUID());
+            Utils.damageStack(player.getItemInHand(hand), hand, player);
+            return InteractionResult.SUCCESS;
+        }
         if (hit.getDirection().getAxis().isHorizontal() && hit.getDirection() == this.getFacing() && handler != null){
             double x = hit.getDirection().getAxis() == Direction.Axis.Z ?  vec.x() - hit.getBlockPos().getX() : vec.z() - hit.getBlockPos().getZ(), y = vec.y() - hit.getBlockPos().getY();
             int amountToExtract = 0;
@@ -306,6 +313,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         super.saveAdditional(tag);
         tag.putBoolean("outputOverflow", outputOverflow);
         tag.putBoolean("output", output);
+        tag.putBoolean("keepFilter", keepFilter);
     }
 
     @Override
@@ -313,5 +321,6 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         super.load(tag);
         outputOverflow = tag.getBoolean("outputOverflow");
         output = tag.getBoolean("output");
+        keepFilter = !tag.contains("keepFilter") || tag.getBoolean("keepFilter");
     }
 }

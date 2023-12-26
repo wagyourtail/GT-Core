@@ -33,9 +33,9 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
         if (getTile() instanceof BlockEntityMassStorage barrel && barrel.itemHandler.isPresent()) {
             if (barrel.getMachineState() == MachineState.ACTIVE) return stack;
             var handler = barrel.itemHandler.get().getHandler(SlotType.DISPLAY);
-            if (!handler.getItem(0).isEmpty() && !Utils.equals(stack, handler.getItem(0))) {
+            if (barrel.keepFilter && !handler.getItem(0).isEmpty() && !Utils.equals(stack, handler.getItem(0))) {
                 return stack;
-            } else if (handler.getItem(0).isEmpty() && !simulate) {
+            } else if (barrel.keepFilter && handler.getItem(0).isEmpty() && !simulate) {
                 barrel.itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setItem(0, Utils.ca(1, stack)));
             }
             if (barrel.isOutputOverflow()){
@@ -63,6 +63,12 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
                 if (existing.getCount() <= amount) {
                     if (!simulate) {
                         this.stacks.set(slot, ItemStack.EMPTY);
+                        if (getTile() instanceof BlockEntityMassStorage barrel && barrel.itemHandler.isPresent() && !barrel.keepFilter){
+                            ItemStack display = barrel.itemHandler.get().getHandler(SlotType.DISPLAY).getItem(0);
+                            if (!display.isEmpty()){
+                                barrel.itemHandler.get().getHandler(SlotType.DISPLAY).setItem(0, ItemStack.EMPTY);
+                            }
+                        }
                         this.onContentsChanged(slot);
                         return existing;
                     } else {
