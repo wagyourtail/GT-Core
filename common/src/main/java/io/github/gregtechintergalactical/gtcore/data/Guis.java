@@ -3,6 +3,7 @@ package io.github.gregtechintergalactical.gtcore.data;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import muramasa.antimatter.gui.GuiData;
 import muramasa.antimatter.gui.slot.ISlotProvider;
+import net.minecraft.resources.ResourceLocation;
 
 import static muramasa.antimatter.gui.SlotType.*;
 import static muramasa.antimatter.gui.SlotType.FL_OUT;
@@ -23,5 +24,12 @@ public class Guis {
 
     public static void init(){
         GTCoreBlocks.WOOD_ITEM_BARREL.add(DISPLAY, 53, 34).add(SlotTypes.UNLIMITED, 71, 34);
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
+                GTCoreBlocks.ENDER_GARBAGE_BIN.add(STORAGE, 62 + (x * 18), 17 + (y * 18), new ResourceLocation(GTCore.ID, "blank"));
+            }
+        }
+        GTCoreBlocks.ENDER_GARBAGE_BIN.getGui().setBackgroundTexture("ender_garbage_bin");
+
     }
 }

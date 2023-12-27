@@ -2,19 +2,19 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"basedown": "",
-		"baseup": "",
-		"basenorth": "",
-		"basesouth": "",
-		"basewest": "",
-		"particle": "",
-		"baseeast": "",
-		"overlaydown": "",
-		"overlayup": "",
-		"overlaynorth": "",
-		"overlaysouth": "",
-		"overlaywest": "",
-		"overlayeast": ""
+		"basedown": "#base",
+		"baseup": "#base",
+		"basenorth": "#base",
+		"basesouth": "#base",
+		"basewest": "#base",
+		"particle": "#base",
+		"baseeast": "#base",
+		"overlaydown": "#overlay",
+		"overlayup": "#overlay",
+		"overlaynorth": "#overlay",
+		"overlaysouth": "#overlay",
+		"overlaywest": "#overlay",
+		"overlayeast": "#overlay"
 	},
 	"elements": [
 		{

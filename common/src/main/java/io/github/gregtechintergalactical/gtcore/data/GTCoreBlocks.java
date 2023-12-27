@@ -4,17 +4,21 @@ import dev.architectury.injectables.annotations.ExpectPlatform;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.block.BlockSapBag;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntitySapBag;
+import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityTrashCan;
 import io.github.gregtechintergalactical.gtcore.machine.*;
 import io.github.gregtechintergalactical.gtcore.tree.block.*;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.block.BlockBasic;
 import muramasa.antimatter.data.AntimatterMaterials;
 import muramasa.antimatter.machine.MachineFlag;
+import muramasa.antimatter.machine.Tier;
+import muramasa.antimatter.machine.types.BasicMachine;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.ore.CobbleStoneType;
 import muramasa.antimatter.ore.StoneType;
 import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -23,7 +27,6 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import org.jetbrains.annotations.Nullable;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
-import static muramasa.antimatter.gui.SlotType.STORAGE;
 
 public class GTCoreBlocks {
 
@@ -66,6 +69,8 @@ public class GTCoreBlocks {
 
     @Nullable
     public static MaterialMachine IRONWOOD_ITEM_BARREL = null;
+
+    public static BasicMachine ENDER_GARBAGE_BIN = new BasicMachine(GTCore.ID, "ender_garbage_bin").baseTexture(new Texture(GTCore.ID, "block/machine/base/ender_garbage_bin")).setTiers(Tier.NONE).custom().itemModelParent(new ResourceLocation(GTCore.ID, "block/ender_garbage_bin_base")).addFlags(MachineFlag.ITEM, MachineFlag.FLUID, MachineFlag.UNCULLED, MachineFlag.GUI).removeFlags(MachineFlag.COVERABLE, MachineFlag.EU).noCovers().setTile(BlockEntityTrashCan::new);
 
     public static StoneType RED_GRANITE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "red_granite", RedGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
     public static StoneType BLACK_GRANITE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "black_granite", BlackGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
