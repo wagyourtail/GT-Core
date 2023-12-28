@@ -34,6 +34,11 @@ public class BlockEntityTrashCan extends BlockEntityMachine<BlockEntityTrashCan>
             public long insertFluid(FluidHolder fluid, boolean simulate) {
                 return fluid.getFluidAmount();
             }
+
+            @Override
+            public boolean allowsInsertion() {
+                return true;
+            }
         });
     }
 
