@@ -70,6 +70,7 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(POWER_UNIT_MV).add(PowerUnitMV);
         this.tag(POWER_UNIT_HV).add(PowerUnitHV);
         this.tag(POWER_UNIT_SMALL).add(SmallPowerUnit);
+        this.tag(POWER_UNIT_JACKHAMMER).add(JackhammerPowerUnit);
         this.tag(FIRESTARTER).add(Items.FLINT_AND_STEEL, Match, Lighter, MatchBook);
     }
 }

@@ -9,6 +9,7 @@ import muramasa.antimatter.Ref;
 import muramasa.antimatter.item.ItemBasic;
 import muramasa.antimatter.item.ItemMultiTextureBattery;
 import muramasa.antimatter.machine.Tier;
+import muramasa.antimatter.material.Material;
 import net.minecraft.world.item.Item;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
@@ -104,6 +105,7 @@ public class GTCoreItems {
     public static ItemPowerUnit PowerUnitMV = new ItemPowerUnit(GTCore.ID, "power_unit_mv", StainlessSteel);
     public static ItemPowerUnit PowerUnitHV = new ItemPowerUnit(GTCore.ID, "power_unit_hv", Titanium);
     public static ItemPowerUnit SmallPowerUnit = new ItemPowerUnit(GTCore.ID, "small_power_unit", Aluminium);
+    public static ItemPowerUnit JackhammerPowerUnit = new ItemPowerUnit(GTCore.ID, "jackhammer_power_unit", Material.NULL);
 
     public static ItemBasic<?> BatteryHullSmall = new ItemBasic<>(GTCore.ID, "small_battery_hull").tip("An empty LV Battery Hull");
     public static ItemBasic<?> BatteryHullMedium = new ItemBasic<>(GTCore.ID, "medium_battery_hull").tip("An empty MV Battery Hull");
