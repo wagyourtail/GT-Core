@@ -44,7 +44,6 @@ public class VanillaRecipes {
         if (GTCoreConfig.DISABLE_WOOD_TOOLS.get()){
             provider.removeRecipe(new ResourceLocation("wooden_axe"));
             provider.removeRecipe(new ResourceLocation("wooden_pickaxe"));
-            provider.removeRecipe(new ResourceLocation("wooden_shovel"));
             provider.removeRecipe(new ResourceLocation("wooden_hoe"));
             provider.removeRecipe(new ResourceLocation("wooden_sword"));
         }

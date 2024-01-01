@@ -34,7 +34,7 @@ public class GTCoreConfig {
         HARDER_WOOD = section.addBool("harder_wood", AntimatterAPI.isModLoaded("gti"),"If true logs to planks and planks to sticks give half of vanilla amounts - Default: true with gti, false otherwise");
         HARDER_LAPOTRON_CRYSTALS = section.addBool("harder_lapotron_crystals", false, "If true lapotron crystals will require assembling with raw lapotron crystals, which are made with lapotronium dust - Default: false");
         VANILLA_OVERRIDES = section.addBool("vanilla_overrides", true, "If true enables gregified recipes of some vanilla blocks and items - Default: true");
-        DISABLE_WOOD_TOOLS = section.addBool("disable_wood_tools", true, "If true disables crafting recipes for wood tools and hides them in jei/rei - Default: true");
+        DISABLE_WOOD_TOOLS = section.addBool("disable_wood_tools", true, "If true disables crafting recipes for wood tools(except wood shovels) and hides them in jei/rei - Default: true");
         DISABLE_CHARCOAL_SMELTING = section.addBool("disable_charcoal_smelting", true, "If true disables log to charcoal recipes in the vanilla furnace - Default: true");
         CONFIG = AntimatterPlatformUtils.createConfig(GTCore.ID, config);
         CONFIG.register();
