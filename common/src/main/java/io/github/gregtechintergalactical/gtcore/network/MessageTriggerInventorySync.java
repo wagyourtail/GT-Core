@@ -5,6 +5,7 @@ import com.teamresourceful.resourcefullib.common.networking.base.PacketContext;
 import com.teamresourceful.resourcefullib.common.networking.base.PacketHandler;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityMassStorage;
+import io.github.gregtechintergalactical.gtcore.blockentity.IInventorySyncTile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -42,7 +43,7 @@ public class MessageTriggerInventorySync implements Packet<MessageTriggerInvento
         @Override
         public PacketContext handle(MessageTriggerInventorySync messageTriggerInventorySync) {
             return (player, level) -> {
-                if (level.getBlockEntity(messageTriggerInventorySync.pos) instanceof BlockEntityMassStorage massStorage){
+                if (level.getBlockEntity(messageTriggerInventorySync.pos) instanceof IInventorySyncTile massStorage){
                     massStorage.setSyncSlots(true);
                 }
             };

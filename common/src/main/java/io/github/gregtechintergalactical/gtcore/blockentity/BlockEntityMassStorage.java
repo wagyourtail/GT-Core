@@ -35,7 +35,7 @@ import tesseract.TesseractCapUtils;
 
 import java.util.List;
 
-public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassStorage> {
+public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassStorage> implements IInventorySyncTile {
     boolean output = false;
     boolean outputOverflow = false;
     boolean syncSlots;
