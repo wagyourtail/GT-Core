@@ -1,12 +1,22 @@
 package io.github.gregtechintergalactical.gtcore.events;
 
+import io.github.gregtechintergalactical.gtcore.machine.BlockMachineMaterial;
+import io.github.gregtechintergalactical.gtcore.machine.BlockMultiMachineMaterial;
+import muramasa.antimatter.block.BlockStorage;
 import muramasa.antimatter.data.AntimatterMaterialTypes;
+import muramasa.antimatter.material.Material;
+import muramasa.antimatter.material.MaterialItem;
+import muramasa.antimatter.material.MaterialTags;
 import muramasa.antimatter.pipe.BlockFluidPipe;
+import muramasa.antimatter.pipe.BlockPipe;
+import muramasa.antimatter.tool.IAntimatterTool;
+import muramasa.antimatter.util.Utils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
@@ -22,8 +32,8 @@ public class GTCommonEvents {
         if (end && logicalServer && !player.isCreative() && player.getInventory().contains(AntimatterMaterialTypes.INGOT_HOT.getTag())){
             BlockFluidPipe.applyTemperatureDamage(player, 1700, 1.0f, 1.0f);
         }
-        if (end && logicalServer && player.getUUID().equals(BEAR_UUID)){
-            if (player.tickCount % 120 == 0) {
+        if (end && logicalServer && player.tickCount % 120 == 0){
+            if (player.getUUID().equals(BEAR_UUID)) {
                 ItemStack tStack;
                 int tEmptySlots = 36;
                 int tFullSlots = 0;
@@ -87,6 +97,25 @@ public class GTCommonEvents {
                             if (player2.blockPosition().closerThan(player.blockPosition(), 100D)) {
                                 player2.sendMessage(new TextComponent("There is this fella called Bear-Nine-Eight-Nine, needing be reminded of his Inventory being a major Pine."), player2.getUUID());
                             }
+                        }
+                    }
+                }
+            }
+            if (!Utils.isFullHazmatSuit(player)) {
+                for (ItemStack stack : player.getAllSlots()){
+                    Material m = null;
+                    if (stack.getItem() instanceof IAntimatterTool tool) m = tool.getPrimaryMaterial(stack);
+                    if (stack.getItem() instanceof MaterialItem item) m = item.getMaterial();
+                    if (stack.getItem() instanceof BlockItem blockItem){
+                        if (blockItem.getBlock() instanceof BlockStorage storage) m = storage.getMaterial();
+                        if (blockItem.getBlock() instanceof BlockMachineMaterial machineMaterial) m = machineMaterial.getMaterial();
+                        if (blockItem.getBlock() instanceof BlockMultiMachineMaterial machineMaterial) m = machineMaterial.getMaterial();
+                        if (blockItem.getBlock() instanceof BlockPipe<?> pipe) m = pipe.getType().getMaterial();
+                    }
+                    if (m != null && m.has(MaterialTags.RADIOACTIVE)){
+                        int level = MaterialTags.RADIOACTIVE.getInt(m);
+                        if (level > 0){
+                            Utils.applyRadioactivity(player, level, stack.getCount());
                         }
                     }
                 }
