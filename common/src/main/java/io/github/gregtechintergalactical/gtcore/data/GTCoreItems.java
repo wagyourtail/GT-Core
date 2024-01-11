@@ -1,8 +1,10 @@
 package io.github.gregtechintergalactical.gtcore.data;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
+import io.github.gregtechintergalactical.gtcore.item.ItemHazmatArmor;
 import io.github.gregtechintergalactical.gtcore.item.ItemMatch;
 import io.github.gregtechintergalactical.gtcore.item.ItemPowerUnit;
+import io.github.gregtechintergalactical.gtcore.item.ItemRadaway;
 import io.github.gregtechintergalactical.gtcore.item.ItemTape;
 import io.github.gregtechintergalactical.gtcore.tree.item.ItemRubberBoat;
 import muramasa.antimatter.Ref;
@@ -10,6 +12,7 @@ import muramasa.antimatter.item.ItemBasic;
 import muramasa.antimatter.item.ItemMultiTextureBattery;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
@@ -34,6 +37,12 @@ public class GTCoreItems {
     public static ItemBasic<?> IridiumAlloyIngot = new ItemBasic<>(GTCore.ID, "iridium_alloy_ingot").tip("Used to make Iridium Plates");
     public static ItemBasic<?> IridiumReinforcedPlate = new ItemBasic<>(GTCore.ID, "iridium_reinforced_plate").tip("GT2s Most Expensive Component");
     public static ItemBasic<?> IridiumNeutronReflector = new ItemBasic<>(GTCore.ID, "iridium_neutron_reflector").tip("Indestructible");
+    public static ItemBasic<?> Radaway = new ItemRadaway().tip("Pill that cures Effects of Radiation");
+    public static ItemBasic<?> EmptyWaxPill = new ItemBasic<>(GTCore.ID, "empty_wax_pill").tip("Placebo");
+    public static ItemHazmatArmor UniversalHazardSuitMask = new ItemHazmatArmor(EquipmentSlot.HEAD, "universal_hazard_suit_mask");
+    public static ItemHazmatArmor UniversalHazardSuitShirt = new ItemHazmatArmor(EquipmentSlot.CHEST, "universal_hazard_suit_shirt");
+    public static ItemHazmatArmor UniversalHazardSuitPants = new ItemHazmatArmor(EquipmentSlot.LEGS, "universal_hazard_suit_pants");
+    public static ItemHazmatArmor UniversalHazardSuitBoots = new ItemHazmatArmor(EquipmentSlot.FEET, "universal_hazard_suit_boots");
 
     public static ItemBasic<?> LighterEmpty = new ItemBasic<>(GTCore.ID, "lighter_empty");
     public static ItemBasic<ItemMatch> Match = new ItemMatch(GTCore.ID, "match", new Item.Properties().tab(Ref.TAB_ITEMS));

@@ -3,9 +3,11 @@ package io.github.gregtechintergalactical.gtcore.datagen;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
+import io.github.gregtechintergalactical.gtcore.item.ItemHazmatArmor;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
 import muramasa.antimatter.item.ItemBasic;
+import muramasa.antimatter.util.Utils;
 
 import static muramasa.antimatter.util.Utils.lowerUnderscoreToUpperSpaced;
 
@@ -70,6 +72,7 @@ public class GTCoreLang {
                     .replace("Hv", "(HV)")
                     .replace("Ev", "(EV)")
                     .replace("Iv", "(IV)")));
+            AntimatterAPI.all(ItemHazmatArmor.class, domain).forEach(i -> this.add(i, Utils.lowerUnderscoreToUpperSpaced(i.getId())));
         }
     }
 }
