@@ -29,7 +29,7 @@ public class GTCommonEvents {
     public static final UUID BEAR_UUID = UUID.fromString("1964e3d1-6500-40e7-9ff2-e6161d41a8c2");
 
     public static void onPlayerTick(boolean end, boolean logicalServer, Player player){
-        if (end && logicalServer && !player.isCreative() && player.getInventory().contains(AntimatterMaterialTypes.INGOT_HOT.getTag())){
+        if (end && logicalServer && !player.isInvulnerable() && player.getInventory().contains(AntimatterMaterialTypes.INGOT_HOT.getTag()) && !Utils.isFullHazmatSuit(player)){
             BlockFluidPipe.applyTemperatureDamage(player, 1700, 1.0f, 1.0f);
         }
         if (end && logicalServer && player.tickCount % 120 == 0){
@@ -101,7 +101,7 @@ public class GTCommonEvents {
                     }
                 }
             }
-            if (!Utils.isFullHazmatSuit(player)) {
+            if (!Utils.isFullHazmatSuit(player) && !player.isInvulnerable()) {
                 for (ItemStack stack : player.getAllSlots()){
                     Material m = null;
                     if (stack.getItem() instanceof IAntimatterTool tool) m = tool.getPrimaryMaterial(stack);
