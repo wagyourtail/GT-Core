@@ -161,6 +161,7 @@ public class GTCoreItems {
     public static ItemBasic<?> ShapeRing = new ItemBasic<>(GTCore.ID, "ring_shape", "molds/").tip("Shape for making Rings");
     public static ItemBasic<?> ShapeFoil = new ItemBasic<>(GTCore.ID, "foil_shape", "molds/").tip("Shape for making Foils");
     public static ItemBasic<?> ShapeCell = new ItemBasic<>(GTCore.ID, "cell_shape", "molds/").tip("Shape for making Cells");
+    public static ItemBasic<?> ShapeBottle = new ItemBasic<>(GTCore.ID, "bottle_shape", "molds/").tip("Shape for making Bottles");
     public static ItemBasic<?> ShapeIngot = new ItemBasic<>(GTCore.ID, "ingot_shape", "molds/").tip("Shape for making Ingots");
     public static ItemBasic<?> ShapeWire = new ItemBasic<>(GTCore.ID, "wire_shape", "molds/").tip("Shape for making Wires");
     public static ItemBasic<?> ShapeFineWire = new ItemBasic<>(GTCore.ID, "fine_wire_shape", "molds/").tip("Shape for making Fine Wires");
