@@ -8,6 +8,11 @@ architectury {
 
 loom {
     accessWidenerPath = project(":common").file("src/main/resources/gtcore.accesswidener")
+    forge{
+        mixinConfigs = [
+                "gtcore.mixins.json"
+        ]
+    }
 }
 
 dependencies {

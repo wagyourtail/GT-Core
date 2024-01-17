@@ -121,6 +121,9 @@ public class GTCore extends AntimatterMod {
                     if (GTCoreConfig.DISABLE_WOOD_TOOLS.get()){
                         l.addAll(Arrays.asList(Items.WOODEN_AXE, Items.WOODEN_HOE, Items.WOODEN_PICKAXE, Items.WOODEN_SWORD));
                     }
+                    if (!GTCoreConfig.VILLAGER_TRADE_REPLACEMENTS.get()){
+                        l.add(GTCoreItems.GTCredit);
+                    }
                     AntimatterAPI.all(IAntimatterTool.class).stream().filter(t -> {
                         var toolType = t.getAntimatterToolType();
                         return toolType == GTCoreTools.POCKET_MULTITOOL_SCISSORS

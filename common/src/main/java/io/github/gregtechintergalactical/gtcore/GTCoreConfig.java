@@ -18,6 +18,7 @@ public class GTCoreConfig {
     public static BoolValue VANILLA_OVERRIDES;
     public static BoolValue DISABLE_WOOD_TOOLS;
     public static BoolValue DISABLE_CHARCOAL_SMELTING;
+    public static BoolValue VILLAGER_TRADE_REPLACEMENTS;
     public static EnumValue<CircuitRecipeMode> CIRCUIT_RECIPE_MODE;
 
     public static void createConfig(){
@@ -36,6 +37,7 @@ public class GTCoreConfig {
         VANILLA_OVERRIDES = section.addBool("vanilla_overrides", true, "If true enables gregified recipes of some vanilla blocks and items - Default: true");
         DISABLE_WOOD_TOOLS = section.addBool("disable_wood_tools", true, "If true disables crafting recipes for wood tools(except wood shovels) and hides them in jei/rei - Default: true");
         DISABLE_CHARCOAL_SMELTING = section.addBool("disable_charcoal_smelting", true, "If true disables log to charcoal recipes in the vanilla furnace - Default: true");
+        VILLAGER_TRADE_REPLACEMENTS = section.addBool("villager_trade_replacements", true, "If true replaces emeralds with gt credits in all villager trades - Default: true");
         CONFIG = AntimatterPlatformUtils.createConfig(GTCore.ID, config);
         CONFIG.register();
     }

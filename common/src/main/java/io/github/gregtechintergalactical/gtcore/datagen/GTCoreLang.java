@@ -59,6 +59,7 @@ public class GTCoreLang {
             override(GTCoreItems.FALDuctTape.getDescriptionId(), "BrainTech Aerospace Advanced Reinforced Duct Tape FAL-84");
             override(GTCoreItems.LighterEmpty.getDescriptionId(), "Lighter (Empty)");
             override(GTCoreItems.Lighter.getDescriptionId(), "Lighter (Full)");
+            override(GTCoreItems.GTCredit.getDescriptionId(), "GT Credit");
             add("tooltip.gtcore.tape.used_roll", "Used Roll");
             add("tooltip.gtcore.tape.full_roll", "Full Roll");
             add("tooltip.gtcore.tape.can_fix_anything", "Can fix anything!*");
