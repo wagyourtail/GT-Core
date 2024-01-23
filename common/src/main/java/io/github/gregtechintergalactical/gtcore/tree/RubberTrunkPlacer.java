@@ -66,12 +66,10 @@ public class RubberTrunkPlacer extends StraightTrunkPlacer {
     protected static void placeLog(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, Random random, BlockPos pos, TreeConfiguration config, Function<BlockState, BlockState> propertySetter, int i) {
         if (TreeFeature.validTreePos(level, pos)) {
             BlockState state = null;
-            if (i > 2){
+            if (i > 1){
                 state = GTCoreBlocks.RUBBER_LOG.defaultBlockState();
-            } else if (i == 0){
-                state = config.trunkProvider.getState(random, pos);
             } else {
-                state = random.nextInt(28) < 8 ? config.trunkProvider.getState(random, pos) : GTCoreBlocks.RUBBER_LOG.defaultBlockState();
+                state = config.trunkProvider.getState(random, pos);
             }
             blockSetter.accept(pos, (BlockState)propertySetter.apply(state));
         }
