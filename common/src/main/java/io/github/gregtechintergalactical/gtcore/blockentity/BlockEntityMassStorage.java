@@ -243,7 +243,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     public void serverTick(Level level, BlockPos pos, BlockState state) {
         super.serverTick(level, pos, state);
         if (output && level.getGameTime() % 10 == 0){
-            processItemOutput(ItemStack.EMPTY);
+            processItemOutput(ItemStack.EMPTY, false);
         }
         if (syncSlots){
             syncSlots();
@@ -269,16 +269,16 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     }
 
 
-    public void processItemOutput(ItemStack itemStack) {
+    public void processItemOutput(ItemStack itemStack, boolean simulate) {
         Direction outputDir = Direction.DOWN;
         BlockEntity adjTile = Utils.getTile(this.getLevel(), this.getBlockPos().relative(outputDir));
         if (adjTile == null) return;
         if (!itemStack.isEmpty()) {
             TesseractCapUtils.getItemHandler(adjTile, outputDir.getOpposite()).ifPresent(adjHandler -> {
-                ItemStack transferred = Utils.insertItem(adjHandler, itemStack.copy(), false);
+                ItemStack transferred = Utils.insertItem(adjHandler, itemStack.copy(), simulate);
                 itemStack.shrink(itemStack.getCount() - transferred.getCount());
             });
-        } else {
+        } else if (!simulate){
             TesseractCapUtils.getItemHandler(adjTile, outputDir.getOpposite()).ifPresent(adjHandler -> {
                 this.itemHandler.ifPresent(h -> Utils.transferItems(h.getHandler(SlotTypes.UNLIMITED), adjHandler,true));
             });

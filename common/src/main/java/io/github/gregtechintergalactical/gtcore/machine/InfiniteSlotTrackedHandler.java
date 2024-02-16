@@ -39,9 +39,9 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
                 barrel.itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setItem(0, Utils.ca(1, stack)));
             }
             if (barrel.isOutputOverflow()){
-                ItemStack leftover = super.insertItem(slot, stack, simulate);
-                if (leftover.getCount() > 0 && !simulate){
-                    barrel.processItemOutput(leftover);
+                ItemStack leftover = super.insertItem(slot, stack.copy(), simulate);
+                if (leftover.getCount() > 0){
+                    barrel.processItemOutput(leftover, simulate);
                 }
                 return leftover;
             }
