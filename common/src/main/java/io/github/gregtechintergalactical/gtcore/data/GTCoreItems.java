@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtcore.data;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
+import io.github.gregtechintergalactical.gtcore.item.ItemFertilizer;
 import io.github.gregtechintergalactical.gtcore.item.ItemHazmatArmor;
 import io.github.gregtechintergalactical.gtcore.item.ItemMatch;
 import io.github.gregtechintergalactical.gtcore.item.ItemPowerUnit;
@@ -26,6 +27,7 @@ public class GTCoreItems {
     public static ItemBasic<?> FireBrick = new ItemBasic<>(GTCore.ID, "fire_brick").tip("Heat Resistant");
     public static ItemBasic<?> Biochaff = new ItemBasic<>(GTCore.ID, "biochaff");
     public static ItemBasic<?> Plantball = new ItemBasic<>(GTCore.ID, "plantball");
+    public static ItemFertilizer Fertilizer = new ItemFertilizer();
     public static ItemBasic<?> CarbonFibre = new ItemBasic<>(GTCore.ID, "raw_carbon_fibre");
     public static ItemBasic<?> CarbonMesh = new ItemBasic<>(GTCore.ID, "carbon_mesh");
     public static ItemBasic<?> CoalBall = new ItemBasic<>(GTCore.ID, "coal_ball");
