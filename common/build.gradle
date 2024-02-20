@@ -15,7 +15,7 @@ dependencies {
     modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version_fabric}"){
         transitive = false
     }
-    implementation 'com.github.Carbon-Config-Project:CarbonConfigLib:1.0.0'
+    implementation 'com.github.Carbon-Config-Project:CarbonConfigLib:1.1.1'
     modCompileOnly("curse.maven:the-one-probe-fabric-581847:${project.top_fabric_file}")
     modImplementation "maven.modrinth:carbon-config:2ngFmmhP"
 }
