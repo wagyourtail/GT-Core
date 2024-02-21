@@ -25,12 +25,12 @@ public class GTCoreConfig {
     public static void createConfig(){
         Config config = new Config(GTCore.ID);
         ConfigSection section = config.add("general");
-        GOOD_CIRCUITS = section.addBool("Good Circuits", AntimatterAPI.isModLoaded("gti"), "Whether good circuits are enabled. Note defaults to true when gti is loaded, and result is completely ignored when CIRCUIT_RECIPE_MODE isn't GT4 or GT5.");
-        COMPLEX_CIRCUITS = section.addBool("Complex Circuits", false, "Whether complex circuits are enabled. Note: Ignored when CIRCUIT_RECIPE_MODE is not GT4 or GT5");
-        USE_SOLDERING_ALLOY = section.addBool("Use Soldering Alloy", AntimatterAPI.isModLoaded("gti"), "Whether circuit recipes require soldering alloy. Note: defaults to true when gti is loaded");
-        ADVANCED_CIRCUIT_CRAFTING = section.addBool("Advanced Circuit Crafting", AntimatterAPI.isModLoaded("gt4r"), "Whether crafting table recipes for advanced circuits exist. Note: defaults to true when gt4r is loaded.");
+        GOOD_CIRCUITS = section.addBool("good_circuits", AntimatterAPI.isModLoaded("gti"), "Whether good circuits are enabled. Note defaults to true when gti is loaded, and result is completely ignored when CIRCUIT_RECIPE_MODE isn't GT4 or GT5.");
+        COMPLEX_CIRCUITS = section.addBool("complex_circuits", false, "Whether complex circuits are enabled. Note: Ignored when CIRCUIT_RECIPE_MODE is not GT4 or GT5");
+        USE_SOLDERING_ALLOY = section.addBool("use_soldering_alloy", AntimatterAPI.isModLoaded("gti"), "Whether circuit recipes require soldering alloy. Note: defaults to true when gti is loaded");
+        ADVANCED_CIRCUIT_CRAFTING = section.addBool("advanced_circuit_crafting", AntimatterAPI.isModLoaded("gt4r"), "Whether crafting table recipes for advanced circuits exist. Note: defaults to true when gt4r is loaded.");
         CircuitRecipeMode recipeMode = AntimatterAPI.isModLoaded("gti") ? CircuitRecipeMode.GT5 : AntimatterAPI.isModLoaded("gt4r") ? CircuitRecipeMode.GT4 : CircuitRecipeMode.PUP;
-        CIRCUIT_RECIPE_MODE = section.addEnum("Circuit Recipe Mode", recipeMode, CircuitRecipeMode.class, "Determines the various recipes for circuits.", "GT4 is circuits recipes based off gt4, GT5 is circuits recipes based off mostly GT5 but with slight modifications,", "PUP is harder circuit recipes but not crazy like gt5u, and GT%U is exactly what it sounds like: the absurdly grindy circuit recipes from GT5U 09.31 but with slight modifications.");
+        CIRCUIT_RECIPE_MODE = section.addEnum("circuit_recipe_mode", recipeMode, CircuitRecipeMode.class, "Determines the various recipes for circuits.", "GT4 is circuits recipes based off gt4, GT5 is circuits recipes based off mostly GT5 but with slight modifications,", "PUP is harder circuit recipes but not crazy like gt5u, and GT%U is exactly what it sounds like: the absurdly grindy circuit recipes from GT5U 09.31 but with slight modifications.");
         LOSSY_PART_CRAFTING = section.addBool("lossy_part_crafting", true, "Enable crating recipes for things like rods and plates being lossy - Default: true",
                 "Note: make sure to run /reload after changing this.");
         HARDER_WOOD = section.addBool("harder_wood", AntimatterAPI.isModLoaded("gti"),"If true logs to planks and planks to sticks give half of vanilla amounts - Default: true with gti, false otherwise");
