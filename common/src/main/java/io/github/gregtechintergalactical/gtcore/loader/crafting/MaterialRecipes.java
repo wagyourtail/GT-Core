@@ -49,6 +49,16 @@ public class MaterialRecipes {
                     provider.shapeless(consumer, m.getId() + "_grind_rock_2", "antimatter_material", AntimatterMaterialTypes.DUST_SMALL.get(m, 1),
                             AntimatterDefaultTools.MORTAR.getTag(), AntimatterMaterialTypes.ROCK.getMaterialTag(m));
                 }
+                if (m.has(AntimatterMaterialTypes.BEARING_ROCK)) {
+                    provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_grind_bearing_rock", "antimatter_material",
+                            AntimatterMaterialTypes.DUST.get(m, 1), ImmutableMap.<Character, Object>builder()
+                                    .put('M', AntimatterDefaultTools.MORTAR.getTag())
+                                    .put('I', AntimatterMaterialTypes.BEARING_ROCK.getMaterialTag(m))
+                                    .build(),
+                            "II ", "IIM");
+                    provider.shapeless(consumer, m.getId() + "_grind_bearing_rock_2", "antimatter_material", AntimatterMaterialTypes.DUST_SMALL.get(m, 1),
+                            AntimatterDefaultTools.MORTAR.getTag(), AntimatterMaterialTypes.BEARING_ROCK.getMaterialTag(m));
+                }
                 if (m.has(AntimatterMaterialTypes.CRUSHED)){
                     provider.shapeless(consumer, m.getId() + "_grind_crushed", "antimatter_material", AntimatterMaterialTypes.DUST_IMPURE.get(m, 1),
                             AntimatterDefaultTools.MORTAR.getTag(), AntimatterMaterialTypes.CRUSHED.getMaterialTag(m));
