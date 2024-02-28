@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
@@ -24,7 +25,7 @@ import java.util.function.Consumer;
 import static com.google.common.collect.ImmutableMap.of;
 import static muramasa.antimatter.data.AntimatterDefaultTools.*;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
-import static muramasa.antimatter.data.AntimatterMaterials.Wood;
+import static muramasa.antimatter.data.AntimatterMaterials.*;
 import static muramasa.antimatter.material.MaterialTags.*;
 import static muramasa.antimatter.recipe.RecipeBuilders.CROWBAR_BUILDER;
 import static muramasa.antimatter.recipe.RecipeBuilders.PROBE_BUILDER;
@@ -37,6 +38,7 @@ public class Tools {
         provider.removeRecipe(new ResourceLocation("farmersdelight", "diamond_knife"));
 
         toolPartRecipes(consumer, provider);
+        vanillaToolRecipes(consumer, provider);
 
         if (AntimatterAPI.isModLoaded(Ref.MOD_TOP)) {
             ARMOR.getAll().forEach((m, a) ->{
@@ -257,6 +259,24 @@ public class Tools {
 
            }
        });
+    }
+
+    private static void vanillaToolRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
+        provider.addItemRecipe(consumer, GTCore.ID, "diamond_pickaxe", "tools", Items.DIAMOND_PICKAXE, of('P', PICKAXE_HEAD.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "diamond_axe", "tools", Items.DIAMOND_AXE, of('P', AXE_HEAD.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "diamond_hoe", "tools", Items.DIAMOND_HOE, of('P', HOE_HEAD.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "diamond_shovel", "tools", Items.DIAMOND_SHOVEL, of('P', SHOVEL_HEAD.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "diamond_sword", "tools", Items.DIAMOND_SWORD, of('P', SWORD_BLADE.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "iron_pickaxe", "tools", Items.IRON_PICKAXE, of('P', PICKAXE_HEAD.get(Iron), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "iron_axe", "tools", Items.IRON_AXE, of('P', AXE_HEAD.get(Iron), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "iron_hoe", "tools", Items.IRON_HOE, of('P', HOE_HEAD.get(Iron), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "iron_shovel", "tools", Items.IRON_SHOVEL, of('P', SHOVEL_HEAD.get(Iron), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "iron_sword", "tools", Items.IRON_SWORD, of('P', SWORD_BLADE.get(Iron), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "golden_pickaxe", "tools", Items.GOLDEN_PICKAXE, of('P', PICKAXE_HEAD.get(Gold), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "golden_axe", "tools", Items.GOLDEN_AXE, of('P', AXE_HEAD.get(Gold), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "golden_hoe", "tools", Items.GOLDEN_HOE, of('P', HOE_HEAD.get(Gold), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "golden_shovel", "tools", Items.GOLDEN_SHOVEL, of('P', SHOVEL_HEAD.get(Gold), 'S', ROD.getMaterialTag(Wood)), "P", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "golden_sword", "tools", Items.GOLDEN_SWORD, of('P', SWORD_BLADE.get(Gold), 'S', ROD.getMaterialTag(Wood)), "P", "S");
     }
 
     private static void toolPartRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
