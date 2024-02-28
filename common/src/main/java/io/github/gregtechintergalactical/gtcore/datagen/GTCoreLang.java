@@ -48,7 +48,7 @@ public class GTCoreLang {
             add(GTCoreBlocks.RUBBER_STAIRS, "Rubber Stairs");
             add(GTCoreBlocks.RUBBER_FENCE, "Rubber Fence");
             add(GTCoreBlocks.RUBBER_FENCE_GATE, "Rubber Fence Gate");
-            add(GTCoreItems.RubberBoat, "Rubber Boat");
+            add(GTCoreItems.RubberBoat, "Rubberwood Boat");
             add(GTCoreBlocks.SAP_BAG, "Sap Bag");
             add("block.gtcore.rubber_twig", "Rubber Twig");
             add("block.gtcore.rubber_fallen_leaves", "Rubber Fallen Leaves");
