@@ -15,7 +15,7 @@ public class SlotTypes {
     public static SlotType<AbstractSlot<?>> TOOLS = new SlotType<>("tools", (type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> i.getItem() instanceof IAntimatterTool || i.getItem().canBeDepleted());
     public static SlotType<AbstractSlot<?>> TOOL_CHARGE = new SlotType<>("tool_charge", (type, gui, item, i, d) -> new AbstractSlot<>(type,gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> {
         if (t instanceof BlockEntity tile) {
-            return TesseractCapUtils.getEnergyHandler(tile, null).map(eh -> TesseractCapUtils.getEnergyHandlerItem(i).map(inner -> ((inner.getInputVoltage() | inner.getOutputVoltage()) <= (eh.getInputVoltage() | eh.getOutputVoltage()) )).orElse(false)).orElse(false) || i.getItem() instanceof IAntimatterTool || i.getItem().canBeDepleted();
+            return TesseractCapUtils.INSTANCE.getEnergyHandler(tile, null).map(eh -> TesseractCapUtils.INSTANCE.getEnergyHandlerItem(i).map(inner -> ((inner.getInputVoltage() | inner.getOutputVoltage()) <= (eh.getInputVoltage() | eh.getOutputVoltage()) )).orElse(false)).orElse(false) || i.getItem() instanceof IAntimatterTool || i.getItem().canBeDepleted();
         }
         return true;
     }, true, true, new ResourceLocation(GTCore.ID, "electric_tool"));

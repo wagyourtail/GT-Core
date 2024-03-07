@@ -166,7 +166,7 @@ public class GTCoreTools {
         ItemStack powerUnit = new ItemStack(broken);
         Tuple<Long, Long> tuple = getEnergy(tool);
         CompoundTag dataTag = powerUnit.getOrCreateTagElement(muramasa.antimatter.Ref.TAG_ITEM_ENERGY_DATA);
-        IEnergyHandlerItem handler = TesseractCapUtils.getEnergyHandlerItem(powerUnit).orElse(null);
+        IEnergyHandlerItem handler = TesseractCapUtils.INSTANCE.getEnergyHandlerItem(powerUnit).orElse(null);
         if (handler != null){
             handler.setEnergy(tuple.getA());
             handler.setCapacity(tuple.getB());
@@ -183,8 +183,8 @@ public class GTCoreTools {
 
     public static Tuple<Long, Long> getEnergy(ItemStack stack){
         if (stack.getItem() instanceof ItemBattery battery){
-            long energy = TesseractCapUtils.getEnergyHandlerItem(stack).map(IGTNode::getEnergy).orElse((long)0);
-            long maxEnergy = TesseractCapUtils.getEnergyHandlerItem(stack).map(IGTNode::getCapacity).orElse(battery.getCapacity());
+            long energy = TesseractCapUtils.INSTANCE.getEnergyHandlerItem(stack).map(IGTNode::getEnergy).orElse((long)0);
+            long maxEnergy = TesseractCapUtils.INSTANCE.getEnergyHandlerItem(stack).map(IGTNode::getCapacity).orElse(battery.getCapacity());
             return new Tuple<>(energy, maxEnergy);
         }
         if (stack.getItem() instanceof IAntimatterTool tool){

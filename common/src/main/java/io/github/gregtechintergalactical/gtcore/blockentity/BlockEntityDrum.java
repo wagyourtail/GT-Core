@@ -123,7 +123,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         fluidHandler.ifPresent(f -> {
             FluidHolder stack = f.getInputTanks().getFluidInTank(0);
             String addition = AntimatterPlatformUtils.isFabric() && !stack.isEmpty() ? "/" + stack.getFluidAmount() + "droplets" : "";
-            list.add("Fluid: " + (stack.isEmpty() ? "Empty" : (stack.getFluidAmount() / TesseractGraphWrappers.dropletMultiplier) + "mb" + addition + " of " + FluidPlatformUtils.getFluidDisplayName(stack).getString()));
+            list.add("Fluid: " + (stack.isEmpty() ? "Empty" : (stack.getFluidAmount() / TesseractGraphWrappers.dropletMultiplier) + "mb" + addition + " of " + FluidPlatformUtils.INSTANCE.getFluidDisplayName(stack).getString()));
         });
         return list;
     }
@@ -166,9 +166,9 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         public void onUpdate() {
             super.onUpdate();
             if (tile.getLevel().getGameTime() % 20 == 0 && output){
-                Direction dir = FluidPlatformUtils.getFluidDensity(getTank(0).getStoredFluid().getFluid()) < 0 ? UP : DOWN;
+                Direction dir = FluidPlatformUtils.INSTANCE.getFluidDensity(getTank(0).getStoredFluid().getFluid()) < 0 ? UP : DOWN;
                 if (getTank(0).getStoredFluid().getFluidAmount() > 0){
-                    Optional<PlatformFluidHandler> cap = TesseractCapUtils.getFluidHandler(tile.getLevel(), tile.getBlockPos().relative(dir), dir.getOpposite());
+                    Optional<PlatformFluidHandler> cap = TesseractCapUtils.INSTANCE.getFluidHandler(tile.getLevel(), tile.getBlockPos().relative(dir), dir.getOpposite());
                     cap.ifPresent(other -> Utils.transferFluids(this, other, 1000));
                 }
             }
@@ -189,7 +189,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
 
         @Override
         public boolean canInput(FluidHolder fluid, Direction direction) {
-            boolean gaseous = FluidPlatformUtils.isFluidGaseous(fluid.getFluid());
+            boolean gaseous = FluidPlatformUtils.INSTANCE.getFluidDensity(fluid.getFluid()) < 0;
             if (output && ((direction == UP && gaseous) || (direction == DOWN && !gaseous))) return false;
             return super.canInput(fluid, direction);
         }

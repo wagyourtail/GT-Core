@@ -3,6 +3,7 @@ package io.github.gregtechintergalactical.gtcore.behaviour;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.behaviour.IItemRightClick;
 import muramasa.antimatter.tool.IAntimatterTool;
+import muramasa.antimatter.tool.IBasicAntimatterTool;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -13,11 +14,11 @@ import net.minecraft.world.level.Level;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreTools.*;
 
-public class BehaviourMultitoolSwitching implements IItemRightClick<IAntimatterTool> {
+public class BehaviourMultitoolSwitching implements IItemRightClick<IBasicAntimatterTool> {
 
     public static BehaviourMultitoolSwitching INSTANCE = new BehaviourMultitoolSwitching();
     @Override
-    public InteractionResultHolder<ItemStack> onRightClick(IAntimatterTool instance, Level level, Player player, InteractionHand usedHand) {
+    public InteractionResultHolder<ItemStack> onRightClick(IBasicAntimatterTool instance, Level level, Player player, InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
         if (player.isShiftKeyDown() && !level.isClientSide){
             var toolType = instance.getAntimatterToolType();

@@ -19,7 +19,7 @@ public class MachineRecipes {
         AntimatterAPI.all(DrumMachine.class).forEach(d -> {
             Material m = d.getMaterial();
             if (m.has(AntimatterMaterialTypes.PLATE) && m.has(AntimatterMaterialTypes.ROD)){
-                provider.addItemRecipe(output, GTCore.ID, "", "machines", "has_hammer", provider.hasSafeItem(AntimatterDefaultTools.HAMMER.getTag()), d.getItem(Tier.NONE), of('H', AntimatterDefaultTools.HAMMER.getTag(), 'R', AntimatterMaterialTypes.ROD.getMaterialTag(m), 'P', AntimatterMaterialTypes.PLATE.getMaterialTag(m)), " H ", "PRP", "PRP");
+                provider.addItemRecipe(output, GTCore.ID, "", "machines", d.getItem(Tier.NONE), of('H', AntimatterDefaultTools.HAMMER.getTag(), 'R', AntimatterMaterialTypes.ROD.getMaterialTag(m), 'P', AntimatterMaterialTypes.PLATE.getMaterialTag(m)), " H ", "PRP", "PRP");
             }
         });
     }

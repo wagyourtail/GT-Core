@@ -37,7 +37,7 @@ public class DrumMachine extends MaterialMachine{
             CompoundTag nbt = stack.getTag();
             FluidHolder fluid = nbt != null && nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.safeGetItemFluidManager(stack).map(fi -> fi.getFluidInTank(0)).orElse(FluidHooks.emptyFluid());
             if (!fluid.isEmpty()){
-                tooltip.add(Utils.translatable("machine.drum.fluid", fluid.getFluidAmount() / TesseractGraphWrappers.dropletMultiplier, FluidPlatformUtils.getFluidDisplayName(fluid)).withStyle(ChatFormatting.AQUA));
+                tooltip.add(Utils.translatable("machine.drum.fluid", fluid.getFluidAmount() / TesseractGraphWrappers.dropletMultiplier, FluidPlatformUtils.INSTANCE.getFluidDisplayName(fluid)).withStyle(ChatFormatting.AQUA));
             }
             if (nbt != null && nbt.contains("Outputs")){
                 tooltip.add(Utils.translatable("machine.drum.output"));

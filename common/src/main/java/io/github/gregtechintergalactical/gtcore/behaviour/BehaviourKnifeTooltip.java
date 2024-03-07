@@ -2,6 +2,7 @@ package io.github.gregtechintergalactical.gtcore.behaviour;
 
 import muramasa.antimatter.behaviour.IAddInformation;
 import muramasa.antimatter.tool.IAntimatterTool;
+import muramasa.antimatter.tool.IBasicAntimatterTool;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -9,7 +10,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-public class BehaviourKnifeTooltip implements IAddInformation<IAntimatterTool> {
+public class BehaviourKnifeTooltip implements IAddInformation<IBasicAntimatterTool> {
     public static final BehaviourKnifeTooltip INSTANCE = new BehaviourKnifeTooltip();
     @Override
     public String getId() {
@@ -17,7 +18,7 @@ public class BehaviourKnifeTooltip implements IAddInformation<IAntimatterTool> {
     }
 
     @Override
-    public void onAddInformation(IAntimatterTool instance, ItemStack stack, List<Component> tooltip, TooltipFlag flag) {
+    public void onAddInformation(IBasicAntimatterTool instance, ItemStack stack, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Utils.translatable("tooltip.gtcore.knife"));
     }
 }

@@ -274,12 +274,12 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         BlockEntity adjTile = Utils.getTile(this.getLevel(), this.getBlockPos().relative(outputDir));
         if (adjTile == null) return;
         if (!itemStack.isEmpty()) {
-            TesseractCapUtils.getItemHandler(adjTile, outputDir.getOpposite()).ifPresent(adjHandler -> {
+            TesseractCapUtils.INSTANCE.getItemHandler(adjTile, outputDir.getOpposite()).ifPresent(adjHandler -> {
                 ItemStack transferred = Utils.insertItem(adjHandler, itemStack.copy(), simulate);
                 itemStack.shrink(itemStack.getCount() - transferred.getCount());
             });
         } else if (!simulate){
-            TesseractCapUtils.getItemHandler(adjTile, outputDir.getOpposite()).ifPresent(adjHandler -> {
+            TesseractCapUtils.INSTANCE.getItemHandler(adjTile, outputDir.getOpposite()).ifPresent(adjHandler -> {
                 this.itemHandler.ifPresent(h -> Utils.transferItems(h.getHandler(SlotTypes.UNLIMITED), adjHandler,true));
             });
         }
