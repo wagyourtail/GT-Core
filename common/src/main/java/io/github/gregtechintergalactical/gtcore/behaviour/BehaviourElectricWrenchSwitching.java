@@ -25,8 +25,8 @@ public class BehaviourElectricWrenchSwitching implements IItemRightClick<IAntima
     public InteractionResultHolder<ItemStack> onRightClick(IAntimatterTool instance, Level level, Player player, InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
         if (player.isShiftKeyDown() && !level.isClientSide){
-            String id = instance.getAntimatterToolType() == ELECTRIC_WRENCH ? instance.getId().replace("electric_wrench", "electric_wrench_alt") : instance.getId().replace("electric_wrench_alt", "electric_wrench");
-            Item newWrench = AntimatterAPI.get(IAntimatterTool.class, id).getItem();
+            String id = instance.getId().contains("wrench_alt") ? instance.getId().replace("wrench_alt", "wrench") : instance.getId().replace("wrench", "wrench_alt");
+            Item newWrench = AntimatterAPI.get(Item.class, id, instance.getDomain());
             ItemStack newStack = new ItemStack(newWrench);
             newStack.setTag(stack.getTag());
             player.setItemSlot(usedHand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND, newStack);
