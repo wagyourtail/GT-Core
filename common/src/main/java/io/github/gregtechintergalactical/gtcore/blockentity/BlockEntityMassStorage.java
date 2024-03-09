@@ -7,6 +7,7 @@ import io.github.gregtechintergalactical.gtcore.machine.MassStorageMachine;
 import io.github.gregtechintergalactical.gtcore.machine.MassStorageItemHandler;
 import io.github.gregtechintergalactical.gtcore.network.MessageInventorySync;
 import io.github.gregtechintergalactical.gtcore.network.MessageTriggerInventorySync;
+import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.machine.MachineState;
@@ -30,6 +31,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import tesseract.TesseractCapUtils;
 
@@ -251,20 +253,20 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         }
     }
 
+    @Override
+    public @NotNull CompoundTag getUpdateTag() {
+        CompoundTag nbt = super.getUpdateTag();
+        itemHandler.ifPresent(e -> nbt.put(Ref.KEY_MACHINE_ITEMS, e.serialize(new CompoundTag())));
+        return nbt;
+    }
+
     public void setSyncSlots(boolean syncSlots) {
         this.syncSlots = syncSlots;
     }
 
     public void syncSlots(){
         if (getLevel() != null && isServerSide()){
-            itemHandler.ifPresent(i -> {
-                i.getAll().keySet().forEach(s -> {
-                    var handler = i.getHandler(s);
-                    for (int i1 = 0; i1 < handler.getSlots(); i1++) {
-                        AntimatterNetwork.NETWORK.sendToAllLoaded(new MessageInventorySync(this.getBlockPos(), s, i1, i.getHandler(s).getItem(i1)), this.getLevel(), this.getBlockPos());
-                    }
-                });
-            });
+            this.sidedSync(true);
         }
     }
 
@@ -292,9 +294,9 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
 
     @Override
     public void onMachineEvent(IMachineEvent event, Object... data) {
-        if (event instanceof SlotType<?> slotType && data.length > 0 && data[0] instanceof Integer integer){
+        if (event instanceof SlotType<?> && data.length > 0 && data[0] instanceof Integer){
             if (isServerSide() && getLevel() != null){
-                AntimatterNetwork.NETWORK.sendToAllLoaded(new MessageInventorySync(this.getBlockPos(), slotType, integer, itemHandler.map(i -> i.getHandler(slotType).getItem(integer)).orElse(ItemStack.EMPTY)), this.getLevel(), this.getBlockPos());
+                sidedSync(true);
             }
         }
         super.onMachineEvent(event, data);
