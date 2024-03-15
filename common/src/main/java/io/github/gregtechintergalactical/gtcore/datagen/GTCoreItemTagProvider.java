@@ -39,6 +39,7 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
     @Override
     protected void processTags(String domain) {
         super.processTags(domain);
+        processSubtags();
         this.copy(TagUtils.getBlockTag(new ResourceLocation(GTCore.ID, "rubber_logs")), GTCoreTags.RUBBER_LOGS);
         this.tag(ItemTags.LEAVES).add(GTCoreBlocks.RUBBER_LEAVES.asItem());
         this.tag(ItemTags.PLANKS).add(GTCoreBlocks.RUBBER_PLANKS.asItem());
