@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.GTCoreConfig;
 import io.github.gregtechintergalactical.gtcore.GTCoreConfig.CircuitRecipeMode;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreCables;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreTags;
 import io.github.gregtechintergalactical.gtcore.data.RecipeMaps;
@@ -38,7 +39,7 @@ public class CircuitRecipes {
             boolean gt5 = recipeMode == GT5;
             if (gt5){
                 provider.addItemRecipe(output, GTCore.ID, "", "circuits", NandChip,
-                        ImmutableMap.of('C', ITEM_CASING.getMaterialTag(Steel), 'R', WIRE_RED_ALLOY.getBlockItem(PipeSize.VTINY), 'T', WIRE_TIN.getBlockItem(PipeSize.VTINY)), "CR", "RT");
+                        ImmutableMap.of('C', ITEM_CASING.getMaterialTag(Steel), 'R', WIRE_RED_ALLOY.getBlockItem(PipeSize.VTINY), 'T', fromSubTag(TIN_WIRE, PipeSize.VTINY)), "CR", "RT");
                 provider.addStackRecipe(output, GTCore.ID, "", "board_basic", new ItemStack(CircuitBoardCoated, 3),
                         ImmutableMap.<Character, Object>builder()
                                 .put('R', GTCoreItems.StickyResin)
@@ -46,7 +47,7 @@ public class CircuitRecipes {
                                 .build(),
                         " R ", "PPP", " R ");
             }
-            TagKey<Item> copperCable = TagUtils.getItemTag(new ResourceLocation(Ref.ID, SubTag.COPPER_CABLE.getId()+"_"+ PipeSize.VTINY.getId()));
+            TagKey<Item> copperCable = fromSubTag(SubTag.COPPER_CABLE, PipeSize.VTINY);
             Object nandChip = gt5 ? NandChip : PLATE.getMaterialTag(RedAlloy);
             Object circuitBoard = gt5 ? CircuitBoardCoated : PLATE.getMaterialTag(WroughtIron);
             provider.addItemRecipe(output, GTCore.ID, "circuit_basic_h", "circuits", CircuitBasic,
@@ -85,11 +86,15 @@ public class CircuitRecipes {
 
         } else {
             boolean gt5 = recipeMode == GT5;
-            TagKey<Item> copperCable = TagUtils.getItemTag(new ResourceLocation(Ref.ID, SubTag.COPPER_CABLE.getId()+"_"+ PipeSize.VTINY.getId()));
+            TagKey<Item> copperCable = fromSubTag(SubTag.COPPER_CABLE, PipeSize.VTINY);
             RecipeMaps.ASSEMBLING.RB().ii(RecipeIngredient.of(CircuitBoardBasic), RecipeIngredient.ofObject((gt5 ? NandChip : copperCable), gt5 ? 2 : 3)).io(CircuitBasic).add("basic_circuit", 400, 2);
             if (GTCoreConfig.GOOD_CIRCUITS.get()){ // make the condition the good circuits config
 
             }
         }
+    }
+
+    private static TagKey<Item> fromSubTag(SubTag subTag, PipeSize size){
+        return TagUtils.getItemTag(new ResourceLocation(Ref.ID, subTag.getId()+"_"+ size.getId()));
     }
 }

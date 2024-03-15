@@ -2,13 +2,20 @@ package io.github.gregtechintergalactical.gtcore.datagen;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
+import io.github.gregtechintergalactical.gtcore.data.GTCoreCables;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreTags;
 import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.data.AntimatterTags;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemTagProvider;
+import muramasa.antimatter.material.Material;
+import muramasa.antimatter.material.SubTag;
+import muramasa.antimatter.pipe.PipeSize;
+import muramasa.antimatter.pipe.types.Cable;
+import muramasa.antimatter.pipe.types.Wire;
 import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -16,8 +23,13 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
+import java.util.Objects;
+import java.util.Set;
+
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreItems.*;
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreTags.*;
+import static muramasa.antimatter.material.MaterialTags.CABLE;
+import static muramasa.antimatter.material.MaterialTags.WIRE;
 
 public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
     public GTCoreItemTagProvider(String providerDomain, String providerName, boolean replace, AntimatterBlockTagProvider p) {
@@ -74,5 +86,20 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(POWER_UNIT_SMALL).add(SmallPowerUnit);
         this.tag(POWER_UNIT_JACKHAMMER).add(JackhammerPowerUnit);
         this.tag(FIRESTARTER).add(Items.FLINT_AND_STEEL, Match, Lighter, MatchBook);
+    }
+
+    protected void processSubtags() {
+        for (PipeSize value : PipeSize.values()) {
+            Set<Material> mats = WIRE.allSub(GTCoreCables.TIN_WIRE);
+            if (mats.size() > 0) {
+                this.tag(TagUtils.getItemTag(new ResourceLocation(Ref.ID, GTCoreCables.TIN_WIRE.getId() + "_" + value.getId()))).add(mats.stream().map(t ->
+                        AntimatterAPI.get(Wire.class, "wire_" + t.getId())).filter(Objects::nonNull).map(t -> t.getBlockItem(value)).toArray(Item[]::new));
+            }
+            mats = CABLE.allSub(GTCoreCables.TIN_CABLE);
+            if (mats.size() > 0) {
+                this.tag(TagUtils.getItemTag(new ResourceLocation(Ref.ID, GTCoreCables.TIN_CABLE.getId() + "_" + value.getId()))).add(mats.stream().map(t ->
+                        AntimatterAPI.get(Cable.class, "cable_" + t.getId())).filter(Objects::nonNull).map(t -> t.getBlockItem(value)).toArray(Item[]::new));
+            }
+        }
     }
 }
