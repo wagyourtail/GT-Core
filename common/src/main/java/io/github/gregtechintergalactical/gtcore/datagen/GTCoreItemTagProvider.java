@@ -87,6 +87,7 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(POWER_UNIT_SMALL).add(SmallPowerUnit);
         this.tag(POWER_UNIT_JACKHAMMER).add(JackhammerPowerUnit);
         this.tag(FIRESTARTER).add(Items.FLINT_AND_STEEL, Match, Lighter, MatchBook);
+        this.tag(TagUtils.getItemTag(new ResourceLocation(Ref.MOD_TWILIGHT, "banned_uncraftables"))).add(AntimatterAPI.all(Item.class).toArray(Item[]::new));
     }
 
     protected void processSubtags() {
