@@ -76,6 +76,9 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(CIRCUITS_DATA).add(CircuitDataStorage);
         this.tag(CIRCUITS_ELITE).add(CircuitDataControl);
         this.tag(CIRCUITS_MASTER).add(CircuitEnergyFlow);
+        this.tag(CIRCUITS_FUTURISTIC).add(CircuitFuturistic);
+        this.tag(CIRCUITS_3D).add(Circuit3D);
+        this.tag(CIRCUITS_INFINITE).add(CircuitInfinite);
         this.tag(CIRCUITS_DATA_ORB).add(DataOrb);
         this.tag(BATTERIES_RE).add(BatteryRE);
         this.tag(BATTERIES_SMALL).add(BatterySmallSodium, BatterySmallCadmium, BatterySmallLithium);
