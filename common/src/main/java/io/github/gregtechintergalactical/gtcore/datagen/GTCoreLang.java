@@ -81,6 +81,11 @@ public class GTCoreLang {
                     .replace("Ev", "(EV)")
                     .replace("Iv", "(IV)")));
             AntimatterAPI.all(ItemHazmatArmor.class, domain).forEach(i -> this.add(i, Utils.lowerUnderscoreToUpperSpaced(i.getId())));
+        }
+
+        @Override
+        protected void overrides() {
+            super.overrides();
             AntimatterAPI.all(BlockPipe.class).stream().filter(s -> s instanceof BlockRedstoneWire<?>).forEach(s -> {
                 override(Ref.ID, s.getDescriptionId(), StringUtils.join(Utils.getLocalizedType(s.getType().getMaterial()), " ", Utils.lowerUnderscoreToUpperSpaced(s.getType().getType())));
             });
