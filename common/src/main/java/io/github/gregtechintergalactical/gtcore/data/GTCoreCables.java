@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtcore.data;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
+import io.github.gregtechintergalactical.gtcore.block.RedstoneWire;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterMaterials;
 import muramasa.antimatter.machine.Tier;
@@ -17,7 +18,7 @@ public class GTCoreCables {
     public static final SubTag TIN_WIRE = new SubTag("tin_wire");
 
     public static final SubTag TIN_CABLE = new SubTag("tin_cable");
-    public static final Wire<?> WIRE_RED_ALLOY = AntimatterAPI.register(Wire.class, new Wire<>(GTCore.ID, RedAlloy, 1, Tier.ULV).amps(1));
+    public static final RedstoneWire<?> WIRE_RED_ALLOY = AntimatterAPI.register(RedstoneWire.class, new RedstoneWire<>(GTCore.ID, RedAlloy, 0xd00000));
 
     public static void init(){
         WIRE.subTag(TIN_WIRE, Tin);
