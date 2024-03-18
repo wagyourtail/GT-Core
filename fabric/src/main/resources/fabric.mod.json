@@ -15,7 +15,8 @@
   "icon": "assets/examplemod/icon.png",
   "accessWidener": "gtcore.accesswidener",
   "mixins": [
-    "gtcore.mixins.json"
+    "gtcore.mixins.json",
+    "gtcore-fabric.mixins.json"
   ],
   "environment": "*",
   "entrypoints": {

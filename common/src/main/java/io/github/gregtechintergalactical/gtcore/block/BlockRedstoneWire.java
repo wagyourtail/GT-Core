@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtcore.block;
 
 import io.github.gregtechintergalactical.gtcore.behaviour.BlockEntityRedstoneWire;
+import muramasa.antimatter.Data;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.blockentity.pipe.BlockEntityPipe;
 import muramasa.antimatter.data.AntimatterDefaultTools;
@@ -18,8 +19,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     public BlockRedstoneWire(T type, PipeSize size) {
-        super(type.getId(), type, size, 2);
-        String prefix = "wire";
+        super(type.getId(), type, size, 2, Properties.of(Data.WRENCH_MATERIAL).strength(1.0f, 3.0f).requiresCorrectToolForDrops().emissiveRendering(((blockState, blockGetter, pos) -> isEmissive(size, blockState, blockGetter, pos))));
+        String prefix = size == PipeSize.TINY ? "cable" : "wire";
         this.side = new Texture(Ref.ID, "block/pipe/" + prefix + "_side");
         this.faces = new Texture[]{
                 new Texture(Ref.ID, "block/pipe/" + prefix + "_vtiny"),
@@ -29,6 +30,17 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
                 new Texture(Ref.ID, "block/pipe/" + prefix + "_large"),
                 new Texture(Ref.ID, "block/pipe/" + prefix + "_huge")
         };
+    }
+
+    private static boolean isEmissive(PipeSize size, BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return size == PipeSize.VTINY && blockGetter.getBlockEntity(blockPos) instanceof BlockEntityRedstoneWire<?> wire && wire.getState() > 0;
+    }
+
+    public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
+        if (getType().emitsLight && getSize() == PipeSize.VTINY && level.getBlockEntity(pos) instanceof BlockEntityRedstoneWire<?> wire && wire.getState() > 0){
+            return wire.getState() / getType().range;
+        }
+        return 0;
     }
 
     @Override

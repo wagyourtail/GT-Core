@@ -16,11 +16,22 @@ import java.util.stream.Collectors;
 
 public class RedstoneWire<T extends RedstoneWire<T>> extends PipeType<T> {
     int onColor;
+    int range;
+    boolean initializing = false;
+    boolean emitsLight = false;
 
     public RedstoneWire(String domain, Material material, int onColor) {
         super(domain, material, BlockEntityRedstoneWire::new);
         this.onColor = onColor;
-        sizes(PipeSize.VTINY);
+        initializing = true;
+        sizes(PipeSize.VTINY, PipeSize.TINY);
+        initializing = false;
+    }
+
+    @Override
+    public T sizes(PipeSize... sizes) {
+        if (!initializing) return (T) this;
+        return super.sizes(sizes);
     }
 
     @Override
@@ -40,5 +51,15 @@ public class RedstoneWire<T extends RedstoneWire<T>> extends PipeType<T> {
 
     public int getOnColor() {
         return onColor;
+    }
+
+    public T range(int range){
+        this.range = range;
+        return (T) this;
+    }
+
+    public T emitsLight(){
+        emitsLight = true;
+        return (T) this;
     }
 }

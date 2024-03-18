@@ -18,7 +18,7 @@ public class GTCoreCables {
     public static final SubTag TIN_WIRE = new SubTag("tin_wire");
 
     public static final SubTag TIN_CABLE = new SubTag("tin_cable");
-    public static final RedstoneWire<?> WIRE_RED_ALLOY = AntimatterAPI.register(RedstoneWire.class, new RedstoneWire<>(GTCore.ID, RedAlloy, 0xd00000));
+    public static final RedstoneWire<?> WIRE_RED_ALLOY = AntimatterAPI.register(RedstoneWire.class, new RedstoneWire<>(GTCore.ID, RedAlloy, 0xd00000)).range(16);
 
     public static void init(){
         WIRE.subTag(TIN_WIRE, Tin);
