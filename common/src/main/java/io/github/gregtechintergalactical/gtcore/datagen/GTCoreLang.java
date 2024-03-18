@@ -1,13 +1,19 @@
 package io.github.gregtechintergalactical.gtcore.datagen;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
+import io.github.gregtechintergalactical.gtcore.block.BlockRedstoneWire;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
 import io.github.gregtechintergalactical.gtcore.item.ItemHazmatArmor;
 import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.Ref;
 import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
 import muramasa.antimatter.item.ItemBasic;
+import muramasa.antimatter.pipe.BlockItemPipe;
+import muramasa.antimatter.pipe.BlockPipe;
+import muramasa.antimatter.pipe.types.Cable;
 import muramasa.antimatter.util.Utils;
+import org.apache.commons.lang3.StringUtils;
 
 import static muramasa.antimatter.util.Utils.lowerUnderscoreToUpperSpaced;
 
@@ -75,6 +81,9 @@ public class GTCoreLang {
                     .replace("Ev", "(EV)")
                     .replace("Iv", "(IV)")));
             AntimatterAPI.all(ItemHazmatArmor.class, domain).forEach(i -> this.add(i, Utils.lowerUnderscoreToUpperSpaced(i.getId())));
+            AntimatterAPI.all(BlockPipe.class).stream().filter(s -> s instanceof BlockRedstoneWire<?>).forEach(s -> {
+                override(Ref.ID, s.getDescriptionId(), StringUtils.join(Utils.getLocalizedType(s.getType().getMaterial()), " ", Utils.lowerUnderscoreToUpperSpaced(s.getType().getType())));
+            });
         }
     }
 }
