@@ -262,6 +262,11 @@ public class Tools {
     }
 
     private static void vanillaToolRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
+        provider.addItemRecipe(consumer, GTCore.ID, "stone_pickaxe", "tools", Items.STONE_PICKAXE, of('R', ROCK.getTag(), 'S', Items.STICK), "RRR", " S ");
+        provider.addItemRecipe(consumer, GTCore.ID, "stone_axe", "tools", Items.STONE_AXE, of('R', ROCK.getTag(), 'S', Items.STICK), "RR", "RS");
+        provider.addItemRecipe(consumer, GTCore.ID, "stone_shovel", "tools", Items.STONE_SHOVEL, of('R', ROCK.getTag(), 'S', Items.STICK), "R", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "stone_hoe", "tools", Items.STONE_HOE, of('R', ROCK.getTag(), 'S', Items.STICK), "RR", " S");
+        provider.addItemRecipe(consumer, GTCore.ID, "stone_sword", "tools", Items.STONE_SWORD, of('R', ROCK.getTag(), 'S', Items.STICK), "R", "R", "S");
         provider.addItemRecipe(consumer, GTCore.ID, "diamond_pickaxe", "tools", Items.DIAMOND_PICKAXE, of('P', PICKAXE_HEAD.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
         provider.addItemRecipe(consumer, GTCore.ID, "diamond_axe", "tools", Items.DIAMOND_AXE, of('P', AXE_HEAD.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
         provider.addItemRecipe(consumer, GTCore.ID, "diamond_hoe", "tools", Items.DIAMOND_HOE, of('P', HOE_HEAD.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
