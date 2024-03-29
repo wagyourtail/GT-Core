@@ -64,7 +64,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
     @Override
     public void clicked(int slotId, int dragType, ClickType clickTypeIn, Player player) {
 
-        boolean clickTypeCrafting = slotId == 0 && slots.get(slotId).hasItem() &&
+        /*boolean clickTypeCrafting = slotId == 0 && slots.get(slotId).hasItem() &&
                 (clickTypeIn.equals(ClickType.PICKUP) || clickTypeIn.equals(ClickType.QUICK_MOVE));
 
         //Save the Matrix State before Crafting
@@ -75,12 +75,12 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
                 ItemStack matrixStack = matrixSlot.getItem();
                 beforeAction.set(i - 17, matrixStack.copy());
             }
-        }
+        }*/
 
         super.clicked(slotId, dragType, clickTypeIn, player);
 
         //Try to pull from the Project Table Inventory if the last of an item for a recipe.
-        if(clickTypeCrafting){
+        /*if(clickTypeCrafting){
             for (int i = 17; i < 26; ++i) {
                 ItemStack beforeStack = beforeAction.get(i - 17);
                 Slot matrixSlot = slots.get(i);
@@ -100,7 +100,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
                     }
                 }
             }
-        }
+        }*/
     }
 
     protected static void updateCrafting(int id, int stateID, Level world, Player playerEntity, CraftingContainer craftingInventory, ResultContainer craftResultInventory) {
