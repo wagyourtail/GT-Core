@@ -197,10 +197,13 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         @Override
         public long insertFluid(FluidHolder fluid, boolean simulate) {
             if (tile.getMachineType() instanceof DrumMachine drumMachine && !drumMachine.isAcidProof() && fluid.getFluid().is(AntimatterTags.ACID)){
-                if (!simulate) {
-                    tile.getLevel().setBlock(tile.getBlockPos(), Blocks.AIR.defaultBlockState(), 3);
+                long insert = super.insertFluid(fluid, true);
+                if (insert > 0){
+                    if (!simulate) {
+                        tile.getLevel().setBlock(tile.getBlockPos(), Blocks.AIR.defaultBlockState(), 3);
+                    }
+                    return Math.min(16L, fluid.getFluidAmount());
                 }
-                return Math.min(16L, fluid.getFluidAmount());
             }
             return super.insertFluid(fluid, simulate);
         }
