@@ -48,6 +48,7 @@ public class SlotWorkTableResult extends ResultSlot {
             if (projectTable.getHandler(SlotType.STORAGE).getStackInSlot(j).getItem().equals(itemStack.getItem()) && ItemStack.tagMatches(itemStack, projectTable.getHandler(SlotType.STORAGE).getStackInSlot(j))) {
                 projectTable.getHandler(SlotType.STORAGE).extractFromInput(j, 1, false);
                 itemStack.setCount(itemStack.getCount() + 1);
+                break;
             }
         }
         return itemStack;
