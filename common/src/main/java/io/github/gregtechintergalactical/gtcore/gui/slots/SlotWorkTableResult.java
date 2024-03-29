@@ -32,7 +32,7 @@ public class SlotWorkTableResult extends ResultSlot {
         boolean remaining = true;
         for (int i = 0; i < 10; i++) {
             ItemStack itemStack = craftMatrix.getItem(i);
-            if (itemStack.getCount() == 1) {
+            if (itemStack.getCount() == 1 && itemStack.getMaxStackSize() > 1) {
                 extractFromTable(itemStack);
                 craftMatrix.setItem(i, itemStack);
             }
