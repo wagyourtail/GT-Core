@@ -91,6 +91,13 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(POWER_UNIT_JACKHAMMER).add(JackhammerPowerUnit);
         this.tag(FIRESTARTER).add(Items.FLINT_AND_STEEL, Match, Lighter, MatchBook);
         this.tag(TagUtils.getItemTag(new ResourceLocation(Ref.MOD_TWILIGHT, "banned_uncraftables"))).add(AntimatterAPI.all(Item.class).toArray(Item[]::new));
+        this.tag(MAGNETIC_TOOL).add(
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_lv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_mv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_hv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_lv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_mv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_hv").getItem());
     }
 
     protected void processSubtags() {

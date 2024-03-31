@@ -39,6 +39,7 @@ public class GTCoreTags {
     public static TagKey<Item> TRANSISTORS = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "transistors"));
     public static TagKey<Item> DIODES = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "diodes"));
     public static TagKey<Item> FIRESTARTER = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "firestarter"));
+    public static TagKey<Item> MAGNETIC_TOOL = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "magnetic_tool"));
     public static final TagKey<Item> RUBBER_LOGS = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "rubber_logs"));
 
     public static TagKey<Item> getTag(String id){
