@@ -18,6 +18,7 @@ import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -34,6 +35,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import tesseract.TesseractCapUtils;
+import tesseract.api.item.ExtendedItemContainer;
 
 import java.util.List;
 
@@ -256,7 +258,29 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     @Override
     public @NotNull CompoundTag getUpdateTag() {
         CompoundTag nbt = super.getUpdateTag();
-        itemHandler.ifPresent(e -> nbt.put(Ref.KEY_MACHINE_ITEMS, e.serialize(new CompoundTag())));
+        itemHandler.ifPresent(e -> {
+            CompoundTag in = new CompoundTag();
+            e.getAll().forEach((f,i) -> {
+                in.put(f.getId(), serializeWithEmpty(i, new CompoundTag()));
+            });
+            nbt.put(Ref.KEY_MACHINE_ITEMS, in);
+        });
+        return nbt;
+    }
+
+    public CompoundTag serializeWithEmpty(ExtendedItemContainer container, CompoundTag nbt) {
+        ListTag nbtTagList = new ListTag();
+
+
+        for(int i = 0; i < container.getSlots(); ++i) {
+            CompoundTag itemTag = new CompoundTag();
+            itemTag.putInt("Slot", i);
+            container.getItem(i).save(itemTag);
+            itemTag.putInt("count", container.getItem(i).getCount());
+            nbtTagList.add(itemTag);
+        }
+
+        nbt.put("Items", nbtTagList);
         return nbt;
     }
 
