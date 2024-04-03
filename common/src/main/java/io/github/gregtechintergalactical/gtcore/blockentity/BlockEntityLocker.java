@@ -17,10 +17,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import tesseract.api.item.ExtendedItemContainer;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class BlockEntityLocker extends BlockEntityMaterial<BlockEntityLocker> {
     public BlockEntityLocker(MaterialMachine type, BlockPos pos, BlockState state) {
@@ -69,7 +69,7 @@ public class BlockEntityLocker extends BlockEntityMaterial<BlockEntityLocker> {
     }
 
     @Override
-    public <V> boolean blocksCapability(@Nonnull Class<V> cap, Direction side) {
+    public <V> boolean blocksCapability(@NotNull Class<V> cap, Direction side) {
         return super.blocksCapability(cap, side) || cap == ExtendedItemContainer.class;
     }
 

@@ -8,8 +8,7 @@ import muramasa.antimatter.network.AntimatterNetwork;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
-
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class InventoryWorkbench extends CraftingContainer {
     private final int length;
@@ -50,13 +49,13 @@ public class InventoryWorkbench extends CraftingContainer {
             AntimatterNetwork.NETWORK.sendToServer(new MessageCraftingSync());
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public ItemStack getItem(int index) {
         return index >= this.getContainerSize() ? ItemStack.EMPTY : this.projectTable.getHandler(SlotTypes.CRAFTING).getStackInSlot(index);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public ItemStack removeItem(int index, int count) {
         if(!this.getItem(index).isEmpty()) {

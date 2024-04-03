@@ -12,9 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 import tesseract.api.item.ExtendedItemContainer;
-
-import javax.annotation.Nonnull;
 
 public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkbench>{
     public BlockEntityWorkbench(MaterialMachine type, BlockPos pos, BlockState state) {
@@ -48,7 +47,7 @@ public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkben
     }
 
     @Override
-    public <V> boolean blocksCapability(@Nonnull Class<V> cap, Direction side) {
+    public <V> boolean blocksCapability(@NotNull Class<V> cap, Direction side) {
         return super.blocksCapability(cap, side) || cap == ExtendedItemContainer.class;
     }
 }

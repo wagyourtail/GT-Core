@@ -19,13 +19,14 @@ dependencies {
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     modImplementation("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}"){
         //exclude(group: "mezz.jei")
+        exclude(group: "com.github.Reforged-Mods.Terraform-Reforged")
     }
     common(project(path: ":common", configuration: "namedElements"))
     shadowCommon(project(path: ":common", configuration: "transformProductionForge"))
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     modCompileOnly("curse.maven:terrafirmacraft-302973:4723717")
-    modImplementation(include("com.github.Reforged-Mods.Terraform-Reforged:terraform-wood-api-v1:${project.terraform_version_forge}"))
+    modImplementation(include("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}"))
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
     modImplementation("maven.modrinth:carbon-config:${project.carbon_config_forge_version}")
     modRuntimeOnly("curse.maven:the-twilight-forest-227639:4337390")

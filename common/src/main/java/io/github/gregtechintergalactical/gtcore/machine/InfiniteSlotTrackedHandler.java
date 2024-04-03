@@ -14,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.function.BiPredicate;
 
 public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedItemHandler<T> {
@@ -24,7 +23,7 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
     }
 
     @Override
-    protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
+    protected int getStackLimit(int slot, @NotNull ItemStack stack) {
         return getSlotLimit(slot);
     }
 
