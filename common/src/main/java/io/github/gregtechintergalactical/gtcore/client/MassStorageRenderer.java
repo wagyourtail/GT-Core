@@ -73,6 +73,7 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
             matrix.translate(0.5, 0.375, 0.05f);
             matrix.scale(0.5f, 0.5f, 0.00005f);
             ItemStack stack = display.getItem(0);
+            if (stack.isEmpty()) stack = storage.getItem(0);
             renderStack(matrix, bufferIn, combinedLightIn, combinedOverlayIn, stack, tile, 0.03f);
             int max = ((MassStorageMachine)tile.getMachineType()).getCapacity();
             int count = storage.getItem(0).getCount();
