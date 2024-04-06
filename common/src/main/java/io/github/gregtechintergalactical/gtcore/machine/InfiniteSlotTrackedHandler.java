@@ -93,6 +93,7 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
                 CompoundTag itemTag = new CompoundTag();
                 itemTag.putInt("Slot", i);
                 stacks.get(i).save(itemTag);
+                itemTag.putByte("Count", (byte) 1);
                 itemTag.putInt("count", stacks.get(i).getCount());
                 nbtTagList.add(itemTag);
             }

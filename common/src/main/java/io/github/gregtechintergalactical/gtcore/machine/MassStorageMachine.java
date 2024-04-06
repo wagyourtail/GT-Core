@@ -30,6 +30,7 @@ public class MassStorageMachine extends MaterialMachine{
                         ListTag items = unlimited.getList("Items", 10);
                         CompoundTag item = items.getCompound(0);
                         ItemStack contained = ItemStack.of(item);
+                        contained.setCount(item.getInt("count"));
                         tooltip.add(Utils.translatable("machine.mass_storage.contains", item.getInt("count"), contained.getHoverName()));
                     }
                     if (inventories.contains("display")){
