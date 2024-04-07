@@ -73,7 +73,8 @@ subprojects {
 
         mappings {
             mojmap()
-            parchment(${rootProject.minecraft_version}, ${rootProject.mappings_version})
+            devNamespace "mojmap"
+            parchment(rootProject.minecraft_version, rootProject.mappings_version)
         }
     }
 

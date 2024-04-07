@@ -9,7 +9,7 @@ def accessWidenerFile = project(":common").file("src/main/resources/gtcore.acces
 }*/
 unimined.minecraft {
     fabric {
-        loader fabric_loader
+        loader fabric_loader_version
     }
 
     defaultRemapJar = false
