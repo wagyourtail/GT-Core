@@ -1,8 +1,16 @@
 archivesBaseName = "${rootProject.archive_base_name}-common"
 version = "${project.mod_version}-${rootProject.minecraft_version}"
 
-loom {
+/*loom {
     accessWidenerPath = file("src/main/resources/gtcore.accesswidener")
+}*/
+
+unimined.minecraft {
+    fabric {
+        loader fabric_loader
+    }
+
+    defaultRemapJar = false
 }
 
 dependencies {
@@ -26,8 +34,4 @@ dependencies {
     }
     modCompileOnly("curse.maven:the-one-probe-fabric-581847:${project.top_fabric_file}")
     modImplementation "maven.modrinth:carbon-config:${project.carbon_config_fabric_version}"
-}
-
-architectury {
-    common("forge", "fabric")
 }
