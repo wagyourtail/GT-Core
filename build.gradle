@@ -30,6 +30,13 @@ subprojects {
         withSourcesJar()
     }
 
+    configurations {
+        modCompileOnly
+        compileOnly.extendsFrom modCompileOnly
+        modRuntimeOnly
+        runtimeOnly.extendsFrom modRuntimeOnly
+    }
+
     tasks.withType(JavaCompile).configureEach {
         it.options.encoding = 'UTF-8'
     }
@@ -67,9 +74,10 @@ subprojects {
     unimined.minecraft(sourceSets.main, true) {
         version minecraft_version
 
-        /*if (project.name !== "common") {
-            combineWith(":common:main")
-        }*/
+        mods {
+            remap(configurations.modCompileOnly)
+            remap(configurations.modRuntimeOnly)
+        }
 
         mappings {
             mojmap()

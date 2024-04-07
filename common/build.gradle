@@ -8,9 +8,10 @@ version = "${project.mod_version}-${rootProject.minecraft_version}"
 unimined.minecraft {
     fabric {
         loader fabric_loader_version
+        accessWidener(file("src/main/resources/gtcore.accesswidener"))
     }
 
-    defaultRemapJar = false
+    defaultRemapJar = true
 }
 
 dependencies {
@@ -26,12 +27,12 @@ dependencies {
     modImplementation("earth.terrarium:botarium-common-1.18.2:${project.botarium_version}")
     modImplementation("com.gtnewhorizon.structurelib:structurelib-common:${project.structurelib_version}-${project.minecraft_version}")
     modImplementation "com.teamresourceful.resourcefullib:resourcefullib-common-1.18.2:${project.resourcefullib_version}"
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.rei_version}"
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin:${rootProject.rei_version}"
-    modCompileOnly("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
+    modImplementation "me.shedaniel:RoughlyEnoughItems-api:${rootProject.rei_version}"
+    modImplementation "me.shedaniel:RoughlyEnoughItems-default-plugin:${rootProject.rei_version}"
+    modImplementation("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
     modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version_fabric}"){
         transitive = false
     }
-    modCompileOnly("curse.maven:the-one-probe-fabric-581847:${project.top_fabric_file}")
+    modImplementation("curse.maven:the-one-probe-fabric-581847:${project.top_fabric_file}")
     modImplementation "maven.modrinth:carbon-config:${project.carbon_config_fabric_version}"
 }

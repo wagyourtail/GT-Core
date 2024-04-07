@@ -9,8 +9,10 @@ unimined.minecraft {
     minecraftForge {
         loader forge_version
         mixinConfig("gtcore.mixins.json")
+        //accessWidener(project(":common").file("src/main/resources/gtcore.accesswidener"))
         aw2at(project(":common").file("src/main/resources/gtcore.accesswidener"));
     }
+    defaultRemapJar = true
 }
 
 dependencies {
@@ -18,11 +20,11 @@ dependencies {
         //exclude(group: "mezz.jei")
         exclude(group: "com.github.Reforged-Mods.Terraform-Reforged")
     }
-    implementation(project(path: ":common", configuration: "namedElements"))
+    implementation(project(path: ":common"))
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     modCompileOnly("curse.maven:terrafirmacraft-302973:4723717")
-    modImplementation(include("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}"))
+    modImplementation("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}")
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
     modImplementation("maven.modrinth:carbon-config:${project.carbon_config_forge_version}")
     modRuntimeOnly("curse.maven:the-twilight-forest-227639:4337390")
