@@ -119,6 +119,7 @@ public class GTCoreItems {
     public static ItemPowerUnit SmallPowerUnit = new ItemPowerUnit(GTCore.ID, "small_power_unit", Aluminium);
     public static ItemPowerUnit JackhammerPowerUnit = new ItemPowerUnit(GTCore.ID, "jackhammer_power_unit", Material.NULL);
 
+    public static ItemBasic<?> RawLapotronCrustal = new ItemBasic<>(GTCore.ID, "raw_lapotron_crystal");
     public static ItemBasic<?> BatteryHullSmall = new ItemBasic<>(GTCore.ID, "small_battery_hull").tip("An empty LV Battery Hull");
     public static ItemBasic<?> BatteryHullMedium = new ItemBasic<>(GTCore.ID, "medium_battery_hull").tip("An empty MV Battery Hull");
     public static ItemBasic<?> BatteryHullLarge = new ItemBasic<>(GTCore.ID, "large_battery_hull").tip("An empty HV Battery Hull");
