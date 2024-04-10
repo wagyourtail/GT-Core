@@ -1,7 +1,5 @@
 package io.github.gregtechintergalactical.gtcore.mixin;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.gregtechintergalactical.gtcore.GTCoreConfig;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
 import net.minecraft.world.item.Item;
