@@ -196,6 +196,7 @@ public class GTCoreMaterials {
     public static Material Brick = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "brick", 0x9b5643, ROUGH));
     public static Material Clay = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "clay", 0xc8c8dc, ROUGH));
     public static Material Energium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "energium", 0xe81e21, NONE));
+    public static Material Lapotronium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "lapotronium", 0x6464c8, NONE));
     public static Material Fireclay = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "fireclay", 0xada09b, ROUGH));
 
 
