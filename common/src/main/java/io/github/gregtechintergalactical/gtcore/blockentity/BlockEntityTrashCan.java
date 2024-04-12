@@ -54,7 +54,7 @@ public class BlockEntityTrashCan extends BlockEntityMachine<BlockEntityTrashCan>
 
     public static class TrashCanCombinedHandler extends SidedCombinedInvWrapper {
         public TrashCanCombinedHandler(Direction side, CoverHandler<?> coverHandler, ExtendedItemContainer... itemHandler) {
-            super(side, coverHandler, itemHandler);
+            super(side, coverHandler, d -> true, d-> true, itemHandler);
         }
 
         @Override
