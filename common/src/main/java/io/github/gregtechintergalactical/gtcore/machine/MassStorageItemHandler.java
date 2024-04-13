@@ -28,15 +28,7 @@ public class MassStorageItemHandler extends MachineItemHandler<BlockEntityMassSt
     }*/
 
     @Override
-    public Optional<ExtendedItemContainer> forSide(Direction side) {
-        return Optional.of(new SidedCombinedInvWrapper(side, tile.coverHandler.map(c -> c).orElse(null), this.inventories.values().stream().filter(t -> !(t instanceof FakeTrackedItemHandler)).toArray(ExtendedItemContainer[]::new)){
-            @Override
-            public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-                if (side == Direction.DOWN && tile.isOutput()){
-                    return stack;
-                }
-                return super.insertItem(slot, stack, simulate);
-            }
-        });
+    public boolean allowsInput(Direction side) {
+        return super.allowsInput(side) && (side != Direction.DOWN || !tile.isOutput());
     }
 }

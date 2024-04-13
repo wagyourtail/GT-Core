@@ -123,7 +123,6 @@ public class GTCoreItems {
     public static ItemBasic<?> BatteryHullSmall = new ItemBasic<>(GTCore.ID, "small_battery_hull").tip("An empty LV Battery Hull");
     public static ItemBasic<?> BatteryHullMedium = new ItemBasic<>(GTCore.ID, "medium_battery_hull").tip("An empty MV Battery Hull");
     public static ItemBasic<?> BatteryHullLarge = new ItemBasic<>(GTCore.ID, "large_battery_hull").tip("An empty HV Battery Hull");
-    public static ItemBasic<?> BatteryRE = new ItemMultiTextureBattery(GTCore.ID, "re_battery", Tier.LV, 10000, true).tip("Reusable Battery");
     public static ItemBasic<?> BatterySmallAcid = new ItemMultiTextureBattery(GTCore.ID, "small_acid_battery", Tier.LV, 18000, false).tip("Single Use");
     public static ItemBasic<?> BatterySmallMercury = new ItemMultiTextureBattery(GTCore.ID, "small_mercury_battery", Tier.LV, 32000, false).tip("Single Use");
     public static ItemBasic<?> BatterySmallCadmium = new ItemMultiTextureBattery(GTCore.ID, "small_cadmium_battery", Tier.LV,75000, 2, true).tip("Reusable");

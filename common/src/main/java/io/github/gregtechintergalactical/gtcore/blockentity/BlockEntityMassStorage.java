@@ -76,7 +76,23 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     @Override
     public void dropInventory(BlockState state, LootContext.Builder builder, List<ItemStack> drops) {
         if (getMachineState() != MachineState.ACTIVE) {
-            super.dropInventory(state, builder, drops);
+            itemHandler.ifPresent(t -> {
+                ItemStack held = t.getHandler(SlotTypes.UNLIMITED).getItem(0);
+                int amountToExtract = held.getCount();
+                if (amountToExtract > 0){
+                    if (amountToExtract > held.getMaxStackSize()){
+                        int toExtract = amountToExtract;
+                        while (toExtract > 0){
+                            ItemStack toAdd = Utils.ca(Math.min(held.getMaxStackSize(), toExtract), held);
+                            toExtract -= toAdd.getCount();
+                            drops.add(toAdd);
+                        }
+                    } else {
+                        ItemStack toAdd = Utils.ca(amountToExtract, held);
+                        drops.add(toAdd);
+                    }
+                }
+            });
         }
     }
 
