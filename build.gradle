@@ -2,7 +2,7 @@ import org.gradle.api.tasks.compile.JavaCompile
 
 plugins {
     id "maven-publish"
-    id "xyz.wagyourtail.unimined" version "1.1.0-SNAPSHOT" apply false
+    id "xyz.wagyourtail.unimined" version "1.2.0-SNAPSHOT" apply false
 }
 
 //Print out JVM information so that we know what version is running. Extreamly useful for people to know when helping you.
@@ -75,8 +75,15 @@ subprojects {
         version minecraft_version
 
         mods {
-            remap(configurations.modCompileOnly)
-            remap(configurations.modRuntimeOnly)
+            remap(configurations.modCompileOnly){
+                catchAWNamespaceAssertion()
+            }
+            remap(configurations.modRuntimeOnly){
+                catchAWNamespaceAssertion()
+            }
+            modImplementation {
+                catchAWNamespaceAssertion()
+            }
         }
 
         mappings {
