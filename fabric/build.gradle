@@ -27,6 +27,10 @@ dependencies {
         exclude(group: "com.github.Trins-mods")
         exclude(group: "com.github.Trinsdar")
     }
+    modCompileOnly("mezz.jei:jei-${rootProject.minecraft_version}-fabric:${rootProject.jei_version}"){
+        exclude(group: "mezz.jei", module: "jei-1.18.2-fabric-api")
+    }
+    modCompileOnly("curse.maven:the-one-probe-fabric-581847:${project.top_fabric_file}")
     modImplementation(include("io.github.fabricators_of_create:Porting-Lib:${rootProject.port_lib_version}-beta+1.18.2-stable")){
         exclude(group: "net.fabricmc.fabric-api")
         exclude(group: "com.github.LlamaLad7")
