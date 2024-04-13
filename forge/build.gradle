@@ -38,6 +38,12 @@ processResources {
     }
 }
 
+sourcesJar {
+    from(project(':common').sourceSets.main.allSource) {
+        exclude("fabric.mod.json")
+    }
+}
+
 tasks.withType(JavaCompile).configureEach {
     source(project(":common").sourceSets.main.allSource)
 }

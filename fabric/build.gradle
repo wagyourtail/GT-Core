@@ -61,6 +61,7 @@ processResources {
 sourcesJar {
     from(project(':common').sourceSets.main.allSource) {
         exclude("gtcore.accesswidener") // duplicate on fabric, unneeded on forge
+        exclude("fabric.mod.json")
     }
 }
 
