@@ -23,6 +23,7 @@ import io.github.gregtechintergalactical.gtcore.loader.machines.AssemblyLoader;
 import io.github.gregtechintergalactical.gtcore.network.MessageCraftingSync;
 import io.github.gregtechintergalactical.gtcore.network.MessageInventorySync;
 import io.github.gregtechintergalactical.gtcore.network.MessageTriggerInventorySync;
+import io.github.gregtechintergalactical.gtcore.proxy.CommonHandler;
 import io.github.gregtechintergalactical.gtcore.tree.RubberTree;
 import io.github.gregtechintergalactical.gtcore.tree.RubberTreeWorldGen;
 import muramasa.antimatter.AntimatterAPI;
@@ -92,6 +93,7 @@ public class GTCore extends AntimatterMod {
             case DATA_INIT -> {
                 SlotTypes.init();
                 MenuHandlers.init();
+                GTCoreData.init();
                 GTCoreBlocks.init();
                 GTCoreItems.init();
                 GTCoreFluids.init();
@@ -114,6 +116,7 @@ public class GTCore extends AntimatterMod {
             case DATA_READY -> {
                 WoodType.register(GTCoreBlocks.RUBBER_WOOD_TYPE);
                 GTCoreRemapping.init();
+                CommonHandler.setup();
                 AntimatterJEIREIPlugin.addItemsToHide(l -> {
                     l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_lv").getItem());
                     l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_mv").getItem());
