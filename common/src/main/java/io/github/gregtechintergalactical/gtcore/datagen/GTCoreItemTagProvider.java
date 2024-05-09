@@ -95,6 +95,9 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_lv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_mv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_hv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "drill_lv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "drill_mv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "drill_hv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_lv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_mv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_hv").getItem());
