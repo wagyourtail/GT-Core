@@ -256,32 +256,6 @@ public class GTCoreMaterials {
     public static Material Shale = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "shale", 0x8E8EA8, NONE));
     public static Material Slate = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "slate", 0x94979C, NONE));
 
-    /**
-     ** Misc
-     **/
-    public static Material HighPressure = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "high_pressure", 0xc80000, NONE));
-    public static Material HighCapacity = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "high_capacity", 0xb00b69, NONE));
-    public static Material PlasmaContainment = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "plasma_containment", 0xffff00, NONE));
-    public static Material Superconductor = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "superconductor", 0xffffff, NONE));
-
-    // TODO go through the GT_Loader_Item_Block_And_Fluid and make sure all explicitly added fluids have the LIQUID tag
     public static void init() {
-        // TODO assign correct handle materials
-        // for (Material material : generated) {
-        // if (material == Blaze) {
-        // material.handleMaterial = "blaze";
-        // } /*else if (aMaterial.contains(SubTag.MAGICAL) &&
-        // aMaterial.contains(SubTag.CRYSTAL) && Utils.isModLoaded(MOD_ID_TC)) {
-        // aMaterial.mHandleMaterial = Thaumium;
-        // }*/ else if (material.getMass() > Element.Tc.getMass() * 2) {
-        // material.handleMaterial = Tungstensteel.;
-        // } else if (material.getMass() > Element.Tc.getMass()) {
-        // material.handleMaterial = Steel;
-        // } else {
-        // material.handleMaterial = Wood;
-        // }
-        // }
-        // If using small ore markers, every normal ore needs a small version. This
-        // greatly increases block usage
     }
 }
