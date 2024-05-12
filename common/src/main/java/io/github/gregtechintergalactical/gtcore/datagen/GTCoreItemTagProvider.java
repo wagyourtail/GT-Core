@@ -80,6 +80,7 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(CIRCUITS_3D).add(Circuit3D);
         this.tag(CIRCUITS_INFINITE).add(CircuitInfinite);
         this.tag(CIRCUITS_DATA_ORB).add(DataOrb);
+        this.tag(BATTERIES_RE).add(BatteryRE);
         this.tag(BATTERIES_SMALL).add(BatterySmallSodium, BatterySmallCadmium, BatterySmallLithium);
         this.tag(BATTERIES_MEDIUM).add(BatteryMediumSodium, BatteryMediumCadmium, BatteryMediumLithium);
         this.tag(BATTERIES_LARGE).add(BatteryLargeSodium, BatteryLargeCadmium, BatteryLargeLithium, EnergyCrystal);
@@ -94,6 +95,9 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_lv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_mv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_hv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "drill_lv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "drill_mv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "drill_hv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_lv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_mv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_hv").getItem());

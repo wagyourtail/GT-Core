@@ -25,6 +25,7 @@ public class GTCoreTags {
     public static TagKey<Item> CIRCUITS_DATA_ORB = getTag("circuits/data_orb");
     public static TagKey<Item> DUST_LAPIS_LAZURITE = getTag("dusts/lapislazurite");
     public static TagKey<Item> DUST_COALS = getTag("dusts/coals");
+    public static TagKey<Item> BATTERIES_RE = getTag("batteries/re");
     public static TagKey<Item> BATTERIES_SMALL = getTag("batteries/small");
     public static TagKey<Item> BATTERIES_MEDIUM = getTag("batteries/medium");
     public static TagKey<Item> BATTERIES_LARGE = getTag("batteries/large");
