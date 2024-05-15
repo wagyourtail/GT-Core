@@ -43,7 +43,3 @@ sourcesJar {
         exclude("fabric.mod.json")
     }
 }
-
-tasks.withType(JavaCompile).configureEach {
-    source(project(":common").sourceSets.main.allSource)
-}
