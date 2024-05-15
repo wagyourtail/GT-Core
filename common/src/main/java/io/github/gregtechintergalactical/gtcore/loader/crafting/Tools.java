@@ -250,7 +250,7 @@ public class Tools {
                        }
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
-                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", " R", " R");
+                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", " R");
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
                                of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FP", "HR");
