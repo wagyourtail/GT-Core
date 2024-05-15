@@ -34,7 +34,7 @@ public class Tools {
     public static void init(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
         provider.removeRecipe(new ResourceLocation("farmersdelight", "flint_knife"));
         provider.removeRecipe(new ResourceLocation("farmersdelight", "iron_knife"));
-        provider.removeRecipe(new ResourceLocation("farmersdelight", "gold_knife"));
+        provider.removeRecipe(new ResourceLocation("farmersdelight", "golden_knife"));
         provider.removeRecipe(new ResourceLocation("farmersdelight", "diamond_knife"));
 
         toolPartRecipes(consumer, provider);
