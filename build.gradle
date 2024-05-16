@@ -74,7 +74,7 @@ subprojects {
     unimined.minecraft(sourceSets.main, true) {
         version minecraft_version
         if (project.name != "common"){
-            combineWith(":common:main")
+            combineWith(project(":common"), project(":common").sourceSets.main)
         }
 
         mods {
@@ -91,6 +91,7 @@ subprojects {
 
         mappings {
             mojmap()
+            devFallbackNamespace "official"
             devNamespace "mojmap"
             parchment(rootProject.minecraft_version, rootProject.mappings_version)
         }
