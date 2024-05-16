@@ -65,6 +65,7 @@ public class VanillaRecipes {
                 addBeeswaxRecipe(consumer, provider, prefix + "cut_copper_stairs");
                 addBeeswaxRecipe(consumer, provider, prefix + "cut_copper_slab");
             }
+            provider.addItemRecipe(consumer, "misc", Items.CANDLE, of('S', Items.STRING, 'W', DUST.getMaterialTag(Beeswax)), "S", "W");
         }
         if (!GTCoreConfig.VANILLA_OVERRIDES.get()) return;
         provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.IRON_BARS, 8), of('R', ROD.getMaterialTag(Iron)), "RRR", "RRR");
